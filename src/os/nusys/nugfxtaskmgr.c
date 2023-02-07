@@ -68,15 +68,14 @@ void nuGfxTaskMgrInit(void) {
         nuGfxTask[i].msgQ = &D_800DAC90;
         nuGfxTask[i].list.t.type = M_GFXTASK;
         nuGfxTask[i].list.t.flags = 0;
-        dma_copy((u8* )0xB0000B70, (u8* )0xB0000C70, rspbootUcodeBuffer);
-        nuGfxTask[i].list.t.ucode_boot = (u64*) rspbootUcodeBuffer;
-        nuGfxTask[i].list.t.ucode_boot_size = 0x100;
+        nuGfxTask[i].list.t.ucode_boot = (u64*) rspbootTextStart;
+        nuGfxTask[i].list.t.ucode_boot_size = (int)rspbootTextEnd - (int)rspbootTextStart;
         nuGfxTask[i].list.t.ucode_size = SP_UCODE_SIZE;
         nuGfxTask[i].list.t.ucode_data_size = SP_UCODE_DATA_SIZE;
         nuGfxTask[i].list.t.dram_stack = (u64*) &D_800DA040;
         nuGfxTask[i].list.t.dram_stack_size = SP_DRAM_STACK_SIZE8;
         nuGfxTask[i].list.t.output_buff = (u64*) &D_800B91D0;
-        nuGfxTask[i].list.t.output_buff_size = (u64*) &gZoneCollisionData;
+        nuGfxTask[i].list.t.output_buff_size = (u64*) ((int)&D_800B91D0 + 0x00020000); // TODO: pass end of D_800B91D0
         nuGfxTask[i].list.t.yield_data_ptr = (u64*) &nuYieldBuf;
         nuGfxTask[i].list.t.yield_data_size = NU_GFX_YIELD_BUF_SIZE;
     }

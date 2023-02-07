@@ -36,7 +36,7 @@ DemoSceneData D_80077AE0[20] = {
     { .unk_0 = 0, .entryID = 0, .unk_4 = 0, .partnerID = PARTNER_NONE, .unk_6 = 0x00, },
 };
 
-char versionString[] = "Prg Ver.00/12/05 16:54";
+char versionString[] = "Prg Ver.04/05/18 10:52";
 
 void state_init_demo(void) {
     if (gGameStatusPtr->demoState == 0) {

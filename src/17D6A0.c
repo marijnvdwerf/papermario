@@ -3580,6 +3580,10 @@ void btl_update_message_popup(void* data) {
     }
 }
 
+#if 1
+void func_80250818(void* data, s32 x, s32 y);
+INCLUDE_ASM(void, "17D6A0", func_80250818);
+#else
 void func_80250818(void* data, s32 x, s32 y) {
     PopupMessage* popup = data;
     s32 messageID;
@@ -3837,6 +3841,7 @@ void func_80250818(void* data, s32 x, s32 y) {
             break;
     }
 }
+#endif
 
 void btl_show_message_popup(void* data) {
     PopupMessage* popup = data;

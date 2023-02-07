@@ -69,7 +69,7 @@ glabel blast_appendGfx
 /* 37D784 E007C2F4 4600110D */  trunc.w.s $f4, $f2
 /* 37D788 E007C2F8 44152000 */  mfc1      $s5, $f4
 /* 37D78C E007C2FC 0C080108 */  jal       shim_guTranslateF
-/* 37D790 E007C300 36731630 */   ori      $s3, $s3, 0x1630
+/* 37D790 E007C300 36731630 */   ori      $s3, $s3, 0x2230
 /* 37D794 E007C304 27B00058 */  addiu     $s0, $sp, 0x58
 /* 37D798 E007C308 4480B000 */  mtc1      $zero, $f22
 /* 37D79C E007C30C 3C038007 */  lui       $v1, %hi(gCurrentCameraID)

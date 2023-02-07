@@ -98,7 +98,7 @@ API_CALLABLE(N(HideBehindTree)) {
                 }
                 add_vec2D_polar(&posX, &posZ, 46.0f, yaw);
             } else {
-                osSyncPrintf("cccc\n");
+                LOG("cccc\n");
             }
         }
         npc->currentAnim = enemy->animList[ENEMY_ANIM_INDEX_RUN];

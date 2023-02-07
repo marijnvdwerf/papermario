@@ -26,7 +26,7 @@ glabel fx_65_appendGfx
 /* 3D09E0 E00CA4E0 AFB20078 */  sw        $s2, 0x78($sp)
 /* 3D09E4 E00CA4E4 3C120001 */  lui       $s2, 1
 /* 3D09E8 E00CA4E8 44800000 */  mtc1      $zero, $f0
-/* 3D09EC E00CA4EC 36521630 */  ori       $s2, $s2, 0x1630
+/* 3D09EC E00CA4EC 36521630 */  ori       $s2, $s2, 0x2230
 /* 3D09F0 E00CA4F0 AFB3007C */  sw        $s3, 0x7c($sp)
 /* 3D09F4 E00CA4F4 3C13800A */  lui       $s3, %hi(gMasterGfxPos)
 /* 3D09F8 E00CA4F8 2673A66C */  addiu     $s3, $s3, %lo(gMasterGfxPos)

@@ -47,8 +47,8 @@ void load_map_by_IDs(s16 areaID, s16 mapID, s16 loadType) {
     gOverrideFlags &= ~GLOBAL_OVERRIDES_ENABLE_FLOOR_REFLECTION;
 
     gGameStatusPtr->playerSpriteSet = PLAYER_SPRITES_MARIO_WORLD;
-    load_obfuscation_shims();
-    shim_general_heap_create_obfuscated();
+
+    general_heap_create();
     clear_render_tasks();
     clear_worker_list();
     clear_script_list();
@@ -111,8 +111,7 @@ void load_map_by_IDs(s16 areaID, s16 mapID, s16 loadType) {
         load_map_bg(wMapBgName);
     }
 
-    load_obfuscation_shims();
-    shim_general_heap_create_obfuscated();
+    general_heap_create();
     sfx_clear_env_sounds(0);
     clear_worker_list();
     clear_script_list();

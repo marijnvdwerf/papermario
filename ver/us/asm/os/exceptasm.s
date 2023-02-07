@@ -22,8 +22,8 @@ glabel __osExceptionPreamble
 /* 45DFC 8006A9FC 00000000 */   nop
 
 glabel osExceptionPreamble
-/* 45E00 8006AA00 3C1A800B */  lui       $k0, %hi(D_800B0D08)
-/* 45E04 8006AA04 275A0D08 */  addiu     $k0, $k0, %lo(D_800B0D08)
+/* 45E00 8006AA00 3C1A800B */  lui       $k0, %hi(__osThreadSave)
+/* 45E04 8006AA04 275A0D08 */  addiu     $k0, $k0, %lo(__osThreadSave)
 /* 45E08 8006AA08 FF410020 */  sd        $at, 0x20($k0)
 /* 45E0C 8006AA0C 401B6000 */  mfc0      $k1, $12
 /* 45E10 8006AA10 AF5B0118 */  sw        $k1, 0x118($k0)

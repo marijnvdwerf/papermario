@@ -1,6 +1,9 @@
 #include "common.h"
 #include "nu/nusys.h"
 
+void create_audio_system(void);
+void load_engine_data(void);
+
 #ifdef VERSION_US
 s16 D_80074010 = 8; // might be an array, could be size 1-8
 #else
@@ -52,13 +55,11 @@ void boot_main(void* data) {
     crash_screen_init();
 #endif
 
-    is_debug_init();
     nuGfxInit();
     gGameStatusPtr->contBitPattern = nuContInit();
 #ifdef VERSION_US
-    load_obfuscation_shims();
-    shim_create_audio_system_obfuscated();
-    shim_load_engine_data_obfuscated();
+    create_audio_system();
+    load_engine_data();
 #else
     func_8002CA00();
     shim_create_audio_system_obfuscated();
@@ -185,6 +186,8 @@ void gfx_task_main(void) {
 #else
 INCLUDE_ASM(s32, "main", func_80026148);
 #endif
+
+NOP_FIX
 
 void gfxPreNMI_Callback(void) {
 #ifdef VERSION_US

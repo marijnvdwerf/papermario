@@ -27,15 +27,14 @@ BSS s32 gPauseCursorIconID;
 BSS s8 gPauseMenuCurrentTab;
 BSS s8 D_802700D[7]; //padding
 
-static s32 gPauseTutorialFrameCounter;
-static s32 D_802700E4;
-static s32 gPauseCommonIconIDs[8];
-static s32 gPauseShownDescMsg;
-static s32 gPauseDescTextMaxPos;
-static s32 gPauseDescTextPos;
-static s32 gPauseDescTextOffset;
-static HudScript* gPauseShownDescIconScript;
-static s32 gPauseTutorialSprites[3];
+BSS s32 gPauseTutorialFrameCounter;
+BSS s32 gPauseCommonIconIDs[8]; // goal: 80270164
+BSS s32 gPauseShownDescMsg;
+BSS s32 gPauseDescTextMaxPos;
+BSS s32 gPauseDescTextPos;
+BSS s32 gPauseDescTextOffset;
+BSS HudScript* gPauseShownDescIconScript;
+BSS s32 gPauseTutorialSprites[3];
 
 static HudScript* gPauseIconScripts[] = {
     &HES_AnimatedCursorHand, &HES_DescMsgPrev, &HES_DescMsgNext, &HES_UnusedBadge,

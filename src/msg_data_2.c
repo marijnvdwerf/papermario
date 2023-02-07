@@ -1,11 +1,59 @@
 #include "common.h"
 
-s32 D_802EB5C0[] = {
-    0x0000D178, 0x0000ED78, 0x00010978, 0x00012578, 0x00014178, 0x00015D78, 0x00017978, 0x00019578, 0x0001B178, 0x0001CD78, 0x0001E978, 0x00020578
+extern void charset_letter_content_1_png;
+extern void charset_letter_content_2_png;
+extern void charset_letter_content_3_png;
+extern void charset_letter_content_4_png;
+extern void charset_letter_content_5_png;
+extern void charset_letter_content_6_png;
+extern void charset_letter_content_7_png;
+extern void charset_letter_content_8_png;
+extern void charset_letter_content_9_png;
+extern void charset_letter_content_10_png;
+extern void charset_letter_content_11_png;
+extern void charset_letter_content_12_png;
+
+extern void _binary_ver_us_build_assets_us_charset_letter_content_1_pal_bin_start;
+extern void _binary_ver_us_build_assets_us_charset_letter_content_2_pal_bin_start;
+extern void _binary_ver_us_build_assets_us_charset_letter_content_3_pal_bin_start;
+extern void _binary_ver_us_build_assets_us_charset_letter_content_4_pal_bin_start;
+extern void _binary_ver_us_build_assets_us_charset_letter_content_5_pal_bin_start;
+extern void _binary_ver_us_build_assets_us_charset_letter_content_6_pal_bin_start;
+extern void _binary_ver_us_build_assets_us_charset_letter_content_7_pal_bin_start;
+extern void _binary_ver_us_build_assets_us_charset_letter_content_8_pal_bin_start;
+extern void _binary_ver_us_build_assets_us_charset_letter_content_9_pal_bin_start;
+extern void _binary_ver_us_build_assets_us_charset_letter_content_10_pal_bin_start;
+extern void _binary_ver_us_build_assets_us_charset_letter_content_11_pal_bin_start;
+extern void _binary_ver_us_build_assets_us_charset_letter_content_12_pal_bin_start;
+
+void* D_802EB5C0[] = {
+        &charset_letter_content_1_png,
+        &charset_letter_content_2_png,
+        &charset_letter_content_3_png,
+        &charset_letter_content_4_png,
+        &charset_letter_content_5_png,
+        &charset_letter_content_6_png,
+        &charset_letter_content_7_png,
+        &charset_letter_content_8_png,
+        &charset_letter_content_9_png,
+        &charset_letter_content_10_png,
+        &charset_letter_content_11_png,
+        &charset_letter_content_12_png,
 };
 
-s32 D_802EB5F0[] = {
-    0x0000EB78, 0x00010778, 0x00012378, 0x00013F78, 0x00015B78, 0x00017778, 0x00019378, 0x0001AF78, 0x0001CB78, 0x0001E778, 0x00020378, 0x00021F78
+void* D_802EB5F0[] = {
+        &_binary_ver_us_build_assets_us_charset_letter_content_1_pal_bin_start,
+        &_binary_ver_us_build_assets_us_charset_letter_content_2_pal_bin_start,
+        &_binary_ver_us_build_assets_us_charset_letter_content_3_pal_bin_start,
+        &_binary_ver_us_build_assets_us_charset_letter_content_4_pal_bin_start,
+        &_binary_ver_us_build_assets_us_charset_letter_content_5_pal_bin_start,
+        &_binary_ver_us_build_assets_us_charset_letter_content_6_pal_bin_start,
+        &_binary_ver_us_build_assets_us_charset_letter_content_7_pal_bin_start,
+        &_binary_ver_us_build_assets_us_charset_letter_content_8_pal_bin_start,
+        &_binary_ver_us_build_assets_us_charset_letter_content_9_pal_bin_start,
+        &_binary_ver_us_build_assets_us_charset_letter_content_10_pal_bin_start,
+        &_binary_ver_us_build_assets_us_charset_letter_content_11_pal_bin_start,
+        &_binary_ver_us_build_assets_us_charset_letter_content_12_pal_bin_start,
 };
 
 struct_D_802EB620 D_802EB620[] = {
@@ -113,5 +161,7 @@ unsigned char ui_msg_palettes[16][32] = {
 BSS IMG_BIN D_802ED970[0xF60];
 BSS IMG_BIN D_802EE8D0[0x5100];
 BSS IMG_BIN D_802F39D0[0xB88];
+#if 0
 BSS char MSG_unused[8];
-BSS PAL_BIN D_802F4560[80][8];
+#endif
+BSS PAL_BIN D_802F4560[80][8]; // goal:802f4558

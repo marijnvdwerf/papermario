@@ -88,6 +88,8 @@ extern void     bzero(void *, int);
 /* Printf */
 
 extern int		sprintf(char *s, const char *fmt, ...);
+
+#define LOG(args...)
 extern void		osSyncPrintf(const char *fmt, ...);
 
 

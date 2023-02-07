@@ -11,7 +11,7 @@ def next_multiple(pos, multiple):
 
 def get_version_date(version):
     if version == "us":
-        return "Map Ver.00/11/07 15:36"
+        return "Map Ver.04/05/18 13:41"
     elif version == "jp":
         return "Map Ver.00/07/05 19:13"
     else:

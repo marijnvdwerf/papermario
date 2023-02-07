@@ -153,7 +153,7 @@ glabel underwater_appendGfx
 /* 3B943C E00BA86C 36521201 */  ori       $s2, $s2, 0x1201
 /* 3B9440 E00BA870 27A40020 */  addiu     $a0, $sp, 0x20
 /* 3B9444 E00BA874 3C130001 */  lui       $s3, 1
-/* 3B9448 E00BA878 36731630 */  ori       $s3, $s3, 0x1630
+/* 3B9448 E00BA878 36731630 */  ori       $s3, $s3, 0x2230
 /* 3B944C E00BA87C 3C10800A */  lui       $s0, %hi(gMasterGfxPos)
 /* 3B9450 E00BA880 2610A66C */  addiu     $s0, $s0, %lo(gMasterGfxPos)
 /* 3B9454 E00BA884 8E080000 */  lw        $t0, ($s0)

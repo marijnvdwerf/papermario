@@ -311,7 +311,7 @@ BSS s8 D_802AD004;
 BSS s16 D_802AD006;
 BSS s16 BattleMenuAlpha;
 BSS s16 D_802AD00A;
-BSS s16 D_802AD00C; // unused?
+//BSS s16 D_802AD00C; // unused?
 BSS s32 D_802AD010[6];
 BSS s32 D_802AD028[6];
 BSS s32 D_802AD040;
@@ -324,19 +324,19 @@ BSS s32 D_802AD058;
 BSS s32 D_802AD05C;
 BSS s32 BattleMenu_BasePosX;
 BSS s32 BattleMenu_BasePosY;
-BSS s8 BattleMenuDisableMsg;
+BSS s8 BattleMenuDisableMsg; // goal: 0x802AD064
 BSS s8 BattleMenu_MinIdx;
 BSS s8 BattleMenu_MaxIdx;
 BSS s8 BattleMenu_HomePos;
 BSS f32 BattleMenu_WheelAngle;
 BSS f32 D_802AD070;
-BSS s32 D_802AD074; // unused?
+//BSS s32 D_802AD074; // unused?
 BSS HudScript* BattleMenu_HudScripts[6];
 BSS s32 BattleMenu_TitleMessages[6];
 BSS s32 D_802AD0A8;
 BSS s32 BattleMenu_NumOptions;
 BSS s32 D_802AD0B0;
-BSS s32 D_802AD0B4; // unused?
+//BSS s32 D_802AD0B4; // unused?
 BSS s32 battle_menu_submenuIDs[6];
 BSS s32 BattleMenu_OptionEnabled[6];
 BSS s32 battle_menu_isMessageDisabled[6];
@@ -357,17 +357,17 @@ BSS s16 BattleMenu_Moves_TextAlpha;
 BSS HudElemID BattleMenu_Moves_CursorID;
 BSS HudElemID BattleMenu_Moves_UpArrowID;
 BSS HudElemID BattleMenu_Moves_DownArrowID;
-BSS s32 D_802AD124; // unused?
+//BSS s32 D_802AD124; // unused?
 BSS HudElemID BattleMenu_Moves_OptionIDs[24];
 BSS HudElemID BattleMenu_Moves_TitleID;
-BSS s32 D_802AD18C; // unused?
+//BSS s32 D_802AD18C; // unused?
 BSS HudElemID BattleMenu_Moves_OptionCostUnitIDs[24];
 BSS s16 BattleMenu_Moves_PosX;
 BSS s16 BattleMenu_Moves_PosY;
-BSS s32 D_802AD1F4; // unused?
+//BSS s32 D_802AD1F4; // unused?
 BSS s32 BattleMenu_Moves_OptionIndexMap[24];
 BSS s32 D_802AD258;
-BSS s32 D_802AD25C; // unused?
+//BSS s32 D_802AD25C; // unused?
 BSS HudScript* battle_menu_moveOptionIconScripts[24];
 BSS s32 battle_menu_moveOptionNames[24];
 BSS s32 battle_menu_moveOptionDisplayCosts[24];
@@ -377,7 +377,7 @@ BSS s32 battle_menu_moveOptionBPCosts[24];
 BSS s32 BattleMenu_UsingSpiritsSubmenu;
 BSS s32 BattleMenu_Moves_OptionCount;
 BSS s32 D_802AD4A8;
-BSS s32 D_802AD4AC; // unused?
+//BSS s32 D_802AD4AC; // unused?
 BSS s32 BattleMenu_Moves_OptionIndices[24];
 BSS s32 BattleMenu_Moves_OptionEnabled[24];
 BSS s32 BattleMenu_Moves_OptionDescMessages[24];
@@ -404,7 +404,7 @@ BSS s32 D_802AD624;
 BSS s32 D_802AD628[5];
 BSS s16 D_802AD63C;
 BSS s16 D_802AD63E;
-BSS HudScript* D_802AD640[6];
+BSS HudScript* D_802AD640[5];
 BSS s32 D_802AD658[5]; // msg IDs
 BSS s32 D_802AD66C;
 BSS s32 D_802AD670;
@@ -412,10 +412,10 @@ BSS s32 D_802AD670;
 //TODO remove it in func_802A45D8 and use D_802AD670 instead
 extern s8 D_802AD673;
 
-BSS s32 D_802AD674; // unused?
-BSS s32 D_802AD678[6];
-BSS s32 D_802AD690[6];
-BSS s32 D_802AD6A8[6];
+//BSS s32 D_802AD674; // unused?
+BSS s32 D_802AD678[5];
+BSS s32 D_802AD690[5];
+BSS s32 D_802AD6A8[5];
 BSS s32 D_802AD6C0[5];
 BSS s32 D_802AD6D4;
 

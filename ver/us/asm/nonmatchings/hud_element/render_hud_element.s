@@ -197,7 +197,7 @@ glabel render_hud_element
 /* D95DC 80142EDC 3C150001 */  lui       $s5, 1
 /* D95E0 80142EE0 46001082 */  mul.s     $f2, $f2, $f0
 /* D95E4 80142EE4 00000000 */  nop
-/* D95E8 80142EE8 36B51630 */  ori       $s5, $s5, 0x1630
+/* D95E8 80142EE8 36B51630 */  ori       $s5, $s5, 0x2230
 /* D95EC 80142EEC 27B30260 */  addiu     $s3, $sp, 0x260
 /* D95F0 80142EF0 8FC70024 */  lw        $a3, 0x24($fp)
 /* D95F4 80142EF4 44052000 */  mfc1      $a1, $f4

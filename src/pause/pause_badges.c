@@ -10,7 +10,7 @@ void pause_badges_cleanup(MenuPanel* panel);
 
 static s16 gPauseBadgesItemIds[128];
 static s32 gPauseBadgesCurrentPage;
-static s32 D_80270284;
+//static s32 D_80270284;
 static PauseItemPage gPauseBadgesPages[20];
 static s32 gPauseBadgesSelectedIndex;
 static s32 D_8027037C;
@@ -23,7 +23,7 @@ static s32 gPauseBadgesTargetScrollIndex;
 static s32 gPauseBadgesLevel;
 static s32 gPauseBadgesCurrentTab;
 static s32 gPauseBadgesShowNotEnoughBP;
-static s32 D_802703A4;
+//static s32 D_802703A4;
 static s32 gPauseBadgesIconIDs[22];
 
 // Fake "badge" for the None entry that appears on the equipped badges page when nothing is equipped
@@ -560,10 +560,10 @@ void pause_badges_draw_contents(MenuPanel* menu, s32 baseX, s32 baseY, s32 width
         }
     }
 
-    hud_element_set_render_pos(gPauseBadgesIconIDs[16], baseX + 43, baseY + 81);
+    hud_element_set_render_pos(gPauseBadgesIconIDs[16], baseX + 47, baseY + 82);
     hud_element_draw_without_clipping(gPauseBadgesIconIDs[16]);
-    draw_msg(pause_get_menu_msg(70), baseX + 16, baseY + 74, 255, MSG_PAL_STANDARD, DRAW_MSG_STYLE_MENU);
-    draw_number(playerData->maxBP, baseX + 69, baseY + 74, DRAW_NUMBER_CHARSET_THIN, MSG_PAL_STANDARD, 255, DRAW_NUMBER_STYLE_MONOSPACE | DRAW_NUMBER_STYLE_ALIGN_RIGHT);
+    draw_msg(pause_get_menu_msg(70), baseX + 10, baseY + 74, 255, MSG_PAL_STANDARD, DRAW_MSG_STYLE_MENU);
+    draw_number(playerData->maxBP, baseX + 73, baseY + 76, DRAW_NUMBER_CHARSET_THIN, MSG_PAL_STANDARD, 255, DRAW_NUMBER_STYLE_MONOSPACE | DRAW_NUMBER_STYLE_ALIGN_RIGHT);
     bpAmount = playerData->maxBP - pause_get_total_equipped_bp_cost();
     bpAvailOffsetX = 0;
     bpAvailOffsetY = (playerData->maxBP - 1) / 10 * 8;

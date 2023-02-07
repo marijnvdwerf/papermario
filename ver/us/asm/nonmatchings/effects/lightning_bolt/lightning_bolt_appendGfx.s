@@ -21,7 +21,7 @@ glabel lightning_bolt_appendGfx
 /* 3BA3B4 E00BC384 27A40010 */  addiu     $a0, $sp, 0x10
 /* 3BA3B8 E00BC388 AFB400B0 */  sw        $s4, 0xb0($sp)
 /* 3BA3BC E00BC38C 3C140001 */  lui       $s4, 1
-/* 3BA3C0 E00BC390 36941630 */  ori       $s4, $s4, 0x1630
+/* 3BA3C0 E00BC390 36941630 */  ori       $s4, $s4, 0x2230
 /* 3BA3C4 E00BC394 AFB100A4 */  sw        $s1, 0xa4($sp)
 /* 3BA3C8 E00BC398 3C11800A */  lui       $s1, %hi(gMasterGfxPos)
 /* 3BA3CC E00BC39C 2631A66C */  addiu     $s1, $s1, %lo(gMasterGfxPos)

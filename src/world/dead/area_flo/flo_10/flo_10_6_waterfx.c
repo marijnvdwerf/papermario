@@ -81,7 +81,7 @@ void N(UnkModelFunc000)(s32 x1, s32 y1, s32 x2, s32 y2) {
                 Gfx *_g = (Gfx *)(gMasterGfxPos++);
 
                 if ((osVirtualToPhysical(img) % 8) != 0) {
-                    osSyncPrintf("GBI Error (aligned 8)  File:%s Line:%d Adrs:%08x \n",
+                    LOG("GBI Error (aligned 8)  File:%s Line:%d Adrs:%08x \n",
                                  "evt_underwater.c", 83, osVirtualToPhysical(img));
                 }
                 _g->words.w0 = _SHIFTL(G_SETTIMG, 24, 8) | _SHIFTL(G_IM_FMT_RGBA, 21, 3) |
@@ -131,7 +131,7 @@ void N(UnkModelFunc000)(s32 x1, s32 y1, s32 x2, s32 y2) {
                 Gfx *_g = (Gfx *)(gMasterGfxPos++);
 
                 if ((osVirtualToPhysical(img) % 8) != 0) {
-                    osSyncPrintf("GBI Error (aligned 8)  File:%s Line:%d Adrs:%08x \n",
+                    LOG("GBI Error (aligned 8)  File:%s Line:%d Adrs:%08x \n",
                                  "evt_underwater.c", 107, osVirtualToPhysical(img));
                 }
                 _g->words.w0 = _SHIFTL(G_SETTIMG, 24, 8) | _SHIFTL(G_IM_FMT_RGBA, 21, 3) |
@@ -303,7 +303,7 @@ void N(UnkModelFunc001)(void) {
 
         new_var = gMasterGfxPos++;
         if ((osVirtualToPhysical(nuGfxZBuffer) % 8) != 0) {
-            osSyncPrintf("GBI Error (aligned 8)  File:%s Line:%d Adrs:%08x \n",
+            LOG("GBI Error (aligned 8)  File:%s Line:%d Adrs:%08x \n",
                          "evt_underwater.c", 175, osVirtualToPhysical(nuGfxZBuffer));
         }
         gDPSetColorImage(new_var, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, osVirtualToPhysical(nuGfxZBuffer));
@@ -317,7 +317,7 @@ void N(UnkModelFunc001)(void) {
 
         new_var = gMasterGfxPos++;
         if ((osVirtualToPhysical(nuGfxCfb_ptr) % 8) != 0) {
-            osSyncPrintf("GBI Error (aligned 8)  File:%s Line:%d Adrs:%08x \n",
+            LOG("GBI Error (aligned 8)  File:%s Line:%d Adrs:%08x \n",
                          "evt_underwater.c", 186, osVirtualToPhysical(nuGfxCfb_ptr));
         }
         gDPSetColorImage(new_var, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, osVirtualToPhysical(nuGfxCfb_ptr));

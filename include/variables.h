@@ -131,7 +131,7 @@ extern struct ShapeFile D_80210000;
 extern u8 D_802D9D70; // player alpha1 copy?
 extern u8 D_802D9D71; // player alpha2 copy?
 
-extern DisplayContext D_80164000[];
+extern DisplayContext D_80164000[2];
 
 extern WindowStyle gWindowStyles[];
 
@@ -145,7 +145,6 @@ extern UNK_FUN_PTR(gCurtainDrawCallback);
 
 extern u16 gCurrentDoorSounds;
 
-extern s32 D_800D9620;
 extern UNK_TYPE D_800E92D8;
 extern UNK_TYPE D_80147574;
 extern s8 D_8014C248[];

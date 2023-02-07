@@ -118,6 +118,9 @@ void filemenu_yesno_draw_options_contents(
     }
 }
 
+#if 1
+INCLUDE_ASM(void, "filemenu/filemenu_yesno", filemenu_yesno_draw_prompt_contents);
+#else
 void filemenu_yesno_draw_prompt_contents(
     MenuPanel* menu,
     s32 baseX, s32 baseY,
@@ -167,6 +170,7 @@ void filemenu_yesno_draw_prompt_contents(
             break;
     }
 }
+#endif
 
 void filemenu_yesno_init(MenuPanel* tab) {
     s32 i;

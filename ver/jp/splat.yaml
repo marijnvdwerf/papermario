@@ -226,7 +226,32 @@ segments:
     - [0x4A190, c, jp/4A190]
     - [0x4A1D0, c, jp/4A1D0]
     - [0x4AC70, c, jp/4AC70]
-  - [0x4E580, bin]
+  - name: engine1
+    type: code
+    start: 0x75990
+    vram: 0x800dc4e0
+  - name: engine4
+    type: code
+    start: 0xa5f90
+    vram: 0x8010f890
+  - name: engine2
+    type: code
+    start: 0xa9770
+    vram: 0x801148e0
+  - name: evt
+    type: code
+    start: 0xeb1a0
+    vram: 0x802c3000
+  - name: entity
+    type: code
+    start: 0x102620
+    vram: 0x802dbd40
+  - name: font_width
+    type: code
+    start: 0x10cc20
+    vram: 0x802e6380
+
+  - [0x10f330, bin]
   - [0x1E00000, pm_map_data, mapfs]
   - [0x27BCB14, bin]
   - [0x2800000]

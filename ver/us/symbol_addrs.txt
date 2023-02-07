@@ -4115,6 +4115,14 @@ nusched = 0x800DA440; // rom:0xB5840
 render_animated_model = 0x8011F304; // type:func rom:0xB5A04
 render_animated_model_with_vertices = 0x8011F3E8; // type:func rom:0xB5AE8
 appendGfx_animator = 0x8011F4D4; // type:func rom:0xB5BD4
+nusched+0x4 = 0x800DA444; // type:data rom:0xB5844
+nusched+0x3c = 0x800DA47C; // type:data rom:0xB587C
+nusched+0x74 = 0x800DA4B4; // type:data rom:0xB58B4
+nusched+0x11c = 0x800DA55C; // type:data rom:0xB595C
+D_800DAAA8 = 0x800DAAA8; // type:data rom:0xB5EA8
+nusched+0x678 = 0x800DAAB8; // type:data rom:0xB5EB8
+D_800DAABD = 0x800DAABD; // type:data rom:0xB5EBD
+
 D_800DAAC0 = 0x800DAAC0; // type:data rom:0xB5EC0
 nuContPfs = 0x800DAAD8; // rom:0xB5ED8
 nuSiMesgQ = 0x800DAC78; // rom:0xB6078

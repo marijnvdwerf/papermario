@@ -160,7 +160,7 @@ glabel func_802A5290
 /* 41A260 802A54D0 2410000B */  addiu     $s0, $zero, 0xb
 .L802A54D4:
 /* 41A264 802A54D4 02A0282D */  daddu     $a1, $s5, $zero
-/* 41A268 802A54D8 0220302D */  daddu     $a2, $s1, $zero
+/* 462CB8 802A54D8 2626FFFD */  addiu      $a2, $s1, -0x3
 /* 41A26C 802A54DC 2631000D */  addiu     $s1, $s1, 0xd
 /* 41A270 802A54E0 26520004 */  addiu     $s2, $s2, 4
 /* 41A274 802A54E4 26730001 */  addiu     $s3, $s3, 1

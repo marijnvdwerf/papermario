@@ -46,7 +46,7 @@ dlabel D_801512DA
 dlabel D_801512DC
 .space 4
 
-dlabel gCurrentTransformGroups
+dlabel gCurrentTransformGroups # 8014fa70
 .space 4
 
 dlabel gMsgGlobalWaveCounter
@@ -91,7 +91,7 @@ dlabel gEntityHideMode
 dlabel gHudElementCacheBuffer
 .space 4
 
-dlabel gEntityModelCount
+dlabel gEntityModelCount # 8014faa8
 .space 4
 
 dlabel D_8015131C
@@ -112,29 +112,29 @@ dlabel entity_area_specific_data_is_loaded
 dlabel entity_updateCounter
 .space 4
 
-dlabel gTriggerCount
-.space 4
+dlabel gTriggerCount # 8014fac4
+.space 2
 
-dlabel D_80151338
+.align 2
+dlabel D_80151338 # 8014fac8
 .space 4
 
 dlabel gHudElementCacheSize
 .space 4
 
-dlabel gCurrentDoorSounds
+dlabel gCurrentDoorSounds # 8014fad0
 .space 4
 
-dlabel D_80151344
+dlabel D_80151344 # 8014fad4
 .space 4
 
-dlabel D_80151348
-.space 0x00000038
+.space 0x00000028
 
-dlabel gWorldEntityList
-.space 0x00000078
+dlabel gWorldEntityList # 8014fb00
+.space 4*30
 
 dlabel gBattleEntityList
-.space 0x00000078
+.space 4*30
 
 dlabel gCurrentEntityListPtr
 .space 4
@@ -370,56 +370,20 @@ dlabel gCurrentEntityModelList
 dlabel D_80154374
 .space 4
 
-dlabel entity_fog_enabled
+dlabel entity_fog_enabled # 80152af8
 .space 4
 
 dlabel entity_fog_red
-.space 1
-
-dlabel D_8015437D
-.space 1
-
-dlabel D_8015437E
-.space 1
-
-dlabel D_8015437F
-.space 1
+.space 4
 
 dlabel entity_fog_green
-.space 1
-
-dlabel D_80154381
-.space 1
-
-dlabel D_80154382
-.space 1
-
-dlabel D_80154383
-.space 1
+.space 4
 
 dlabel entity_fog_blue
-.space 1
-
-dlabel D_80154385
-.space 1
-
-dlabel D_80154386
-.space 1
-
-dlabel D_80154387
-.space 1
+.space 4
 
 dlabel entity_fog_alpha
-.space 1
-
-dlabel D_80154389
-.space 1
-
-dlabel D_8015438A
-.space 1
-
-dlabel D_8015438B
-.space 1
+.space 4
 
 dlabel entity_fog_dist_min
 .space 4
@@ -427,22 +391,22 @@ dlabel entity_fog_dist_min
 dlabel entity_fog_dist_max
 .space 4
 
-dlabel D_80154394
-.space 0x0000000c
+########################
+.align 4 # file boundary
+########################
 
-dlabel gWorldWorkerList
+dlabel gWorldWorkerList # 80152b20
 .space 0x00000040
 
-dlabel gBattleWorkerList
+dlabel gBattleWorkerList # 80152b60
 .space 0x00000040
 
-dlabel gCurrentWorkerListPtr
+dlabel gCurrentWorkerListPtr # gCurrentWorkerListPtr
 .space 4
 
-dlabel D_80154424
-.space 0x0000000c
+.align 4 # file boundary
 
-dlabel gMessageBuffers
+dlabel gMessageBuffers # 80152bb0
 .space 0x00000800
 
 dlabel gMessagePrinters
@@ -454,8 +418,13 @@ dlabel gMessageMsgVars
 dlabel D_80155C98
 .space 8
 
+.align 4
+
 dlabel gMessageWindowProjMatrix
 .space 0x00000080
+
+dlabel D_801544A0
+.space 120 * 128
 
 dlabel D_80155D20
 .space 4
@@ -487,10 +456,10 @@ dlabel D_80155D8E
 dlabel D_80155D90
 .space 0x00000010
 
-dlabel WorldItemEntities
+dlabel WorldItemEntities # 80158120
 .space 0x00000400
 
-dlabel BattleItemEntities
+dlabel BattleItemEntities # 80158520
 .space 0x00000400
 
 dlabel gCurrentItemEntities
@@ -580,10 +549,10 @@ dlabel fold_groupDescriptors
 dlabel fold_gfxDataCache
 .space 0x00000040
 
-dlabel gHudElementsWorld
+dlabel gHudElementsWorld # 801592e0
 .space 0x00000500
 
-dlabel gHudElementsBattle
+dlabel gHudElementsBattle # 801597e0
 .space 0x00000500
 
 dlabel gHudElements
@@ -619,7 +588,7 @@ dlabel gHudElementCacheTableRasterBattle
 dlabel gHudElementCacheTablePaletteBattle
 .space 0x00000600
 
-dlabel D_80159180
+dlabel D_80159180 # 8015b500
 .space 0x00000010
 
 dlabel wTriggerList
@@ -715,14 +684,17 @@ dlabel mdl_textureHandles
 dlabel D_8015C790
 .space 0x00000030
 
-dlabel AmbientSoundData
+dlabel AmbientSoundData # 8015eb40
 .space 0x00000010
 
 dlabel CreateEntityVarArgBuffer
 .space 0x00000010
 
 dlabel D_8015C7E0
-.space 0x7820
+.space 0x20
 
-dlabel D_80164000
-.space 0x32C60
+.space 0x3C80
+
+dlabel D_80164000 # goal: 80162800
+.space 0x1a230 * 2
+

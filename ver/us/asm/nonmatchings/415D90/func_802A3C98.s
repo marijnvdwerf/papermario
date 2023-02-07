@@ -182,7 +182,7 @@ glabel func_802A3C98
 /* 418CC0 802A3F30 AFA20014 */  sw        $v0, 0x14($sp)
 /* 418CC4 802A3F34 8C840000 */  lw        $a0, ($a0)
 /* 418CC8 802A3F38 0C04993B */  jal       draw_msg
-/* 418CCC 802A3F3C 0220302D */   daddu    $a2, $s1, $zero
+/* 418CCC 802A3F3C 0220302D */  addiu     $a2, $s1, -0x2
 .L802A3F40:
 /* 418CD0 802A3F40 8E820000 */  lw        $v0, ($s4)
 /* 418CD4 802A3F44 00021880 */  sll       $v1, $v0, 2
@@ -279,7 +279,7 @@ glabel func_802A3C98
 /* 418E14 802A4084 8E10D190 */  lw        $s0, %lo(BattleMenu_Moves_OptionCostUnitIDs)($s0)
 /* 418E18 802A4088 14400018 */  bnez      $v0, .L802A40EC
 /* 418E1C 802A408C 0240202D */   daddu    $a0, $s2, $zero
-/* 418E20 802A4090 26A5006C */  addiu     $a1, $s5, 0x6c
+/* 418E20 802A4090 26A5006C */  addiu     $a1, $s5, 0x68
 /* 418E24 802A4094 0220302D */  daddu     $a2, $s1, $zero
 /* 418E28 802A4098 24070001 */  addiu     $a3, $zero, 1
 /* 418E2C 802A409C 3C03802B */  lui       $v1, %hi(BattleMenu_Moves_TextAlpha)
@@ -304,7 +304,7 @@ glabel func_802A3C98
 /* 418E74 802A40E4 080A9051 */  j         .L802A4144
 /* 418E78 802A40E8 26A50074 */   addiu    $a1, $s5, 0x74
 .L802A40EC:
-/* 418E7C 802A40EC 26A5005D */  addiu     $a1, $s5, 0x5d
+/* 418E7C 802A40EC 26A5005D */  addiu     $a1, $s5, 0x59
 /* 418E80 802A40F0 0220302D */  daddu     $a2, $s1, $zero
 /* 418E84 802A40F4 24070001 */  addiu     $a3, $zero, 1
 /* 418E88 802A40F8 3C03802B */  lui       $v1, %hi(BattleMenu_Moves_TextAlpha)

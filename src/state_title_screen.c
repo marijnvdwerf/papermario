@@ -422,12 +422,15 @@ void title_screen_draw_press_start(void) {
     gDPSetCombineMode(gMasterGfxPos++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
     gDPSetPrimColor(gMasterGfxPos++, 0, 0, 248, 240, 152, D_80077A28);
     gDPPipeSync(gMasterGfxPos++);
-    gDPLoadTextureBlock(gMasterGfxPos++, D_800A0980, G_IM_FMT_IA, G_IM_SIZ_8b, 128, 32, 0, G_TX_NOMIRROR | G_TX_WRAP,
+    gDPLoadTextureBlock(gMasterGfxPos++, D_800A0980, G_IM_FMT_IA, G_IM_SIZ_8b, 128, 20, 0, G_TX_NOMIRROR | G_TX_WRAP,
               G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
-    gSPTextureRectangle(gMasterGfxPos++, 384, 548, 896, 676, G_TX_RENDERTILE, 0, 0, 0x0400, 0x0400);
+    gSPTextureRectangle(gMasterGfxPos++, 384, 548, 896, 628, G_TX_RENDERTILE, 0, 0, 0x0400, 0x0400);
     gDPPipeSync(gMasterGfxPos++);
 }
 
+#if 1
+INCLUDE_ASM(void, "state_title_screen" ,title_screen_draw_copyright);
+#else
 void title_screen_draw_copyright(f32 arg0) {
     s32 alpha;
     s32 i;
@@ -445,13 +448,14 @@ void title_screen_draw_copyright(f32 arg0) {
         gDPSetPrimColor(gMasterGfxPos++, 0, 0, 0, 0, 0, alpha);
     }
 
-    for (i = 0; i < 2; i++) {
+    for (i = 0; i < 4; i++) {
         alpha = 0; // TODO figure out why this is needed
-        gDPLoadTextureTile(gMasterGfxPos++, &D_800A097C[0x240 * i], G_IM_FMT_IA, G_IM_SIZ_8b, 144, 32, 0, 0, 143, 15, 0,
+        //TODO: size should be 0x5A0
+        gDPLoadTextureTile(gMasterGfxPos++, &D_800A097C[i*0x240], G_IM_FMT_IA, G_IM_SIZ_8b, 144, 33, 0, 0, 143, 9, 0,
                            G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                            G_TX_NOLOD);
-        gSPTextureRectangle(gMasterGfxPos++, 356, 764 + (0x40 * i), 932, 828 + (0x40 * i), G_TX_RENDERTILE,
-                            0, 0, 0x0400, 0x0400);
+        gSPTextureRectangle(gMasterGfxPos++, 356, 724 + (0x28 * i), 932, 764 + (0x28 * i), G_TX_RENDERTILE, 0, 0, 0x0400, 0x0400);
     }
     gDPPipeSync(gMasterGfxPos++);
 }
+#endif

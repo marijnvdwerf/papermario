@@ -2072,9 +2072,9 @@ typedef struct SaveData {
     /* 0x12B0 */ s32 areaFlags[8];
     /* 0x12D0 */ s8 areaBytes[16];
     /* 0x12E0 */ s8 debugEnemyContact;
-    /* 0x12E0 */ s8 unk_12E1;
-    /* 0x12E0 */ s8 unk_12E2;
-    /* 0x12E0 */ s8 musicEnabled;
+    /* 0x12E1 */ s8 unk_12E1;
+    /* 0x12E2 */ s8 unk_12E2;
+    /* 0x12E3 */ s8 musicEnabled;
     /* 0x12E4 */ char unk_12E4[0x2];
     /* 0x12E6 */ Vec3s savePos;
     /* 0x12EC */ SaveMetadata unk_12EC;
@@ -2202,10 +2202,10 @@ typedef struct {
     /* 0x00000 */ LookAt lookAt;
     /* 0x00020 */ Hilite hilite;
     /* 0x00030 */ Mtx camPerspMatrix[8]; // could only be length 4, unsure
-    /* 0x00230 */ Gfx mainGfx[0x2080];
-    /* 0x10630 */ Gfx backgroundGfx[0x200]; // used by gfx_task_background
-    /* 0x11630 */ Mtx matrixStack[0x200];
-} DisplayContext; // size = 0x19630
+    /* 0x00230 */ Gfx mainGfx[0x2200];
+    /* 0x11230 */ Gfx backgroundGfx[0x200]; // used by gfx_task_background
+    /* 0x12230 */ Mtx matrixStack[0x200];
+} DisplayContext; // size = 0x1A230
 
 typedef struct PlayerSpinState {
     /* 0x00 */ s8 stopSoundTimer;

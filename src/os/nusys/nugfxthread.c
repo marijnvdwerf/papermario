@@ -3,12 +3,13 @@
 
 void gfxThread(void*);
 
-extern OSMesg nuContWaitMesgBuf;
+extern u8 nuSiMesgBuf[];
 extern OSThread D_800B1B90;
 extern OSMesg nuGfxMesgBuf[NU_GFX_MESGS];
 
 void nuGfxThreadStart(void) {
-    osCreateThread(&D_800B1B90, 4, gfxThread, NULL, &nuContWaitMesgBuf, NU_GFX_THREAD_PRI);
+// TODO: create bss variable for gfx stack
+    osCreateThread(&D_800B1B90, 4, gfxThread, NULL, &nuSiMesgBuf, NU_GFX_THREAD_PRI);
     osStartThread(&D_800B1B90);
 }
 

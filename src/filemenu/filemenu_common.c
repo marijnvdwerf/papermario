@@ -115,7 +115,9 @@ BSS s32 filemenu_cursorHudElemID[1];
 BSS s32 filemenu_8024C0A4[3];
 BSS s32 filemenu_hudElemIDs[20];
 BSS s32 filemenu_createfile_hudElems[4];
-BSS u8 filemenu_filename[8];
+
+BSS u8 filemenu_padding[0xA00];
+
 
 void filemenu_draw_rect(s32 ulx, s32 uly, s32 lrx, s32 lry, s32 tileDescriptor, s32 uls, s32 ult, s32 dsdx, s32 dtdy) {
     if (ulx <= -2688 || uly <= -2688 || lrx <= 0 || lry <= 0) {
