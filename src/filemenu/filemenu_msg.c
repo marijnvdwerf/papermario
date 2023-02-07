@@ -1,8 +1,10 @@
 #include "common.h"
 #include "filemenu.h"
+#include "ld_addrs.h"
 
 extern MessageCharset* gMsgCharsets[5];
 extern PAL_BIN D_802F4560[80][8];
+extern u8 filemenu_glyphBuffer[20][0x80];
 
 u8 filemenu_msg_C6[] = { 0xF7, 0xF7, 0x84, 0x05, 0x62, 0x14, 0xFD };   // SPACE[End]
 u8 filemenu_msg_C7[] = { 0xFD };                                 // [End]
@@ -31,8 +33,7 @@ Gfx* filemenu_savedGfxPos = NULL;
 s32 filemenu_charset = 0;
 s32 filemenu_charset_raster_id = 0;
 s32 filemenu_char_color = -1;
-
-u32 unkvariable = 0;
+u32 filemenu_glyphBufferIndex = 0;
 
 u8 filemenu_msg_01[] = { 0xF7, 0xF7, 0xF7, 0xF7, 0xF7, 0x7A, 0x14, 0x7B, 0x14, 0x79, 0x19, 0x7F, 0x06, 0x79, 0x04, 0x7A, 0x04, 0xFD };
 u8 filemenu_msg_02[] = { 0xF7, 0xF7, 0xF7, 0xF7, 0xF7, 0x7A, 0x14, 0x7B, 0x14, 0x79, 0x19, 0x7F, 0x06, 0x8C, 0x30, 0x6C, 0x12, 0xFD };
@@ -87,10 +88,7 @@ s32 gFileMenuMessages[] = {
     (s32)filemenu_msg_30, (s32)filemenu_msg_31, (s32)filemenu_msg_32, (s32)filemenu_msg_33, (s32)filemenu_msg_34
 };
 
-#if 1
-s32 filemenu_draw_char(s32 c, s32 x, s32 y, s32 flag1, s32 color, s32 flag2);
-INCLUDE_ASM(s32, "filemenu/filemenu_msg", filemenu_draw_char);
-#else
+
 s32 filemenu_draw_char(s32 c, s32 x, s32 y, s32 flag1, s32 color, s32 flag2) {
     MessageCharset* charset;
     s32 texSizeX;
@@ -150,6 +148,46 @@ s32 filemenu_draw_char(s32 c, s32 x, s32 y, s32 flag1, s32 color, s32 flag2) {
         return charWidth;
     }
 
+#if 1
+    if (c >= 0x100) {
+        int offset;
+        s32 character;
+        s32 *offsetPtr = &filemenu_glyphBufferIndex;
+
+        character = c < 0 ? c + 0xFF : c;
+        offset =  (((character>>8)  - 1) * 0x31) + (c&0xff)+0x47;
+        *offsetPtr = offset;
+
+        load_font_data(charset_standard_OFFSET + offset*0x80, 0x80, &filemenu_glyphBuffer[*offsetPtr][0]);
+
+        if (gMasterGfxPos != filemenu_savedGfxPos) {
+            gSPDisplayList(gMasterGfxPos++, filemenu_dl_draw_char_init);
+            filemenu_char_color = -1;
+        }
+
+        if (filemenu_char_color != color) {
+            filemenu_char_color = color;
+            gDPLoadTLUT_pal16(gMasterGfxPos++, 0, D_802F4560[color]);
+        }
+
+        gDPLoadTextureBlock_4b(gMasterGfxPos++,  &filemenu_glyphBuffer[*offsetPtr][0], G_IM_FMT_CI, 16, 16, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+
+        if(flag2) {
+            gDPSetCombineLERP(gMasterGfxPos++, 0, 0, 0, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0);
+            gDPSetRenderMode(gMasterGfxPos++, G_RM_CLD_SURF, G_RM_CLD_SURF2);
+            filemenu_draw_rect((x + 2) * 4, (y + 2) * 4, (x + 0x12) * 4, (y + 0x12) * 4, 0, 0, 0, 0x400, 0x400);
+            gDPPipeSync(gMasterGfxPos++);
+            gDPSetCombineMode(gMasterGfxPos++, G_CC_DECALRGBA, G_CC_DECALRGBA);
+            gDPSetRenderMode(gMasterGfxPos++, G_RM_TEX_EDGE, G_RM_TEX_EDGE2);
+        }
+
+        filemenu_draw_rect(x * 4, y * 4, (x + 0x10) * 4, (y + 0x10) * 4, 0, 0, 0, 0x400, 0x400);
+        filemenu_savedGfxPos = gMasterGfxPos;
+        *offsetPtr=(*offsetPtr+1)%20;
+        return 0x10;
+    }
+#endif
+
     if (c == 0xF7) {
         return charWidth - 6;
     }
@@ -170,7 +208,6 @@ s32 filemenu_draw_char(s32 c, s32 x, s32 y, s32 flag1, s32 color, s32 flag2) {
     }
     return 0;
 }
-#endif
 
 #if 1
 INCLUDE_ASM(s32, "filemenu/filemenu_msg", filemenu_draw_message);
