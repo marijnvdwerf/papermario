@@ -209,9 +209,6 @@ s32 filemenu_draw_char(s32 c, s32 x, s32 y, s32 flag1, s32 color, s32 flag2) {
     return 0;
 }
 
-#if 1
-INCLUDE_ASM(s32, "filemenu/filemenu_msg", filemenu_draw_message);
-#else
 void filemenu_draw_message(u8* message, s32 x, s32 y, s32 alpha, s32 color, u32 flags) {
     s32 flag1 = flags & 1;
     s32 flag2 = flags >> 3;
@@ -236,12 +233,19 @@ void filemenu_draw_message(u8* message, s32 x, s32 y, s32 alpha, s32 color, u32 
         filemenu_draw_char(0xF3, x, y, flag1, color, flag2);
         tmp = message;
         while (*tmp != 0xFD) {
-            x += filemenu_draw_char(*tmp, x, y, flag1, color, flag2);
+            int ord = *tmp;
+            if (ord >= 0x5F && ord <= 0x8F) {
+                tmp++;
+                ord = (*tmp << 8) + ord;
+                x += filemenu_draw_char(ord, x, y + 1, flag1, color, flag2);
+            } else {
+                ord = *tmp;
+                x += filemenu_draw_char(ord, x, y, flag1, color, flag2);
+            }
             tmp++;
         }
     }
 }
-#endif
 
 u8* filemenu_get_menu_message(s32 idx) {
     return (u8*)gFileMenuMessages[idx];
