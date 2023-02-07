@@ -3580,10 +3580,6 @@ void btl_update_message_popup(void* data) {
     }
 }
 
-#if 1
-void func_80250818(void* data, s32 x, s32 y);
-INCLUDE_ASM(void, "17D6A0", func_80250818);
-#else
 void func_80250818(void* data, s32 x, s32 y) {
     PopupMessage* popup = data;
     s32 messageID;
@@ -3717,122 +3713,122 @@ void func_80250818(void* data, s32 x, s32 y) {
 
             switch (popup->messageIndex) {
                 case BTL_MSG_2E:
-                    hud_element_set_render_pos(D_8029F642, x + 65, y + 14);
+                    hud_element_set_render_pos(D_8029F642, x + 83, y + 14);
                     hud_element_set_scale(D_8029F642, 0.5f);
                     hud_element_set_alpha(D_8029F642, opacity);
                     hud_element_draw_clipped(D_8029F642);
                     break;
                 case BTL_MSG_2F:
-                    hud_element_set_render_pos(D_8029F642, x + 55, y + 14);
+                    hud_element_set_render_pos(D_8029F642, x + 44, y + 14);
                     hud_element_set_scale(D_8029F642, 0.6f);
                     hud_element_set_alpha(D_8029F642, opacity);
                     hud_element_draw_clipped(D_8029F642);
 
-                    hud_element_set_render_pos(D_8029F644, x + 73, y + 31);
+                    hud_element_set_render_pos(D_8029F644, x + 67, y + 31);
                     hud_element_set_alpha(D_8029F644, opacity);
                     hud_element_draw_clipped(D_8029F644);
                     break;
                 case BTL_MSG_30:
-                    hud_element_set_render_pos(D_8029F642, x + 64, y + 14);
-                    hud_element_set_scale(D_8029F642, 0.5f);
-                    hud_element_set_alpha(D_8029F642, opacity);
-                    hud_element_draw_clipped(D_8029F642);
-                    break;
-                case BTL_MSG_31:
-                    hud_element_set_render_pos(D_8029F642, x + 67, y + 14);
-                    hud_element_set_scale(D_8029F642, 0.5f);
-                    hud_element_set_alpha(D_8029F642, opacity);
-                    hud_element_draw_clipped(D_8029F642);
-                    break;
-                case BTL_MSG_32:
-                    hud_element_set_render_pos(D_8029F642, x + 56, y + 14);
-                    hud_element_set_scale(D_8029F642, 0.6f);
-                    hud_element_set_alpha(D_8029F642, opacity);
-                    hud_element_draw_clipped(D_8029F642);
-                    break;
-                case BTL_MSG_33:
-                    hud_element_set_render_pos(D_8029F642, x + 65, y + 13);
-                    hud_element_set_scale(D_8029F642, 0.6f);
-                    hud_element_set_alpha(D_8029F642, opacity);
-                    hud_element_draw_clipped(D_8029F642);
-
-                    hud_element_set_render_pos(D_8029F644, x + 146, y + 32);
-                    hud_element_set_scale(D_8029F644, 0.8f);
-                    hud_element_set_alpha(D_8029F644, opacity);
-                    func_80144218(D_8029F644);
-                    break;
-                case BTL_MSG_36:
-                    hud_element_set_render_pos(D_8029F642, x + 86, y + 13);
-                    hud_element_set_scale(D_8029F642, 0.5f);
-                    hud_element_set_alpha(D_8029F642, opacity);
-                    hud_element_draw_clipped(D_8029F642);
-
-                    hud_element_set_render_pos(D_8029F644, x + 64, y + 13);
-                    hud_element_set_scale(D_8029F644, 0.5f);
-                    hud_element_set_alpha(D_8029F644, opacity);
-                    hud_element_draw_clipped(D_8029F644);
-
-                    hud_element_set_render_pos(D_8029F646, x + 108, y + 13);
-                    hud_element_set_scale(D_8029F646, 0.5f);
-                    hud_element_set_alpha(D_8029F646, opacity);
-                    hud_element_draw_clipped(D_8029F646);
-                    break;
-                case BTL_MSG_38:
-                    hud_element_set_render_pos(D_8029F642, x + 105, y + 13);
-                    hud_element_set_alpha(D_8029F642, opacity);
-                    hud_element_draw_clipped(D_8029F642);
-
-                    hud_element_set_render_pos(D_8029F644, x + 65, y + 14);
-                    hud_element_set_scale(D_8029F644, 0.5f);
-                    hud_element_set_alpha(D_8029F644, opacity);
-                    hud_element_draw_clipped(D_8029F644);
-                    break;
-                case BTL_MSG_3A:
-                    hud_element_set_render_pos(D_8029F642, x + 63, y + 14);
-                    hud_element_set_scale(D_8029F642, 0.5f);
-                    hud_element_set_alpha(D_8029F642, opacity);
-                    hud_element_draw_clipped(D_8029F642);
-
-                    hud_element_set_render_pos(D_8029F644, x + 84, y + 14);
-                    hud_element_set_scale(D_8029F644, 0.5f);
-                    hud_element_set_alpha(D_8029F644, opacity);
-                    hud_element_draw_clipped(D_8029F644);
-                    break;
-                case BTL_MSG_3C:
                     hud_element_set_render_pos(D_8029F642, x + 124, y + 14);
                     hud_element_set_scale(D_8029F642, 0.5f);
                     hud_element_set_alpha(D_8029F642, opacity);
                     hud_element_draw_clipped(D_8029F642);
                     break;
-                case BTL_MSG_3D:
-                    hud_element_set_render_pos(D_8029F642, x + 56, y + 31);
+                case BTL_MSG_31:
+                    hud_element_set_render_pos(D_8029F642, x + 70, y + 14);
+                    hud_element_set_scale(D_8029F642, 0.5f);
+                    hud_element_set_alpha(D_8029F642, opacity);
+                    hud_element_draw_clipped(D_8029F642);
+                    break;
+                case BTL_MSG_32:
+                    hud_element_set_render_pos(D_8029F642, x + 69, y + 14);
+                    hud_element_set_scale(D_8029F642, 0.6f);
+                    hud_element_set_alpha(D_8029F642, opacity);
+                    hud_element_draw_clipped(D_8029F642);
+                    break;
+                case BTL_MSG_33:
+                    hud_element_set_render_pos(D_8029F642, x + 43, y + 13);
+                    hud_element_set_scale(D_8029F642, 0.6f);
                     hud_element_set_alpha(D_8029F642, opacity);
                     hud_element_draw_clipped(D_8029F642);
 
-                    hud_element_set_render_pos(D_8029F644, x + 53, y + 14);
+                    hud_element_set_render_pos(D_8029F644, x + 177, y + 17);
+                    hud_element_set_scale(D_8029F644, 0.8f);
+                    hud_element_set_alpha(D_8029F644, opacity);
+                    func_80144218(D_8029F644);
+                    break;
+                case BTL_MSG_36:
+                    hud_element_set_render_pos(D_8029F642, x + 105, y + 14);
+                    hud_element_set_scale(D_8029F642, 0.5f);
+                    hud_element_set_alpha(D_8029F642, opacity);
+                    hud_element_draw_clipped(D_8029F642);
+
+                    hud_element_set_render_pos(D_8029F644, x + 83, y + 14);
+                    hud_element_set_scale(D_8029F644, 0.5f);
+                    hud_element_set_alpha(D_8029F644, opacity);
+                    hud_element_draw_clipped(D_8029F644);
+
+                    hud_element_set_render_pos(D_8029F646, x + 127, y + 14);
+                    hud_element_set_scale(D_8029F646, 0.5f);
+                    hud_element_set_alpha(D_8029F646, opacity);
+                    hud_element_draw_clipped(D_8029F646);
+                    break;
+                case BTL_MSG_38:
+                    hud_element_set_render_pos(D_8029F642, x + 40, y + 14);
+                    hud_element_set_alpha(D_8029F642, opacity);
+                    hud_element_draw_clipped(D_8029F642);
+
+                    hud_element_set_render_pos(D_8029F644, x + 106, y + 14);
+                    hud_element_set_scale(D_8029F644, 0.5f);
+                    hud_element_set_alpha(D_8029F644, opacity);
+                    hud_element_draw_clipped(D_8029F644);
+                    break;
+                case BTL_MSG_3A:
+                    hud_element_set_render_pos(D_8029F642, x + 95, y + 14);
+                    hud_element_set_scale(D_8029F642, 0.5f);
+                    hud_element_set_alpha(D_8029F642, opacity);
+                    hud_element_draw_clipped(D_8029F642);
+
+                    hud_element_set_render_pos(D_8029F644, x + 116, y + 14);
+                    hud_element_set_scale(D_8029F644, 0.5f);
+                    hud_element_set_alpha(D_8029F644, opacity);
+                    hud_element_draw_clipped(D_8029F644);
+                    break;
+                case BTL_MSG_3C:
+                    hud_element_set_render_pos(D_8029F642, x + 58, y + 14);
+                    hud_element_set_scale(D_8029F642, 0.5f);
+                    hud_element_set_alpha(D_8029F642, opacity);
+                    hud_element_draw_clipped(D_8029F642);
+                    break;
+                case BTL_MSG_3D:
+                    hud_element_set_render_pos(D_8029F642, x + 39, y + 31);
+                    hud_element_set_alpha(D_8029F642, opacity);
+                    hud_element_draw_clipped(D_8029F642);
+
+                    hud_element_set_render_pos(D_8029F644, x + 55, y + 14);
                     hud_element_set_scale(D_8029F644, 0.5f);
                     hud_element_set_alpha(D_8029F644, opacity);
                     hud_element_draw_clipped(D_8029F644);
                     break;
                 case BTL_MSG_3E:
-                    hud_element_set_render_pos(D_8029F642, x + 107, y + 13);
+                    hud_element_set_render_pos(D_8029F642, x + 53, y + 14);
                     hud_element_set_scale(D_8029F642, 0.6f);
                     hud_element_set_alpha(D_8029F642, opacity);
                     hud_element_draw_clipped(D_8029F642);
 
-                    hud_element_set_render_pos(D_8029F644, x + 210, y + 15);
-                    hud_element_set_scale(D_8029F644, 0.8f);
+                    hud_element_set_render_pos(D_8029F644, x + 55, y + 32);
+                    hud_element_set_scale(D_8029F644, 0.6f);
                     hud_element_set_alpha(D_8029F644, opacity);
                     func_80144218(D_8029F644);
 
-                    hud_element_set_render_pos(D_8029F646, x + 56, y + 15);
-                    hud_element_set_scale(D_8029F646, 0.8f);
+                    hud_element_set_render_pos(D_8029F646, x + 108, y + 15);
+                    hud_element_set_scale(D_8029F646, 0.7f);
                     hud_element_set_alpha(D_8029F646, opacity);
                     func_80144218(D_8029F646);
                     break;
                 case BTL_MSG_40:
                 case BTL_MSG_41:
-                    hud_element_set_render_pos(D_8029F642, x + 64, y + 13);
+                    hud_element_set_render_pos(D_8029F642, x + 66, y + 14);
                     hud_element_set_scale(D_8029F642, 0.5f);
                     hud_element_set_alpha(D_8029F642, opacity);
                     hud_element_draw_clipped(D_8029F642);
@@ -3841,7 +3837,6 @@ void func_80250818(void* data, s32 x, s32 y) {
             break;
     }
 }
-#endif
 
 void btl_show_message_popup(void* data) {
     PopupMessage* popup = data;
