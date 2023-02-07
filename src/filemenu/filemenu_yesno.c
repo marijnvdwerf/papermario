@@ -118,9 +118,6 @@ void filemenu_yesno_draw_options_contents(
     }
 }
 
-#if 1
-INCLUDE_ASM(void, "filemenu/filemenu_yesno", filemenu_yesno_draw_prompt_contents);
-#else
 void filemenu_yesno_draw_prompt_contents(
     MenuPanel* menu,
     s32 baseX, s32 baseY,
@@ -132,14 +129,14 @@ void filemenu_yesno_draw_prompt_contents(
 
     switch (menu->page) {
         case 0:
-            filemenu_draw_message(filemenu_get_menu_message(FILE_MESSAGE_DELETE), baseX + 10, baseY + 4, 0xFF, 0, 0);
-            filemenu_draw_message(filemenu_get_menu_message(FILE_MESSAGE_FILE_22), baseX + 60, baseY + 4, 0xFF, 0, 0);
-            draw_number(filemenu_menus[0]->selected + 1, baseX + 98, baseY + 6, DRAW_NUMBER_CHARSET_NORMAL, MSG_PAL_WHITE, 0xFF, DRAW_NUMBER_STYLE_MONOSPACE | DRAW_NUMBER_STYLE_ALIGN_RIGHT);
-            filemenu_draw_message(filemenu_get_menu_message(FILE_MESSAGE_QUESTION), baseX + 99, baseY + 4, 0xFF, 0, 0);
+            filemenu_draw_message(filemenu_get_menu_message(FILE_MESSAGE_DELETE), baseX + 20, baseY + 4, 0xFF, 0, 0);
+            filemenu_draw_message(filemenu_get_menu_message(FILE_MESSAGE_FILE_22), baseX + 50, baseY + 4, 0xFF, 0, 0);
+            draw_number(filemenu_menus[0]->selected + 1, baseX + 93, baseY + 7, DRAW_NUMBER_CHARSET_NORMAL, MSG_PAL_WHITE, 0xFF, DRAW_NUMBER_STYLE_MONOSPACE | DRAW_NUMBER_STYLE_ALIGN_RIGHT);
+            filemenu_draw_message(filemenu_get_menu_message(FILE_MESSAGE_QUESTION), baseX + 92, baseY + 4, 0xFF, 0, 0);
             break;
         case 3:
             filemenu_draw_message(filemenu_get_menu_message(FILE_MESSAGE_FILE_22), baseX + 10, baseY + 4, 0xFF, 0, 0);
-            draw_number(filemenu_menus[0]->selected + 1, baseX + 48, baseY + 6, DRAW_NUMBER_CHARSET_NORMAL, MSG_PAL_WHITE, 0xFF, DRAW_NUMBER_STYLE_MONOSPACE | DRAW_NUMBER_STYLE_ALIGN_RIGHT);
+            draw_number(filemenu_menus[0]->selected + 1, baseX + 49, baseY + 7, DRAW_NUMBER_CHARSET_NORMAL, MSG_PAL_WHITE, 0xFF, DRAW_NUMBER_STYLE_MONOSPACE | DRAW_NUMBER_STYLE_ALIGN_RIGHT);
             filemenu_draw_message(filemenu_get_menu_message(FILE_MESSAGE_WILL_BE_DELETED), baseX + 49, baseY + 4, 0xFF, 0, 0);
             filemenu_draw_message(filemenu_get_menu_message(FILE_MESSAGE_OK_TO_COPY_TO_THIS_FILE), baseX + 10, baseY + 18, 0xFF, 0, 0);
             break;
@@ -163,14 +160,13 @@ void filemenu_yesno_draw_prompt_contents(
             filemenu_draw_message(filemenu_get_menu_message(FILE_MESSAGE_OK), baseX + 70, baseY + 38, 0xFF, 0, 0);
             break;
         case 4:
-            filemenu_draw_message(filemenu_get_menu_message(FILE_MESSAGE_START_GAME_WITH), baseX + 10, baseY + 4, 0xFF, 0, 0);
-            filemenu_draw_message(filemenu_get_menu_message(FILE_MESSAGE_FILE_22), baseX + 127, baseY + 4, 0xFF, 0, 0);
-            draw_number(filemenu_menus[0]->selected + 1, baseX + 165, baseY + 6, DRAW_NUMBER_CHARSET_NORMAL, MSG_PAL_WHITE, 0xFF, DRAW_NUMBER_STYLE_MONOSPACE | DRAW_NUMBER_STYLE_ALIGN_RIGHT);
-            filemenu_draw_message(filemenu_get_menu_message(FILE_MESSAGE_QUESTION), baseX + 162, baseY + 4, 0xFF, 0, 0);
+            filemenu_draw_message(filemenu_get_menu_message(FILE_MESSAGE_START_GAME_WITH), baseX + 37, baseY + 4, 0xFF, 0, 0);
+            filemenu_draw_message(filemenu_get_menu_message(FILE_MESSAGE_FILE_22), baseX + 100, baseY + 4, 0xFF, 0, 0);
+            draw_number(filemenu_menus[0]->selected + 1, baseX + 142, baseY + 7, DRAW_NUMBER_CHARSET_NORMAL, MSG_PAL_WHITE, 0xFF, DRAW_NUMBER_STYLE_MONOSPACE | DRAW_NUMBER_STYLE_ALIGN_RIGHT);
+            filemenu_draw_message(filemenu_get_menu_message(FILE_MESSAGE_QUESTION), baseX + 140, baseY + 4, 0xFF, 0, 0);
             break;
     }
 }
-#endif
 
 void filemenu_yesno_init(MenuPanel* tab) {
     s32 i;
