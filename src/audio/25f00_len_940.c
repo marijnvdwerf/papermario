@@ -29,10 +29,6 @@ extern u64 n_aspMain_text_bin[];
 extern u64 n_aspMain_data_bin[];
 extern u8 AuHeapBase[AUDIO_HEAP_SIZE];
 
-
-#if 1
-INCLUDE_ASM(void, "audio/25f00_len_940", create_audio_system);
-#else 
 void create_audio_system(void) {
     u32 i;
     u32 outputRate, frameSize;
@@ -60,8 +56,8 @@ void create_audio_system(void) {
         nuAuTasks[i].next = NULL;
         nuAuTasks[i].msg = 0;
         nuAuTasks[i].list.t.type = M_AUDTASK;
-        nuAuTasks[i].list.t.ucode_boot = rspbootUcodeBuffer;
-        nuAuTasks[i].list.t.ucode_boot_size = 0x100;
+        nuAuTasks[i].list.t.ucode_boot = rspbootTextStart;
+        nuAuTasks[i].list.t.ucode_boot_size = (u32)rspbootTextEnd -  (u32)rspbootTextStart;
         nuAuTasks[i].list.t.ucode = n_aspMain_text_bin;
         nuAuTasks[i].list.t.ucode_data = n_aspMain_data_bin;
         nuAuTasks[i].list.t.ucode_data_size = SP_UCODE_DATA_SIZE;
@@ -91,7 +87,6 @@ void create_audio_system(void) {
     osCreateThread(&nuAuMgrThread, NU_MAIN_THREAD_ID, nuAuMgr, NULL, &AlCmdListBuffers, NU_AU_MGR_THREAD_PRI); //why main thread?
     osStartThread(&nuAuMgrThread);
 }
-#endif
 
 void nuAuPreNMIFuncSet(NUAuPreNMIFunc func) {
     OSIntMask mask = osSetIntMask(OS_IM_NONE);
