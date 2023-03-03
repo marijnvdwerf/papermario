@@ -55,7 +55,28 @@ HudScript* gPauseBadgesElements[] = {
     &HES_StatBp, &HES_StatBp, &HES_StatBp, &HES_StatBp,
     &HES_StatBp, &HES_StatBp, &HES_StatBp, &HES_StatBp,
     &HES_StatBp, &HES_ListPrevPage, &HES_ListNextPage,
-    &HES_Dash, &HES_LabelBpNeeded, &HES_StatusStar1
+    &HES_Dash, &HES_LabelBpNeeded, &HES_StatusStar1,
+
+    &HES_StatBp, &HES_StatBp, &HES_StatBp, &HES_StatBp,
+    &HES_StatBp, &HES_StatBp, &HES_StatBp, &HES_StatBp,
+    &HES_StatBp, &HES_StatBp, &HES_StatBp, &HES_StatBp,
+    &HES_StatBp, &HES_StatBp, &HES_StatBp, &HES_StatBp,
+    &HES_StatBp, &HES_ListPrevPage, &HES_ListNextPage,
+    &HES_Dash, &HES_LabelBpNeeded, &HES_StatusStar1,
+
+    &HES_StatBp, &HES_StatBp, &HES_StatBp, &HES_StatBp,
+    &HES_StatBp, &HES_StatBp, &HES_StatBp, &HES_StatBp,
+    &HES_StatBp, &HES_StatBp, &HES_StatBp, &HES_StatBp,
+    &HES_StatBp, &HES_StatBp, &HES_StatBp, &HES_StatBp,
+    &HES_StatBp, &HES_ListPrevPage, &HES_ListNextPage,
+    &HES_Dash, &HES_LabelBpNeeded, &HES_StatusStar1,
+
+    &HES_StatBp, &HES_StatBp, &HES_StatBp, &HES_StatBp,
+    &HES_StatBp, &HES_StatBp, &HES_StatBp, &HES_StatBp,
+    &HES_StatBp, &HES_StatBp, &HES_StatBp, &HES_StatBp,
+    &HES_StatBp, &HES_StatBp, &HES_StatBp, &HES_StatBp,
+    &HES_StatBp, &HES_ListPrevPage, &HES_ListNextPage,
+    &HES_Dash, &HES_LabelBpNeeded, &HES_StatusStar1,
 };
 MenuWindowBP gPauseBadgesWindowBPs[] = {
     {
@@ -276,6 +297,9 @@ void pause_badges_draw_bp_orbs(s32 orbState, s32 x, s32 y) {
     }
 }
 
+#if 1
+INCLUDE_ASM(void, "pause/pause_badges", pause_badges_draw_contents);
+#else
 void pause_badges_draw_contents(MenuPanel* menu, s32 baseX, s32 baseY, s32 width, s32 height, s32 opacity, s32 darkening) {
     s32 pageIndex, i;
     s32 badgeIndex;
@@ -704,6 +728,7 @@ void pause_badges_draw_contents(MenuPanel* menu, s32 baseX, s32 baseY, s32 width
         }
     }
 }
+#endif
 
 void pause_badges_load_badges(s32 onlyEquipped) {
     PlayerData* playerData = &gPlayerData;
@@ -789,6 +814,9 @@ void pause_badges_load_badges(s32 onlyEquipped) {
     gPauseBadgesTargetScrollPos = gPauseBadgesCurrentScrollPos = pause_badges_get_pos_y(0, 0);
 }
 
+#if 1
+INCLUDE_ASM(void, "pause/pause_badges", pause_badges_init);
+#else
 void pause_badges_init(MenuPanel* panel) {
     s32 i;
 
@@ -818,6 +846,7 @@ void pause_badges_init(MenuPanel* panel) {
     setup_pause_menu_tab(gPauseBadgesWindowBPs, ARRAY_COUNT(gPauseBadgesWindowBPs));
     panel->initialized = TRUE;
 }
+#endif
 
 void pause_badges_handle_input(MenuPanel* panel) {
     s32 selectedIndex = gPauseBadgesSelectedIndex;

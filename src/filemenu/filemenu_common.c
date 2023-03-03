@@ -39,6 +39,54 @@ s16 D_80249CF4[16] = { 180, 173, 161, 148, 134, 120, 105, 91, 77, 62, 48, 34, 21
 s16 D_80249D14[16] = { 0, 2, 9, 21, 34, 48, 62, 77, 91, 105, 120, 134, 148, 161, 173, 180 };
 s16 D_80249D34[10] = { 185, 160, 135, 110, 85, 60, 37, 17, 5, 0 };
 s16 D_80249D48[10] = { 0, 5, 17, 37, 60, 85, 110, 135, 160, 185};
+
+
+u16 D_filemenu_8024EB5C[] = {
+        0x00D2,
+        0x00B6,
+        0x00A2,
+        0x0091,
+        0x0082,
+        0x0075,
+        0x0069,
+        0x005C,
+        0x0050,
+        0x0043,
+        0x0037,
+        0x002A,
+        0x001E,
+        0x0012,
+        0x0008,
+        0x0002,
+};
+
+u16 D_filemenu_8024EB7C[] = {
+        0x0000,
+        0x0000,
+};
+
+u16 D_filemenu_8024EB80[] = {
+        0xFFFE,
+        0xFFF8,
+        0xFFEE,
+        0xFFE2,
+        0xFFD6,
+        0xFFC9,
+        0xFFBD,
+        0xFFB0,
+        0xFFA4,
+        0xFF97,
+        0xFF8B,
+        0xFF7E,
+        0xFF72,
+        0xFF65,
+        0xFF59,
+        0xFF4C,
+        0xFF40,
+};
+
+u16 D_filemenu_8024EBA2 = 0xFF33;
+
 s32 D_80249D4C = 0; // padding?
 Vp D_80249D60 = {
     .vp = {
@@ -717,6 +765,10 @@ void filemenu_update_hidden_name_confirm(
     }
 }
 
+
+INCLUDE_ASM(void, "filemenu/filemenu_common", filemenu_pal_80247f40);
+INCLUDE_ASM(void, "filemenu/filemenu_common", filemenu_pal_80248018);
+
 void filemenu_draw_cursor(MenuPanel* menu, s32 baseX, s32 baseY, s32 width, s32 height, s32 opacity, s32 darkening) {
     s32 temp_a1;
 
@@ -731,6 +783,7 @@ void filemenu_draw_cursor(MenuPanel* menu, s32 baseX, s32 baseY, s32 width, s32 
         hud_element_draw_without_clipping(filemenu_cursorHudElemID[0]);
     }
 }
+
 
 
 void filemenu_draw_contents_copy_arrow(MenuPanel* menu, s32 baseX, s32 baseY, s32 width, s32 height, s32 opacity,
@@ -846,6 +899,9 @@ void filemenu_draw_contents_copy_arrow(MenuPanel* menu, s32 baseX, s32 baseY, s3
     }
 }
 
+#if 1
+INCLUDE_ASM(void, "filemenu/filemenu_common", filemenu_init);
+#else
 // TODO bad match, look into
 void filemenu_init(s32 arg0) {
     MenuPanel** panelIt;
@@ -901,6 +957,7 @@ void filemenu_init(s32 arg0) {
     }
     update_window_hierarchy(23, 64);
 }
+#endif
 
 // TODO bad match, look into
 void filemenu_cleanup(void) {

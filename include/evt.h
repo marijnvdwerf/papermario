@@ -7,40 +7,40 @@
 typedef s32 Bytecode;
 
 enum {
-    EVT_OP_INTERNAL_FETCH,
-    EVT_OP_END,
-    EVT_OP_RETURN,
-    EVT_OP_LABEL, ///< Args: index
-    EVT_OP_GOTO, ///< Args: index
-    EVT_OP_LOOP, ///< Args: number of repeats (0 = infinite)
-    EVT_OP_END_LOOP,
-    EVT_OP_BREAK_LOOP,
-    EVT_OP_WAIT_FRAMES,
-    EVT_OP_WAIT_SECS,
-    EVT_OP_IF_EQ, ///< Args: a, b
-    EVT_OP_IF_NE, ///< Args: a, b
-    EVT_OP_IF_LT, ///< Args: a, b
-    EVT_OP_IF_GT, ///< Args: a, b
-    EVT_OP_IF_LE, ///< Args: a, b
-    EVT_OP_IF_GE, ///< Args: a, b
-    EVT_OP_IF_FLAG, ///< Args: a, b
-    EVT_OP_IF_NOT_FLAG, ///< Args: a, b
-    EVT_OP_ELSE,
-    EVT_OP_END_IF,
-    EVT_OP_SWITCH, ///< Args: expression to test against
-    EVT_OP_SWITCH_CONST, ///< Args: value to test against
-    EVT_OP_CASE_EQ, ///< Args: expression to test for
-    EVT_OP_CASE_NE, ///< Args: expression to test for
-    EVT_OP_CASE_LT, ///< Args: expression to test for
-    EVT_OP_CASE_GT, ///< Args: expression to test for
-    EVT_OP_CASE_LE, ///< Args: expression to test for
-    EVT_OP_CASE_GE, ///< Args: expression to test for
-    EVT_OP_CASE_DEFAULT,
-    EVT_OP_CASE_OR_EQ, ///< Args: expression to test for
-    EVT_OP_CASE_AND_EQ, ///< Args: expression to test for
-    EVT_OP_CASE_FLAG, ///< Args: expression to test for
-    EVT_OP_END_CASE_GROUP, ///< Ends the case block of EVT_OP_CASE_OR_EQ condition(s).
-    EVT_OP_CASE_RANGE, ///< Args: from, to
+    /* 0 */ EVT_OP_INTERNAL_FETCH,
+    /* 1 */ EVT_OP_END,
+    /* 2 */ EVT_OP_RETURN,
+    /* 3 */ EVT_OP_LABEL, ///< Args: index
+    /* 4 */ EVT_OP_GOTO, ///< Args: index
+    /* 5 */ EVT_OP_LOOP, ///< Args: number of repeats (0 = infinite)
+    /* 6 */ EVT_OP_END_LOOP,
+    /* 7 */ EVT_OP_BREAK_LOOP,
+    /* 8 */ EVT_OP_WAIT_FRAMES,
+    /* 9 */ EVT_OP_WAIT_SECS,
+    /* A */ EVT_OP_IF_EQ, ///< Args: a, b
+    /* B */ EVT_OP_IF_NE, ///< Args: a, b
+    /* C */ EVT_OP_IF_LT, ///< Args: a, b
+    /* D */ EVT_OP_IF_GT, ///< Args: a, b
+    /* E */ EVT_OP_IF_LE, ///< Args: a, b
+    /* F */ EVT_OP_IF_GE, ///< Args: a, b
+    /* 10 */ EVT_OP_IF_FLAG, ///< Args: a, b
+    /* 11 */ EVT_OP_IF_NOT_FLAG, ///< Args: a, b
+    /* 12 */ EVT_OP_ELSE,
+    /* 13 */ EVT_OP_END_IF,
+    /* 14 */ EVT_OP_SWITCH, ///< Args: expression to test against
+    /* 15 */ EVT_OP_SWITCH_CONST, ///< Args: value to test against
+    /* 16 */ EVT_OP_CASE_EQ, ///< Args: expression to test for
+    /* 17 */ EVT_OP_CASE_NE, ///< Args: expression to test for
+    /* 18 */ EVT_OP_CASE_LT, ///< Args: expression to test for
+    /* 19 */ EVT_OP_CASE_GT, ///< Args: expression to test for
+    /* 1A */ EVT_OP_CASE_LE, ///< Args: expression to test for
+    /* 1B */ EVT_OP_CASE_GE, ///< Args: expression to test for
+    /* 1C */ EVT_OP_CASE_DEFAULT,
+    /* 1D */ EVT_OP_CASE_OR_EQ, ///< Args: expression to test for
+    /* 1E */ EVT_OP_CASE_AND_EQ, ///< Args: expression to test for
+    /* 1F */ EVT_OP_CASE_FLAG, ///< Args: expression to test for
+    /*  */ EVT_OP_END_CASE_GROUP, ///< Ends the case block of EVT_OP_CASE_OR_EQ condition(s).
+    /*  */ EVT_OP_CASE_RANGE, ///< Args: from, to
     EVT_OP_BREAK_SWITCH,
     EVT_OP_END_SWITCH,
     EVT_OP_SET, ///< Args: container, expression

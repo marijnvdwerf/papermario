@@ -68,6 +68,13 @@ StatsEntryData gStatsMenuEntries[] = {
     {.cursorX = 125, .cursorY = 121, .baseMsgID = 47},
     {.cursorX = 125, .cursorY = 138, .baseMsgID = 49}
 };
+u32 D_pause_80253814[] = {
+        0x00000000,
+        0xFFFFFFF0,
+        0xFFFFFFF9,
+        0xFFFFFFED,
+};
+
 HudScript* gPauseStatsSPIncElements[] = { &HES_StatusSPIncrement1, &HES_StatusSPIncrement3,
                                           &HES_StatusSPIncrement2, &HES_StatusSPIncrement4,
                                           &HES_StatusSPIncrement5, &HES_StatusSPIncrement6,
@@ -116,7 +123,9 @@ MenuPanel gPausePanelStats = {
     .fpCleanup = &pause_stats_cleanup
 };
 
-
+#if 1
+INCLUDE_ASM(void, "pause/pause_stats", pause_stats_draw_contents);
+#else
 void pause_stats_draw_contents(MenuPanel* menu, s32 baseX, s32 baseY, s32 width, s32 height, s32 opacity, s32 darkening) {
     StatsEntryData* statsEntryData;
     PlayerData* playerData;
@@ -511,6 +520,7 @@ void pause_stats_draw_contents(MenuPanel* menu, s32 baseX, s32 baseY, s32 width,
         pause_set_cursor_pos(0x1F, baseX + entry->cursorX, baseY + entry->cursorY);
     }
 }
+#endif
 
 void pause_stats_init(MenuPanel* panel) {
     s32 i;

@@ -59,7 +59,7 @@ EvtScript N(EVS_BombWall_Cell) = {
     EVT_CALL(WaitForPlayerInputEnabled)
     EVT_CALL(DisablePlayerInput, TRUE)
     EVT_SET(GF_TRD06_BombedWall, TRUE)
-    EVT_WAIT(60)
+    EVT_WAIT(50)
     EVT_THREAD
         EVT_CALL(GetPlayerPos, LVar0, LVar1, LVar2)
         EVT_IF_LT(LVar0, 110)
@@ -81,10 +81,9 @@ EvtScript N(EVS_BombWall_Cell) = {
     EVT_END_THREAD
     EVT_CALL(DisablePartnerAI, 0)
     EVT_CALL(SetNpcAnimation, NPC_PARTNER, ANIM_WorldBombette_Walk)
-    EVT_CALL(SetNpcSpeed, NPC_PARTNER, EVT_FLOAT(3.5))
-    EVT_CALL(NpcMoveTo, NPC_PARTNER, 156, 156, 0)
+    EVT_CALL(SetNpcSpeed, NPC_PARTNER, EVT_FLOAT(4.2))
     EVT_CALL(SetNpcAnimation, NPC_PARTNER, ANIM_WorldBombette_Idle)
-    EVT_WAIT(30)
+    EVT_WAIT(25)
     EVT_CALL(SpeakToPlayer, NPC_PARTNER, ANIM_WorldBombette_Talk, ANIM_WorldBombette_Idle, 0, MSG_CH1_00E2)
     EVT_CALL(InterpNpcYaw, NPC_PARTNER, 90, 0)
     EVT_WAIT(20)

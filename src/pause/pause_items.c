@@ -103,6 +103,9 @@ s32 pause_items_scroll_offset_x(s32 beforeX) {
     return beforeX;
 }
 
+#if 1
+INCLUDE_ASM(void, "pause/pause_items", pause_items_draw_contents);
+#else
 void pause_items_draw_contents(MenuPanel* menu, s32 baseX, s32 baseY, s32 width, s32 height, s32 opacity, s32 darkening) {
     s32 i, pageIndex, itemIndex;
     s32 totalItemIndex;
@@ -346,6 +349,7 @@ void pause_items_draw_contents(MenuPanel* menu, s32 baseX, s32 baseY, s32 width,
          }
     }
 }
+#endif
 
 void pause_items_load_items(s32 invItems) {
     PlayerData* playerData = &gPlayerData;

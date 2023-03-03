@@ -223,27 +223,27 @@
 #include "ui/battle/unk_star.png.inc.c"
 #include "ui/battle/unk_star.pal.inc.c"
 
-Gfx D_8028F860[] = {
-    gsSPEndDisplayList(),
-};
+//Gfx D_8028F860[] = {
+//    gsSPEndDisplayList(),
+//};
 
 #include "ui/battle/projector_spot.png.inc.c"
 
-Gfx D_8028FC68[] = {
-    gsSPEndDisplayList(),
-};
+//Gfx D_8028FC68[] = {
+//    gsSPEndDisplayList(),
+//};
 
 #include "ui/battle/projector_beam.png.inc.c"
 
-Gfx D_80290C70[] = {
-    gsSPEndDisplayList(),
-};
+//Gfx D_80290C70[] = {
+//    gsSPEndDisplayList(),
+//};
 
 #include "ui/battle/projector_reel.png.inc.c"
 
-Gfx D_80291C78[] = {
-    gsSPEndDisplayList(),
-};
+//Gfx D_80291C78[] = {
+//    gsSPEndDisplayList(),
+//};
 
 #include "ui/battle/swap_background.png.inc.c"
 

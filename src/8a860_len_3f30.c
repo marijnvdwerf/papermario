@@ -315,6 +315,10 @@ void func_800F16CC(void) {
     gPopupState = POPUP_STATE_20;
 }
 
+#if 1
+s32 popup_menu_update(void);
+INCLUDE_ASM(s32, "8a860_len_3f30", popup_menu_update)
+#else
 s32 popup_menu_update(void) {
     s32 posX;
     s32 posY;
@@ -1031,6 +1035,7 @@ s32 popup_menu_update(void) {
     gPopupMenu->result = POPUP_RESULT_CHOOSING;
     return 0;
 }
+#endif
 
 void popup_menu_draw_menu_contents(s32* userData, s32 baseX, s32 baseY, s32 width, s32 height, s32 opacity, s32 darkening) {
     s32 x, y;
@@ -1403,6 +1408,9 @@ void popup_menu_draw_menu_contents(s32* userData, s32 baseX, s32 baseY, s32 widt
     }
 }
 
+#if 1
+INCLUDE_ASM(s32, "8a860_len_3f30", popup_menu_draw_title_contents);
+#else
 void popup_menu_draw_title_contents(
     s32* userData, s32 baseX, s32 baseY, s32 width, s32 height, s32 opacity, s32 darkening)
 {
@@ -1453,11 +1461,16 @@ void popup_menu_draw_title_contents(
             break;
     }
 }
+#endif
 
 void func_800F48F4(s32* userData, s32 baseX, s32 baseY, s32 width, s32 height, s32 opacity, s32 darkening) {
     draw_msg(gPopupMenu->descMsg[PopupSelectedIdx], baseX + 8, baseY, D_8010D650, D_8010D690, 0);
 }
 
+
+#if 1
+INCLUDE_ASM(void, "8a860_len_3f30", func_800F4944);
+#else
 void func_800F4944(s32* userData, s32 baseX, s32 baseY, s32 width, s32 height, s32 opacity, s32 darkening) {
     s32 msgWidth;
 
@@ -1538,7 +1551,11 @@ void func_800F4944(s32* userData, s32 baseX, s32 baseY, s32 width, s32 height, s
         }
     }
 }
+#endif
 
+#if 1
+INCLUDE_ASM(void, "8a860_len_3f30", func_800F4C1C);
+#else
 void func_800F4C1C(PopupMessage* popup, s32 x, s32 y) {
     s32 msg = MSG_Menus_0069;
     s32 xPos = x + 11;
@@ -1549,6 +1566,7 @@ void func_800F4C1C(PopupMessage* popup, s32 x, s32 y) {
     }
     draw_msg(msg, xPos, yPos, 255, MSG_PAL_0F, 0);
 }
+#endif
 
 void func_800F4C6C(PopupMessage* popup, s32 x, s32 y) {
     s32 hudElement;

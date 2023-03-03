@@ -2,6 +2,7 @@
 #include "hud_element.h"
 #include "fio.h"
 #include "sprite.h"
+extern int D_8014AE4C;
 
 void state_init_startup(void) {
     gOverrideFlags |= GLOBAL_OVERRIDES_8;
@@ -78,6 +79,11 @@ void state_step_startup(void) {
         gGameStatusPtr->soundOutputMode = SOUND_OUT_MONO;
         audio_set_mono();
     }
+
+    if ( D_800D95E8.language >= 4U) {
+        D_800D95E8.language = 0U;
+    }
+    D_8014AE4C = D_800D95E8.language;
 
     gOverrideFlags &= ~GLOBAL_OVERRIDES_8;
     set_game_mode(GAME_MODE_LOGOS);

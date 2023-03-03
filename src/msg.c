@@ -23,9 +23,14 @@ s32 D_8014C280[] = { 0x028001E0, 0x01FF0000, 0x028001E0, 0x01FF0000, };
 
 u8 MessagePlural[] = { MSG_CHAR_LOWER_S, MSG_CHAR_READ_END };
 
-u8 MessageSingular[] = { MSG_CHAR_READ_ENDL, MSG_CHAR_READ_END };
+u8 MessagePlural_de[] = {MSG_CHAR_BACKTICK, MSG_CHAR_READ_END};
+
+u8 MessageSingular[4] = { MSG_CHAR_READ_ENDL, MSG_CHAR_READ_END };
+
 
 s16 gNextMessageBuffer = 0;
+
+u32 PAL_8014AE50[] = { 0x02030000, 0x021B0000, 0x02330000, 0x024B0000, 0x0, 0x0};
 
 //TODO Vtx
 s32 gRewindArrowQuad[] = {
@@ -1350,6 +1355,10 @@ void initialize_printer(MessagePrintState* printer, s32 arg1, s32 arg2) {
     printer->sizeScale = 1.0f;
 }
 
+#if 1
+void dma_load_msg(u32 msgID, void* dest);
+INCLUDE_ASM(void, "msg", dma_load_msg);
+#else
 void dma_load_msg(u32 msgID, void* dest) {
     u8* addr = (u8*) MSG_ROM_START + (msgID >> 14); // (msgID >> 16) * 4
     u8* offset[2]; // start, end
@@ -1362,6 +1371,7 @@ void dma_load_msg(u32 msgID, void* dest) {
     // Load the msg data
     dma_copy(MSG_ROM_START + offset[0], MSG_ROM_START + offset[1], dest);
 }
+#endif
 
 s8* load_message_to_buffer(s32 msgID) {
     s8* prevBufferPos;
@@ -2279,6 +2289,9 @@ void draw_message_window(MessagePrintState* printer) {
     }
 }
 
+#if 1
+INCLUDE_ASM(void, "msg", appendGfx_message);
+#else
 void appendGfx_message(MessagePrintState* printer, s16 posX, s16 posY, u16 additionalOffsetX, u16 additionalOffsetY,
                        u16 flag, u8 alpha) {
     SpriteRasterInfo sprRasterInfo;
@@ -3599,6 +3612,7 @@ void appendGfx_message(MessagePrintState* printer, s16 posX, s16 posY, u16 addit
     gDPPipeSync(gMasterGfxPos++);
     D_80151338 = gMasterGfxPos;
 }
+#endif
 
 void msg_reset_gfx_state(void) {
     gDPPipeSync(gMasterGfxPos++);

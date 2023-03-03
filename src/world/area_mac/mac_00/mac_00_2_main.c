@@ -72,6 +72,8 @@ EvtScript N(EVS_Main) = {
     EVT_SET(GB_WorldLocation, LOCATION_TOAD_TOWN)
     EVT_CALL(SetSpriteShading, SHADING_NONE)
     EVT_SETUP_CAMERA_NO_LEAD()
+    EVT_CALL(func_PAL_802D8B04, LocalVar(0))
+    EVT_CALL(SetModelTexVariant, 10, LocalVar(0))
     EVT_IF_GE(GB_StoryProgress, STORY_CH0_KAMMY_RETURNED_TO_BOWSER)
         EVT_SET(GF_MAP_ToadTown, TRUE)
     EVT_END_IF

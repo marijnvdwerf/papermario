@@ -194,6 +194,10 @@ API_CALLABLE(N(AwaitPlayerPressATimer)) {
 }
 
 // unlike the common import, does not mask out 0xF0000 from itemID
+#if 1
+API_CALLABLE(N(GetItemNameRaw));
+INCLUDE_ASM(ApiResult, "world/area_kkj/kkj_19/kkj_19_5_baking", N(GetItemNameRaw));
+#else
 API_CALLABLE(N(GetItemNameRaw)) {
     Bytecode* args = script->ptrReadPos;
     s32 inOutVar = *args++;
@@ -202,6 +206,7 @@ API_CALLABLE(N(GetItemNameRaw)) {
     evt_set_variable(script, inOutVar, gItemTable[itemID].nameMsg);
     return ApiStatus_DONE2;
 }
+#endif
 
 #include "world/common/todo/GetFloorCollider.inc.c"
 
@@ -250,16 +255,36 @@ API_CALLABLE(N(FadeScreenFromBlack)) {
 }
 
 s32 N(BakingIngredientsList)[] = {
-    ITEM_BAKING_SUGAR,
-    ITEM_BAKING_SALT,
-    ITEM_BAKING_EGG,
-    ITEM_BAKING_STRAWBERRY,
-    ITEM_BAKING_CREAM,
-    ITEM_BAKING_BUTTER,
-    ITEM_BAKING_CLEANSER,
-    ITEM_BAKING_WATER,
-    ITEM_BAKING_FLOUR,
-    ITEM_BAKING_MILK,
+    0x00000065,
+    0x001D01AC,
+    0x0000005D,
+    0x001D01AD,
+    0x0000005E,
+    0x001D01AE,
+    0x0000005F,
+    0x001D01AF,
+    0x00000066,
+    0x001D01B0,
+    0x00000061,
+    0x001D01B1,
+    0x00000060,
+    0x001D01B2,
+    0x00000062,
+    0x001D01B3,
+    0x00000063,
+    0x001D01B4,
+    0x00000064,
+    0x001D01B5,
+    0x0000005D,
+    0x0000005E,
+    0x0000005F,
+    0x00000061,
+    0x00000060,
+    0x00000062,
+    0x00000063,
+    0x00000064,
+    0x00000065,
+    0x00000066,
 };
 
 EvtScript N(EVS_SetCookwareOnTable) = {

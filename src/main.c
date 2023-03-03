@@ -28,44 +28,21 @@ void load_engine_data(void);
 #endif
 
 void boot_main(void* data) {
-#if VERSION_JP
-    if (osTvType == OS_TV_NTSC) {
-        nuGfxDisplayOff();
+    if (osTvType == OS_TV_PAL) {
         osViSetMode(&osViModeNtscLan1);
-        osViSetSpecialFeatures(OS_VI_GAMMA_OFF | OS_VI_GAMMA_DITHER_OFF | OS_VI_DIVOT_ON | OS_VI_DITHER_FILTER_ON);
-        nuGfxDisplayOff();
-    } else {
-        PANIC();
-    }
-#else // not VERSION_JP
-    if (osTvType == OS_TV_NTSC) {
-        osViSetMode(&osViModeNtscLan1);
-        osViSetSpecialFeatures(OS_VI_GAMMA_OFF | OS_VI_GAMMA_DITHER_OFF | OS_VI_DIVOT_ON | OS_VI_DITHER_FILTER_ON);
-    } else if (osTvType == OS_TV_MPAL) {
-        osViSetMode(&osViModeMpalLan1);
+        osViSetYScale(0.833);
         osViSetSpecialFeatures(OS_VI_GAMMA_OFF | OS_VI_GAMMA_DITHER_OFF | OS_VI_DIVOT_ON | OS_VI_DITHER_FILTER_ON);
     } else {
         PANIC();
     }
 
     nuGfxDisplayOff();
-    crash_screen_init();
-#endif
-
-#if !VERSION_CN
-    is_debug_init();
-#endif
+    
     nuGfxInit();
     gGameStatusPtr->contBitPattern = nuContInit();
-
-#if VERSION_CN
-    create_audio_system();
-    load_engine_data();
-#else
     load_obfuscation_shims();
     shim_create_audio_system_obfuscated();
     shim_load_engine_data_obfuscated();
-#endif
 
     nuGfxFuncSet((NUGfxFunc) gfxRetrace_Callback);
     nuGfxPreNMIFuncSet(gfxPreNMI_Callback);

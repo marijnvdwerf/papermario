@@ -428,6 +428,9 @@ void remove_all_effects(void) {
     }
 }
 
+#if 1
+INCLUDE_ASM(s32, "effects", load_effect);
+#else
 s32 load_effect(s32 effectIndex) {
     EffectTableEntry* effectEntry = &gEffectTable[effectIndex];
     EffectGraphics* curEffect;
@@ -468,6 +471,8 @@ s32 load_effect(s32 effectIndex) {
     // Copy the effect into the newly mapped space
     dma_copy(effectEntry->dmaStart, effectEntry->dmaEnd, effectEntry->dmaDest);
 
+    // TODO: override gfx based on language
+
     // If there's extra data the effect normally loads, allocate space and copy into the new space
     if (effectEntry->graphicsDmaStart != NULL) {
         void* effectDataBuf = general_heap_malloc(effectEntry->graphicsDmaEnd - effectEntry->graphicsDmaStart);
@@ -482,3 +487,4 @@ s32 load_effect(s32 effectIndex) {
     curEffect->flags = EFFECT_LOADED;
     return 1;
 }
+#endif

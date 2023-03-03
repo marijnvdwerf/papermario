@@ -59,7 +59,7 @@ s8 N(MerleeCoinCosts)[] = {
     50, 20, 5, 0,
 };
 
-s32 N(pad_XX111)[] = { 0 };
+//s32 N(pad_XX111)[] = { 0 };
 
 #include "world/area_dro/dro_02/card.png.inc.c"
 #include "world/area_dro/dro_02/card.pal.inc.c"

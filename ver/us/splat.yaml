@@ -25,7 +25,7 @@ options:
   undefined_funcs_auto_path: ver/us/undefined_funcs_auto.txt
   undefined_syms_auto_path: ver/us/undefined_syms_auto.txt
   ld_wildcard_sections: True
-  ld_use_follows: False
+  ld_use_follows: True
 asset_stack:
   - us
 segments:
@@ -58,8 +58,8 @@ segments:
     - [0x6240, c, fio]
     - [0x6E40, c, curtains]
     - [0x7340, c, crash_screen]
-    - [0x7E40, c, os/nusys/nugfxtaskmgr, -fforce-addr]
-    - [0x8230, c, os/nusys/nusimgr]
+    - [0x7E40, c, os/nusys/nusimgr]
+    - [0x8230, c, os/nusys/nugfxtaskmgr, -fforce-addr]
     - [0x8560, c, load_obfuscation_shims]
     - [0x8800, c, 8800]
     - [0x9D10, c, 9d10_len_1080]
@@ -103,38 +103,39 @@ segments:
     - [0x38F00, c, 38F00]
     - [0x39210, c, 39210_len_aa0]
     - [0x39cB0, c, os/nusys/nuboot]
-    - [0x39DB0, c, os/nusys/nusched]
+    - [0x39DB0, c, os/nusys/nusched, -fforce-addr]
     - [0x3A650, c, os/nusys/nugfxfuncset]
     - [0x3A690, c, os/nusys/nugfxprenmifuncset]
-    - [0x3A6D0, c, os/nusys/nugfxtaskallendwait]
-    - [0x3A6F0, c, os/nusys/nugfxsetcfb]
+    - [0x3A6D0, c, os/nusys/nugfxtaskallendwait, -fforce-addr]
+    - [0x3A6F0, c, os/nusys/nugfxsetcfb, -fforce-addr]
     - [0x3A800, c, os/nusys/nugfxdisplayoff]
     - [0x3A830, c, os/nusys/nugfxdisplayon]
     - [0x3A850, c, os/nusys/nupiinit]
-    - [0x3A890, c, os/nusys/nupireadrom]
+    - [0x3A890, c, os/nusys/nupireadrom, -fforce-addr]
     - [0x3A960, c, os/nusys/nugfxinit]
     - [0x3AA10, c, os/nusys/nucontinit]
     - [0x3AA50, c, os/nusys/nucontdataget]
-    - [0x3AAB0, c, os/nusys/nucontpakmgr]
-    - [0x3AD20, c, os/nusys/nucontrmbmgr]
-    - [0x3B290, c, os/nusys/nucontrmbstart]
+    - [0x3AAB0, c, os/nusys/nucontpakmgr, -fforce-addr]
+    - [0x3AD20, c, os/nusys/nucontrmbmgr, -fforce-addr]
+    - [0x3B290, c, os/nusys/nucontrmbstart, -fforce-addr]
     - [0x3B2F0, c, os/nusys/nucontrmbcheck]
-    - [0x3B390, c, os/nusys/nucontrmbmodeset]
+    - [0x3B390, c, os/nusys/nucontrmbmodeset, -fforce-addr]
     - [0x3B4A0, c, os/nusys/nucontrmbforcestop]
     - [0x3B4C0, c, os/nusys/nucontrmbforcestopend]
     - [0x3B4E0, c, os/nusys/nupireadromoverlay]
-    - [0x3B5F0, c, os/nusys/nugfxthread]
+    - [0x3B5F0, c, os/nusys/nugfxthread, -fforce-addr]
     - [0x3B710, c, os/nusys/nugfxswapcfbfuncset]
     - [0x3B750, c, os/nusys/nugfxswapcfb]
     - [0x3B770, c, os/nusys/nugfxretracewait]
+    - [0x3B7F0, c, os/nusys/nugfxsetucodefifo, -fforce-addr]
     - [0x3B7F0, c, os/nusys/nusicallbackadd]
     - [0x3B890, c, os/nusys/nusicallbackremove]
-    - [0x3B910, c, os/nusys/nucontmgr]
+    - [0x3B910, c, os/nusys/nucontmgr, -fforce-addr]
     - [0x3BCC0, c, os/nusys/nucontdatalock]
     - [0x3BD20, c, os/nusys/nucontqueryread]
     - [0x3BD40, hasm, os/osSetIntMask]
     - [0x3BDE0, c, os/pimgr, gcc_272 -O3]
-    - [0x3BF70, c, os/epirawdma, gcc_272 -O3]
+    - [0x3BF70, c, os/epirawdma]
     - [0x3C160, c, os/epiwrite, gcc_272 -O3]
     - [0x3C1C0, c, os/epiread, gcc_272 -O3]
     - [0x3C220, c, os/epidma, gcc_272 -O3]
@@ -142,6 +143,13 @@ segments:
     - [0x3C310, c, os/cartrominit, gcc_272 -O3]
     - [0x3C490, c, os/devmgr, gcc_272 -O3]
     - [0x3C850, c, os/piacs, gcc_272 -O3]
+#    - [0x4A2A0, c, os/osFlash]
+    - [0x3C940, c, libultra/flashinit]
+    - [0x3C940, c, libultra/flashreadid]
+    - [0x3C940, c, libultra/flashsectorerase]
+    - [0x3C940, c, libultra/flashwritebuffer]
+    - [0x3C940, c, libultra/flashwritearray]
+    - [0x3C940, c, libultra/flashreadarray]
     - [0x3C940, c, os/aigetlength, gcc_272 -O3]
     - [0x3C950, c, os/aigetstatus, gcc_272 -O3]
     - [0x3C960, c, os/aisetfrequency, gcc_272 -O3]
@@ -210,7 +218,8 @@ segments:
     - [0x42470, c, os/viswapcontext, gcc_272 -O3]
     - [0x42780, c, os/viblack, gcc_272 -O3]
     - [0x427E0, c, os/virepeatline, gcc_272 -O3]
-    - [0x42840, hasm, os/guMtxIdent] # has padding
+    - [0x42840, hasm, os/padding2]
+    - [0x42840, hasm, os/guMtxIdent]
     - [0x428A0, hasm, os/guMtxIdentF]
     - [0x42900, hasm, os/guMtxF2L]
     - [0x42980, hasm, os/guMtxL2F]
@@ -249,6 +258,9 @@ segments:
     - [0x46950, c, os/pigetcmdq, gcc_272 -O3]
     - [0x46970, c, os/epirawread, gcc_272 -O3]
     - [0x46AE0, c, os/epirawwrite, gcc_272 -O3]
+    - [0x46C50, c, libultra/flashgetaddr]
+    - [0x46C50, c, libultra/flashreadstatus]
+    - [0x46C50, c, libultra/flashclearstatus]
     - [0x46C50, c, os/ai, gcc_272 -O3]
     - [0x46C70, hasm, os/bcmp]
     - [0x46D80, c, os/xlitob, gcc_272 -O3]
@@ -285,10 +297,9 @@ segments:
     - [0x4A170, c, os/strcmp, gcc_272 -O1]
     - [0x4A1B0, c, os/memset, gcc_272 -O1]
     - [0x4A1F0, hasm, os/decode_yay0]
-    - [0x4A2A0, c, os/osFlash]
-    - [0x4AC90, pm_effect_loads, effect_loads]
     - [0x4DF30, c, battle/battle]
     - [0x4E5A0, bin, n_aspMain_text]
+#    - [0x4DF30, pm_effect_loads, effect_loads]
     - [0x4F200, .data, main_pre]
     - [0x4F420, .data, main]
     - [0x4F420, .data, main_loop]
@@ -364,13 +375,13 @@ segments:
     - [0x6FA70, .data, os/timerintr]
     - [auto, .data, os/vimgr]
     - [auto, .data, os/vitbl]
-    - [auto, .data, os/vimodempallan1]
     - [auto, .data, os/guRotate]
     - [auto, .data, os/contpfs]
     - [auto, .data, os/contramread]
     - [auto, .data, os/initialize]
     - [auto, .data, os/xlitob]
     - [auto, .data, os/vi]
+    - [auto, .data, os/vimodempallan1]
     - [0x70E30, .data, battle/battle]
     - [0x71430, bin, gspF3DEX2kawase_fifo_text]
     - [0x72A60, bin, gspF3DEX2kawase_fifo_data]
@@ -897,6 +908,7 @@ segments:
     - [0xFA4C0, c, fa4c0_len_3bf0]
     - [0xFBE10, c, fx_api]
     - [0xFE0B0, c, demo_api]
+    - [0xFE650, pm_effect_loads, effect_loads]
     - [0xFE650]
   - name: engine4
     type: code
@@ -1148,6 +1160,8 @@ segments:
     - [0x131F80, palette, ui/pause/label_spirits]
     - [0x131FA0, ci4, ui/pause/label_map, 48, 16]
     - [0x132120, palette, ui/pause/label_map]
+    - [0x132140, hasm, ui_pause_labels]
+    - [0x132140, .data, ui_pause_labels]
     - [0x132140, ci4, ui/pause/small_digit_0, 8, 8]
     - [0x132160, palette, ui/pause/small_digit_0]
     - [0x132180, ci4, ui/pause/small_digit_1, 8, 8]
@@ -1182,6 +1196,8 @@ segments:
     - [0x132C80, palette, ui/files/option_stereo_on]
     - [0x132CA0, ci4, ui/files/option_stereo_off, 64, 16]
     - [0x132EA0, palette, ui/files/option_stereo_off]
+    - [0x132EC0, hasm, option_stereo]
+    - [0x132EC0, .data, option_stereo]
     - [0x132EC0, ci4, ui/files/eldstar, 16, 16]
     - [0x132F40, palette, ui/files/eldstar]
     - [0x132F60, ci4, ui/files/eldstar_silhouette, 16, 16]
@@ -1234,6 +1250,8 @@ segments:
     - [0x1341A0, palette, ui/pause/desc_msg_next]
     - [0x1341C0, ci4, ui/pause/bp_needed, 48, 8]
     - [0x134280, palette, ui/pause/bp_needed]
+    - [0x1342A0, hasm, bp_needed]
+    - [0x1342A0, .data, bp_needed]
     - [0x1342A0, ci4, ui/pause/mario_large, 32, 32]
     - [0x1344A0, palette, ui/pause/mario_large]
     - [0x1344C0, ci4, ui/pause/dash, 16, 8]
@@ -1334,6 +1352,39 @@ segments:
       - [0x161E70, .data,      pause_gfx]
     - [0x162D30, .data, pause_styles]
     - [0x1632A0]
+
+  - name: pause_en.data
+    start: 0x163400
+    vram: 0x8027AA10
+    type: code
+    subsegments:
+    - [auto, hasm, pause_en.data]
+    - [auto, .data, pause_en.data]
+
+  - name: pause_de.data
+    start: 0x163400
+    vram: 0x8027AA10
+    type: code
+    subsegments:
+    - [auto, hasm, pause_de.data]
+    - [auto, .data, pause_de.data]
+
+  - name: pause_fr.data
+    start: 0x163400
+    vram: 0x8027AA10
+    type: code
+    subsegments:
+    - [auto, hasm, pause_fr.data]
+    - [auto, .data, pause_fr.data]
+
+  - name: pause_es.data
+    start: 0x163400
+    vram: 0x8027AA10
+    type: code
+    subsegments:
+    - [auto, hasm, pause_es.data]
+    - [auto, .data, pause_es.data]
+
   - type: code
     dir: filemenu
     start: 0x163400
@@ -1345,12 +1396,14 @@ segments:
     - [0x167570, c, filemenu_yesno]
     - [0x168590, c, filemenu_info]
     - [0x1689D0, c, filemenu_createfile]
+    - [0x169BE0, c, filemenu_pal]
     - [0x169BE0, c, filemenu_msg]
     - [0x16A3E0, .data, filemenu_common]
     - [0x16A680, .data, filemenu_main]
     - [0x16A920, .data, filemenu_yesno]
     - [0x16A990, .data, filemenu_info]
     - [0x16A9E0, .data, filemenu_createfile]
+    - [0x16AA60, .data, filemenu_pal]
     - start: 0x16AA60
       type: .data
       name: filemenu_gfx
@@ -2596,6 +2649,8 @@ segments:
   - [0x2435F0, ia8,     title/tape, 128, 128]
   - [0x2475F0, ci8,     title/bowser_silhouette, 128, 128]
   - [0x24B5F0, palette, title/bowser_silhouette]
+  - [0x24B7F0, hasm, press_start]
+  - [0x24B7F0, hasm, flags]
   - [0x24B7F0, bin, fold_gfx_data] # TODO extract into better format?
   - [0x315B80, pm_sprite_shading_profiles, sprite_shading_profiles]
   - type: code
@@ -2629,6 +2684,10 @@ segments:
     vram: 0x802B2000
     subsegments:
     - [0x316F30, c, obfuscation_shims]
+  - type: hasm
+    start: 0x317020
+    vram: 0
+    name: no_controller
   - type: code
     dir: world/partner
     name: world_partner_goombario
@@ -4698,6 +4757,18 @@ segments:
       - [0x391CE8, gfx, D_09001918_391CE8]
       - [0x391D08, gfx, D_09001938_391D08]
       - [0x391D28]
+  - name: effect_gfx_attack_result_text_de
+    type: hasm
+    start: 0x391D30
+    vram: 0x09000000
+  - name: effect_gfx_attack_result_text_fr
+    type: hasm
+    start: 0x391D30
+    vram: 0x09000000
+  - name: effect_gfx_attack_result_text_es
+    type: hasm
+    start: 0x391D30
+    vram: 0x09000000
   - name: effect_small_gold_sparkle
     dir: effects
     type: code
@@ -6323,6 +6394,18 @@ segments:
       - [0x3F82B8, gfx, D_0900C458_3F82B8]
       - [0x3F83A0, gfx, D_0900C540_3F83A0]
       - [0x3F83E8]
+  - name: effect_chapter_change_gfx_de
+    type: hasm
+    start: 0x3F83F0
+    vram: 0x09000000
+  - name: effect_chapter_change_gfx_fr
+    type: hasm
+    start: 0x3F83F0
+    vram: 0x09000000
+  - name: effect_chapter_change_gfx_es
+    type: hasm
+    start: 0x3F83F0
+    vram: 0x09000000
   - name: effect_ice_shard
     dir: effects
     type: code
@@ -9031,6 +9114,31 @@ segments:
       - [0x7A7E10, palette, level_up/select_one_to_upgrade]
       - [0x7A7E30]
   - type: code
+    name: level_up_en_de
+    start: 0x7A89A0
+    vram: 0x802A6420
+    follows_vram: level_up
+    subsegments:
+    - [0x7A89A0, c, level_up_en_de]
+    - [0x7A89A0, .data, level_up_en_de]
+  - type: code
+    name: level_up_fr
+    start: 0x7A89A0
+    vram: 0x802A6420
+    follows_vram: level_up
+    subsegments:
+    - [0x7A89A0, hasm, level_up_fr]
+    - [0x7A89A0, .data, level_up_fr]
+  - type: code
+    name: level_up_es
+    start: 0x7A89A0
+    vram: 0x802A6420
+    follows_vram: level_up
+    subsegments:
+    - [0x7A89A0, hasm, level_up_es]
+    - [0x7A89A0, .data, level_up_es]
+
+  - type: code
     name: starpoint
     start: 0x7A89A0
     vram: 0x802A1000
@@ -9112,6 +9220,40 @@ segments:
       - [0x7B57C0, gfx, starpoint/_render_digit_9]
       - [0x7B57D0, gfx, starpoint/render_digit_9]
       - [0x7B57E0]
+
+  - type: code
+    name: starpoint_en
+    start: 0x7B5960
+    vram: 0x802ABC80
+    follows_vram: starpoint
+    subsegments:
+    - [0x7B5960, c, starpoint_en]
+    - [0x7B5960, .data, starpoint_en]
+  - type: code
+    name: starpoint_de
+    start: 0x7B5960
+    vram: 0x802ABC80
+    follows_vram: starpoint
+    subsegments:
+    - [0x7B5960, hasm, starpoint_de]
+    - [0x7B5960, .data, starpoint_de]
+  - type: code
+    name: starpoint_fr
+    start: 0x7B5960
+    vram: 0x802ABC80
+    follows_vram: starpoint
+    subsegments:
+    - [0x7B5960, hasm, starpoint_fr]
+    - [0x7B5960, .data, starpoint_fr]
+  - type: code
+    name: starpoint_es
+    start: 0x7B5960
+    vram: 0x802ABC80
+    follows_vram: starpoint
+    subsegments:
+    - [0x7B5960, hasm, starpoint_es]
+    - [0x7B5960, .data, starpoint_es]
+
   - name: world_model_anim_kzn_01
     dir: world/model_anim/kzn
     type: code
@@ -16955,309 +17097,7 @@ segments:
       - [0xE9E690, palette, BombableRock]
       - [0xE9E6B0]
 
-#################
-### Dead maps ###
-#################
-  - [0xE9ECD0, bin] # tail of dead kzn_11
-  #- name: dead_kzn_11
-  #  dir: world/dead/area_kzn/kzn_11
-  #  type: code
-  #  start: 0xE9AFF0
-  #  vram: 0x80240000
-  #  subsegments:
-  #  - [0xE9AFF0, c, kzn_11_0_header]
-  #  - [0xE9AFF0, c, kzn_11_1_main]
-  #  - [0xE9B300, c, kzn_11_2_platforms]
-  #  - [0xE9B450, c, kzn_11_3_npc]
-  #  - [0xE9D650]
-  - name: dead_kzn_17
-    dir: world/dead/area_kzn/kzn_17
-    type: code
-    start: 0xEA0900
-    vram: 0x80240000
-    vram_of_symbol: world_model_data_vram_end
-    subsegments:
-    - [0xEA0900, c, kzn_17_0_header]
-    - [0xEA0900, c, kzn_17_1_main]
-    - [0xEA0900, c, kzn_17_2_entity]
-    - [0xEA0C10, c, kzn_17_3_npc]
-    - [0xEA36E0, c, kzn_17_4_tromp]
-    - [0xEA3A80]
-  - name: dead_kzn_18
-    dir: world/dead/area_kzn/kzn_18
-    type: code
-    start: 0xEA6FD0
-    vram: 0x80240000
-    vram_of_symbol: world_model_data_vram_end
-    subsegments:
-    - [0xEA6FD0, c, kzn_18_0_header]
-    - [0xEA7010, c, kzn_18_1_main]
-    - [0xEA7320, c, kzn_18_2_npc]
-    - [0xEA7390, c, kzn_18_3_entity]
-    - [0xEA7390]
-  - name: dead_kzn_19
-    dir: world/dead/area_kzn/kzn_19
-    type: code
-    start: 0xEA8AE0
-    vram: 0x80240000
-    vram_of_symbol: world_model_data_vram_end
-    subsegments:
-    - [0xEA8AE0, c, kzn_19_0_header]
-    - [0xEA8AE0, c, kzn_19_1_music]
-    - [0xEA8AE0, c, kzn_19_2_main]
-    - [0xEA95E0, c, kzn_19_3_npc_settings]
-    - [0xEA95E0, c, kzn_19_4_npc]
-    - [0xEA95E0, c, kzn_19_5_eruption]
-    - [0xEA95E0, c, kzn_19_6_entity]
-    - [0xEAA810]
-  - name: dead_kzn_20
-    dir: world/dead/area_kzn/kzn_20
-    type: code
-    start: 0xEB0E60
-    vram: 0x80240000
-    vram_of_symbol: world_model_data_vram_end
-    subsegments:
-    - [0xEB0E60, c, kzn_20_0_header]
-    - [0xEB0E60, c, kzn_20_1_music]
-    - [0xEB0E60, c, kzn_20_2_main]
-    - [0xEB1170, c, kzn_20_3_npc]
-    - [0xEB1920]
-  - name: dead_kzn_22
-    dir: world/dead/area_kzn/kzn_22
-    type: code
-    start: 0xEB5130
-    vram: 0x80240000
-    vram_of_symbol: world_model_data_vram_end
-    subsegments:
-    - [0xEB5130, c, kzn_22_0_header]
-    - [0xEB5130, c, kzn_22_1_music]
-    - [0xEB5130, c, kzn_22_2_main]
-    - [0xEB5470, c, kzn_22_3_entity]
-    - [0xEB5470, c, kzn_22_4_npc]
-    - [0xEB54C0]
-  - name: dead_kzn_23
-    dir: world/dead/area_kzn/kzn_23
-    type: code
-    start: 0xEB7230
-    vram: 0x80240000
-    vram_of_symbol: world_model_data_vram_end
-    subsegments:
-    - [0xEB7230, c, kzn_23_0_header]
-    - [0xEB7230, c, kzn_23_1_music]
-    - [0xEB7230, c, kzn_23_2_main]
-    - [0xEB7540, c, kzn_23_3_npc]
-    - [0xEB7850]
-  - name: dead_flo_00
-    dir: world/dead/area_flo/flo_00
-    type: code
-    start: 0xEB8E50
-    vram: 0x80240000
-    vram_of_symbol: world_model_data_vram_end
-    subsegments:
-    - [0xEB8E50, c, flo_00_0_header]
-    - [0xEB8E50, c, flo_00_1_music]
-    - [0xEB8E50, c, flo_00_2_main]
-    - [0xEB8E90, c, flo_00_3_npc]
-    - [0xEB9D90, c, flo_00_4_epilogue]
-    - [0xEB9D90, c, flo_00_5_beanstalk]
-    - [0xEBA260, c, flo_00_6_entity]
-    - [0xEBA260]
-  - name: dead_flo_03
-    dir: world/dead/area_flo/flo_03
-    type: code
-    start: 0xEC2200
-    vram: 0x80240000
-    vram_of_symbol: world_model_data_vram_end
-    subsegments:
-    - [0xEC2200, c, flo_03_0_header]
-    - [0xEC2200, c, flo_03_1_music]
-    - [0xEC2200, c, flo_03_2_main]
-    - [0xEC2240, c, flo_03_3_npc]
-    - [0xEC2610, c, flo_03_4_foliage]
-    - [0xEC2850, c, flo_03_5_entity]
-    - [0xEC2850]
-  - name: dead_flo_07
-    dir: world/dead/area_flo/flo_07
-    type: code
-    start: 0xEC71B0
-    vram: 0x80240000
-    vram_of_symbol: world_model_data_vram_end
-    subsegments:
-    - [0xEC71B0, c, flo_07_0_header]
-    - [0xEC71B0, c, flo_07_1_music]
-    - [0xEC71B0, c, flo_07_2_main]
-    - [0xEC7590, c, flo_07_3_npc]
-    - [0xEC7590]
-  - name: dead_flo_08
-    dir: world/dead/area_flo/flo_08
-    type: code
-    start: 0xEC9D00
-    vram: 0x80240000
-    vram_of_symbol: world_model_data_vram_end
-    subsegments:
-    - [0xEC9D00, c, flo_08_0_header]
-    - [0xEC9D00, c, flo_08_1_music]
-    - [0xEC9D00, c, flo_08_2_entity]
-    - [0xECAA40, c, flo_08_3_main]
-    - [0xECAA80, c, flo_08_4_npc]
-    - [0xECB930, c, flo_08_5_foliage]
-    - [0xECBB70, c, flo_08_6_vines]
-    - [0xECBC10]
-  - name: dead_flo_09
-    dir: world/dead/area_flo/flo_09
-    type: code
-    start: 0xECFFF0
-    vram: 0x80240000
-    vram_of_symbol: world_model_data_vram_end
-    subsegments:
-    - [0xECFFF0, c, flo_09_0_header]
-    - [0xECFFF0, c, flo_09_1_music]
-    - [0xECFFF0, c, flo_09_2_main]
-    - [0xED0030, c, flo_09_3_vines]
-    - [0xED00D0, c, flo_09_4_foliage]
-    - [0xED0310, c, flo_09_5_npc]
-    - [0xED1840]
-  - name: dead_flo_10
-    dir: world/dead/area_flo/flo_10
-    type: code
-    start: 0xED4220
-    vram: 0x80240000
-    vram_of_symbol: world_model_data_vram_end
-    subsegments:
-    - [0xED4220, c, flo_10_0_header]
-    - [0xED4260, c, flo_10_1_music]
-    - [0xED4260, c, flo_10_2_entity]
-    - [0xED4260, c, flo_10_3_main]
-    - [0xED42A0, c, flo_10_4_fountain]
-    - [0xED46D0, c, flo_10_5_npc]
-    - [0xED46D0, c, flo_10_6_waterfx]
-    - [0xED5540, c, flo_10_7_foliage]
-    - [0xED5780]
-  - name: dead_flo_11
-    dir: world/dead/area_flo/flo_11
-    type: code
-    start: 0xED8E20
-    vram: 0x80240000
-    vram_of_symbol: world_model_data_vram_end
-    subsegments:
-    - [0xED8E20, c, flo_11_0_header]
-    - [0xED8E20, c, flo_11_1_music]
-    - [0xED8E20, c, flo_11_2_main]
-    - [0xED9170, c, flo_11_3_npc]
-    - [0xED9170, c, flo_11_4_entity]
-    - [0xED9170]
-  - name: dead_flo_12
-    dir: world/dead/area_flo/flo_12
-    type: code
-    start: 0xEDBFE0
-    vram: 0x80240000
-    vram_of_symbol: world_model_data_vram_end
-    subsegments:
-    - [0xEDBFE0, c, flo_12_0_header]
-    - [0xEDBFE0, c, flo_12_1_music]
-    - [0xEDBFE0, c, flo_12_2_main]
-    - [0xEDC020, c, flo_12_3_npc]
-    - [0xEDC6D0]
-  - name: dead_flo_13
-    dir: world/dead/area_flo/flo_13
-    type: code
-    start: 0xEDE9C0
-    vram: 0x80240000
-    vram_of_symbol: world_model_data_vram_end
-    subsegments:
-    - [0xEDE9C0, c, flo_13_0_header]
-    - [0xEDE9C0, c, flo_13_1_music]
-    - [0xEDE9C0, c, flo_13_2_entity]
-    - [0xEDE9C0, c, flo_13_3_main]
-    - [0xEDEA00, c, flo_13_4_npc]
-    - [0xEE2040, c, flo_13_5_new_partner]
-    - [0xEE20E0]
-  - name: dead_flo_14
-    dir: world/dead/area_flo/flo_14
-    type: code
-    start: 0xEE65B0
-    vram: 0x80240000
-    vram_of_symbol: world_model_data_vram_end
-    subsegments:
-    - [0xEE65B0, c, flo_14_0_header]
-    - [0xEE65B0, c, flo_14_1_music]
-    - [0xEE65B0, c, flo_14_2_main]
-    - [0xEE68F0, c, flo_14_3_bubbles]
-    - [0xEE70C0, c, flo_14_4_npc]
-    - [0xEE8940, c, flo_14_5_entity]
-    - [0xEE8940, c, flo_14_6_logs]
-    - [0xEE8970]
-  - name: dead_flo_15
-    dir: world/dead/area_flo/flo_15
-    type: code
-    start: 0xEEB990
-    vram: 0x80240000
-    vram_of_symbol: world_model_data_vram_end
-    subsegments:
-    - [0xEEB990, c, flo_15_0_header]
-    - [0xEEB990, c, flo_15_1_music]
-    - [0xEEB990, c, flo_15_2_main]
-    - [0xEEB990, c, flo_15_3_npc]
-    - [0xEEB990, c, flo_15_4_entity]
-    - [0xEEB990, c, flo_15_5_stairs]
-    - [0xEEB990]
-  - name: dead_flo_16
-    dir: world/dead/area_flo/flo_16
-    type: code
-    start: 0xEED100
-    vram: 0x80240000
-    vram_of_symbol: world_model_data_vram_end
-    subsegments:
-    - [0xEED100, c, flo_16_0_header]
-    - [0xEED100, c, flo_16_1_music]
-    - [0xEED100, c, flo_16_2_main]
-    - [0xEED140, c, flo_16_3_vines]
-    - [0xEED1E0, c, flo_16_4_entity]
-    - [0xEEDF50, c, flo_16_5_npc]
-    - [0xEEFAA0, c, flo_16_6_puzzle]
-    - [0xEEFAD0]
-  - name: dead_flo_17
-    dir: world/dead/area_flo/flo_17
-    type: code
-    start: 0xEF2610
-    vram: 0x80240000
-    vram_of_symbol: world_model_data_vram_end
-    subsegments:
-    - [0xEF2610, c, flo_17_0_header]
-    - [0xEF2610, c, flo_17_1_music]
-    - [0xEF2610, c, flo_17_2_main]
-    - [0xEF2650, c, flo_17_3_logs]
-    - [0xEF2680, c, flo_17_4_npc]
-    - [0xEF58E0, c, flo_17_5_entity]
-    - [0xEF58E0]
-  - name: dead_flo_18
-    dir: world/dead/area_flo/flo_18
-    type: code
-    start: 0xEF7A80
-    vram: 0x80240000
-    vram_of_symbol: world_model_data_vram_end
-    subsegments:
-    - [0xEF7A80, c, flo_18_0_header]
-    - [0xEF7A80, c, flo_18_1_music]
-    - [0xEF7A80, c, flo_18_2_main]
-    - [0xEF7DC0, c, flo_18_3_machine]
-    - [0xEF7FB0, c, flo_18_4_npc]
-    - [0xEF8010, c, flo_18_5_foliage]
-    - [0xEF8250]
-  - name: dead_flo_19
-    dir: world/dead/area_flo/flo_19
-    type: code
-    start: 0xEFEB00
-    vram: 0x80240000
-    vram_of_symbol: world_model_data_vram_end
-    subsegments:
-    - [0xEFEB00, c, flo_19_0_header]
-    - [0xEFEB00, c, flo_19_1_music]
-    - [0xEFEB00, c, flo_19_2_entity]
-    - [0xEFEB00, c, flo_19_3_main]
-    - [0xEFEE40, c, flo_19_4_clouds]
-    - [0xEFEFD0, c, flo_19_5_beanstalk]
-    - [0xEFF440]
+  - [0xE9E6B0, hasm, pre_sbn]
 
 #############
 ### Audio ###
@@ -17411,7 +17251,7 @@ segments:
 ###############
 ### Sprites ###
 ###############
-  - [0x1942C40, bin]
+  - [0x1942C40, hasm, pre_spritedata]
   - [0x1943000, bin] # sprite data build metadata (build date, major file divisions)
 
   # player sprite raster table:
@@ -17674,8 +17514,13 @@ segments:
       - ParadeShyGuy
       - ParadeTwink
       - Leaf
-  - [0x1B82208, bin] # end of sprite data - todo: figure out what this is
+  - start: 0x1B82208
+    type: hasm
+    vram: 0x8
+    name: pre_msg # end of sprite data - todo: figure out what this is
+    subalign: 0x10
   - start: 0x1B83000
+    vram: 0x00
     type: pm_msg
     files:
       - 00_Intro

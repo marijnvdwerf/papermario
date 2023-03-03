@@ -1,4 +1,4 @@
-#include "common.h"
+ #include "common.h"
 
 /// Provide arg `TRUE` on `LVar1` to disable refunding.
 EvtScript N(UseItemWithEffect) = {

@@ -201,7 +201,7 @@ EvtScript N(EVS_Scene_BowserAttacks) = {
     EVT_CALL(PanToTarget, CAM_DEFAULT, 0, 1)
     EVT_THREAD
         EVT_CALL(PlaySound, SOUND_80000056)
-        EVT_CALL(ShakeCam, CAM_DEFAULT, 0, 30, EVT_FLOAT(1.0))
+//        EVT_CALL(ShakeCam, CAM_DEFAULT, 0, 30, EVT_FLOAT(1.0))
         EVT_CALL(ShakeCam, CAM_DEFAULT, 0, 30, EVT_FLOAT(0.5))
         EVT_CALL(PlaySound, SOUND_33 | SOUND_ID_TRIGGER_CHANGE_SOUND)
         EVT_CALL(func_802D62E4, SOUND_33)

@@ -47,6 +47,9 @@ MenuPanel filemenu_info_menuBP = {
     .fpCleanup = &filemenu_info_cleanup
 };
 
+#if 1
+INCLUDE_ASM(void, "filemenu/filemenu_info", filemenu_info_draw_message_contents);
+#else
 void filemenu_info_draw_message_contents(
     MenuPanel* menu,
     s32 baseX, s32 baseY,
@@ -89,6 +92,7 @@ void filemenu_info_draw_message_contents(
     }
     filemenu_set_cursor_alpha(0);
 }
+#endif
 
 void filemenu_info_init(MenuPanel* tab) {
     s32 i;
@@ -101,6 +105,9 @@ void filemenu_info_init(MenuPanel* tab) {
     tab->initialized = TRUE;
 }
 
+#if 1
+INCLUDE_ASM(void, "filemenu/filemenu_info", filemenu_info_handle_input);
+#else
 void filemenu_info_handle_input(MenuPanel* menu) {
     if (filemenu_pressedButtons & (BUTTON_A | BUTTON_B)) {
         MenuPanel* menu = filemenu_menus[0];
@@ -132,6 +139,7 @@ void filemenu_info_handle_input(MenuPanel* menu) {
         set_window_update(WINDOW_ID_FILEMENU_INFO, WINDOW_UPDATE_HIDE);
     }
 }
+#endif
 
 void filemenu_info_update(MenuPanel* menu) {
 }

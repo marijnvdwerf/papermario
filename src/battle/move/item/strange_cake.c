@@ -198,23 +198,6 @@ API_CALLABLE(N(ShowFlowerRecoveryFX)) {
     return ApiStatus_DONE2;
 }
 
-#include "common/AddHP.inc.c"
-#include "common/AddFP.inc.c"
-
-API_CALLABLE(N(func_802A1A40_731D40)) {
-    ItemData* item = &gItemTable[ITEM_KOOKY_COOKIE];
-    PlayerData* playerData = &gPlayerData;
-
-    playerData->curHP += item->potencyA;
-    if (playerData->curHP > playerData->curMaxHP) {
-        playerData->curHP = playerData->curMaxHP;
-    }
-
-    script->varTable[3] = item->potencyA;
-
-    return ApiStatus_DONE2;
-}
-
 API_CALLABLE(N(func_802A1A8C_731D8C)) {
     ItemData* item = &gItemTable[ITEM_KOOKY_COOKIE];
     PlayerData* playerData = &gPlayerData;
@@ -280,7 +263,6 @@ EvtScript N(EVS_UseItem) = {
         EVT_CALL(GetActorPos, ACTOR_PLAYER, LVar0, LVar1, LVar2)
         EVT_ADD(LVar1, 25)
         EVT_CALL(ShowStartRecoveryShimmer, LVar0, LVar1, LVar2, LVar3)
-        EVT_CALL(N(AddFP), LVar3)
         EVT_WAIT(10)
         EVT_CALL(SetAnimation, ACTOR_PLAYER, 0, ANIM_Mario1_ThumbsUp)
         EVT_WAIT(30)

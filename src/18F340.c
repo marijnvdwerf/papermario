@@ -42,6 +42,7 @@ void func_80260A60(void) {
     }
 }
 
+#if 0
 API_CALLABLE(IsPartnerImmobile) {
     BattleStatus* battleStatus = &gBattleStatus;
     Actor* playerActor = battleStatus->playerActor;
@@ -59,6 +60,7 @@ API_CALLABLE(IsPartnerImmobile) {
     script->varTable[0] = isImmobile;
     return ApiStatus_DONE2;
 }
+#endif
 
 API_CALLABLE(ActivateDefend) {
     ActorPart* actorPart = &gBattleStatus.playerActor->partsTable[0];
@@ -167,6 +169,11 @@ API_CALLABLE(func_80260E5C) {
     return ApiStatus_DONE2;
 }
 
+
+#if 1
+API_CALLABLE(GiveRefund);
+INCLUDE_ASM(ApiStatus, "18F340", GiveRefund)
+#else
 API_CALLABLE(GiveRefund) {
     BattleStatus* battleStatus = &gBattleStatus;
     Actor* player = battleStatus->playerActor;
@@ -205,6 +212,7 @@ API_CALLABLE(GiveRefund) {
 
     return ApiStatus_DONE2;
 }
+#endif
 
 API_CALLABLE(GiveRefundCleanup) {
     s32 sellValue = gItemTable[gBattleStatus.moveArgument].sellValue;
@@ -457,6 +465,10 @@ API_CALLABLE(HasMerleeCastsLeft) {
     return ApiStatus_DONE2;
 }
 
+#if 1
+API_CALLABLE(func_802619E8);
+INCLUDE_ASM(void, "18F340", func_802619E8);
+#else
 API_CALLABLE(func_802619E8) {
     Bytecode* args = script->ptrReadPos;
     s32 x = evt_get_variable(script, *args++);
@@ -483,6 +495,7 @@ API_CALLABLE(func_802619E8) {
     }
     return ApiStatus_DONE2;
 }
+#endif
 
 API_CALLABLE(func_80261B40) {
     if (script->varTable[10] > 0) {

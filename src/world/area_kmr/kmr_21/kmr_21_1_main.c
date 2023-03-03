@@ -68,15 +68,6 @@ API_CALLABLE(N(LoadTitleImage)) {
     return ApiStatus_DONE2;
 }
 
-API_CALLABLE(N(AwaitConfirmInput)) {
-    u32 pressedButtons = gGameStatusPtr->pressedButtons[0];
-    if (pressedButtons & (BUTTON_A | BUTTON_START)) {
-        return ApiStatus_DONE2;
-    } else {
-        return ApiStatus_BLOCK;
-    }
-}
-
 API_CALLABLE(N(SetTitlePrimAlpha)) {
     TitlePrimAlpha = script->varTable[0];
     return ApiStatus_DONE2;

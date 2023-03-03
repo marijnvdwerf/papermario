@@ -3,13 +3,15 @@
 #include "functions.h"
 #include "variables.h"
 
-NOP_FIX
 
 extern u64 nuMainStack[NU_SC_STACK_SIZE / sizeof(u64)];
 extern u64 IdleStack[NU_SC_STACK_SIZE / sizeof(u64)];
 
+void __osInitialize_autodetect(void);
+
 void nuBoot(void) {
-    osInitialize();
+    __osInitialize_common();
+    __osInitialize_autodetect();
     osCreateThread(&IdleThread, NU_IDLE_THREAD_ID, boot_idle, NULL, &IdleStack[NU_SC_STACK_SIZE / sizeof(u64)], 10);
     osStartThread(&IdleThread);
 }

@@ -34,6 +34,8 @@ EvtScript N(EVS_SetupHoles) = {
     EVT_CALL(N(AwaitFallInHole))
     EVT_CALL(func_802CA988, 0, LVar2, LVar3, LVar4, LVar5)
     EVT_CALL(N(AwaitFallDownHole))
+    EVT_CALL(SetPlayerActionState, 0)
+    EVT_CALL(DisablePlayerPhysics, TRUE)
     EVT_CALL(InterruptUsePartner)
     EVT_CALL(GotoMap, EVT_PTR("dgb_11"), LVar0)
     EVT_WAIT(100)

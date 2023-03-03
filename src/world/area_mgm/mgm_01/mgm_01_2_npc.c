@@ -996,7 +996,11 @@ EvtScript N(EVS_NpcInteract_Toad) = {
         EVT_WAIT(1)
     EVT_ELSE
         EVT_CALL(N(SetMsgVars_BlocksRemaining))
-        EVT_CALL(SpeakToPlayer, NPC_Toad, ANIM_Toad_Red_Talk, ANIM_Toad_Red_Idle, 0, MSG_MGM_0033)
+        EVT_IF_EQ(LocalVar(13), 1)
+            EVT_CALL(SpeakToPlayer, 0, ANIM_Toad_Red_Talk, ANIM_Toad_Red_Idle, 0, MSG_MGM_0036)
+        EVT_ELSE
+            EVT_CALL(SpeakToPlayer, 0, ANIM_Toad_Red_Talk, ANIM_Toad_Red_Idle, 0, MSG_MGM_0035)
+        EVT_END_IF
     EVT_END_IF
     EVT_RETURN
     EVT_END

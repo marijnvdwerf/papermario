@@ -110,6 +110,9 @@ typedef struct SmashGameData {
     /* 0x02C */ SmashGameBoxData box[NUM_BOXES];
 } SmashGameData; /* size = 0x400 */
 
+
+INCLUDE_ASM(void, "world/area_mgm/mgm_02/mgm_02_2_npc", func_mgm_02_80240000);
+
 void N(appendGfx_score_display)(void* renderData) {
     Enemy* scorekeeper = get_enemy(SCOREKEEPER_ENEMY_IDX);
     SmashGameData* data = scorekeeper->varTablePtr[SMASH_DATA_VAR_IDX];
@@ -278,6 +281,10 @@ API_CALLABLE(N(OnHitBox)) {
     return ApiStatus_DONE2;
 }
 
+#if 1
+API_CALLABLE(N(SetBoxContents));
+INCLUDE_ASM(ApiResult, "world/area_mgm/mgm_02/mgm_02_2_npc", N(SetBoxContents));
+#else
 API_CALLABLE(N(SetBoxContents)) {
     s32 initialConfiguration;
     s32 configuration[NUM_BOXES];
@@ -400,7 +407,12 @@ API_CALLABLE(N(SetBoxContents)) {
     }
     return ApiStatus_DONE2;
 }
+#endif
 
+#if 1
+API_CALLABLE(N(RunMinigame));
+INCLUDE_ASM(ApiResult, "world/area_mgm/mgm_02/mgm_02_2_npc", N(RunMinigame));
+#else
 API_CALLABLE(N(RunMinigame)) {
     SmashGameData* data;
     Enemy* enemy;
@@ -825,6 +837,7 @@ API_CALLABLE(N(RunMinigame)) {
 
     return ApiStatus_BLOCK;
 }
+#endif
 
 API_CALLABLE(N(UpdateRecords)) {
     PlayerData* playerData = &gPlayerData;
@@ -1035,6 +1048,8 @@ s32 N(PanelModelIDs)[NUM_PANELS] = {
     MODEL_o50, MODEL_o51, MODEL_o52, MODEL_o53, MODEL_o54,
     MODEL_o55, MODEL_o56, MODEL_o57, MODEL_o58, MODEL_o59
 };
+
+s32 pal_variable = 0;
 
 EvtScript N(EVS_CreateScoreDisplay) = {
     EVT_CALL(N(CreateScoreDisplay))
@@ -1590,6 +1605,8 @@ EvtScript N(EVS_CleanupGame) = {
     EVT_END
 };
 
+#define MSG_MGM_0049 MESSAGE_ID(0x08, 0x049)
+
 EvtScript N(EVS_Toad_GovernGame) = {
     EVT_CALL(N(DisableMenus))
     EVT_CALL(N(RunMinigame))
@@ -1641,6 +1658,16 @@ EvtScript N(EVS_Toad_GovernGame) = {
         EVT_CASE_EQ(0)
             EVT_CALL(SetSelfVar, 3, 0)
             EVT_CALL(SpeakToPlayer, NPC_SELF, ANIM_Toad_Red_Talk, ANIM_Toad_Red_Idle, 0, MSG_MGM_0044)
+        EVT_CASE_EQ(1)
+            EVT_CALL(SpeakToPlayer, NPC_SELF, ANIM_Toad_Red_Talk, ANIM_Toad_Red_Idle, 0, MSG_MGM_0046)
+            EVT_CALL(ShowCoinCounter, 1)
+            EVT_WAIT(10)
+            EVT_CALL(N(GiveCoinReward))
+            EVT_WAIT(15)
+            EVT_CALL(ShowCoinCounter, 0)
+            EVT_CALL(SetSelfVar, 3, 0)
+            EVT_WAIT(5)
+            EVT_CALL(ContinueSpeech, NPC_SELF, ANIM_Toad_Red_Talk, ANIM_Toad_Red_Idle, 0, MSG_MGM_0049)
         EVT_CASE_DEFAULT
             EVT_CALL(SpeakToPlayer, NPC_SELF, ANIM_Toad_Red_Talk, ANIM_Toad_Red_Idle, 0, MSG_MGM_0042)
             EVT_CALL(ShowCoinCounter, TRUE)

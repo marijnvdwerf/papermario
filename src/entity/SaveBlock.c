@@ -16,6 +16,10 @@ BSS s32 SaveBlockResultPrinterClosed;
 BSS MessagePrintState* SaveBlockTutorialPrinter;
 BSS MessagePrintState* SaveBlockResultPrinter;
 
+#if 1
+void entity_SaveBlock_setupGfx(s32 index);
+INCLUDE_ASM(void, "entity/SaveBlock", entity_SaveBlock_setupGfx);
+#else
 void entity_SaveBlock_setupGfx(s32 index) {
     Gfx* gfxPos = gMasterGfxPos;
     Entity* entity = get_entity_by_index(index);
@@ -52,6 +56,7 @@ void entity_SaveBlock_setupGfx(s32 index) {
 
     gMasterGfxPos = gfxPos;
 }
+#endif
 
 void entity_SaveBlock_idle(Entity* entity) {
     SaveBlockData* data;

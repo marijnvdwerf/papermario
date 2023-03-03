@@ -29,6 +29,7 @@
 }
 
 extern s16 MessagePlural;
+extern u8 MessagePlural_de[];
 extern s16 MessageSingular;
 
 BSS s32 N(Quizmo_Worker);
@@ -1112,7 +1113,12 @@ EvtScript N(EVS_Quizmo_QuizMain) = {
             EVT_IF_EQ(GB_CompletedQuizzes, 1)
                 EVT_CALL(SetMessageText, EVT_PTR(MessageSingular), 1)
             EVT_ELSE
-                EVT_CALL(SetMessageText, EVT_PTR(MessagePlural), 1)
+                EVT_CALL(func_PAL_802D8B04, LocalVar(0))
+                EVT_IF_EQ(LocalVar(0), 1)
+                    EVT_CALL(SetMessageText, EVT_PTR(MessagePlural_de), 1)
+                EVT_ELSE
+                    EVT_CALL(SetMessageText, EVT_PTR(MessagePlural), 1)
+                EVT_END_IF
             EVT_END_IF
             EVT_CALL(SpeakToPlayer, NPC_SELF, ANIM_ChuckQuizmo_Talk, ANIM_ChuckQuizmo_Idle, 0, MSG_MGM_000F)
         EVT_END_IF

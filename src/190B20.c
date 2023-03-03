@@ -3066,29 +3066,6 @@ EvtScript D_80293AC4 = {
     EVT_END
 };
 
-EvtScript D_80293AE8 = {
-    EVT_CALL(N(StartRumbleWithParams), 150, 20)
-    EVT_RETURN
-    EVT_END
-};
-
-EvtScript D_80293B0C = {
-    EVT_CALL(N(StartRumbleWithParams), 200, 30)
-    EVT_RETURN
-    EVT_END
-};
-
-EvtScript D_80293B30 = {
-    EVT_CALL(N(StartRumbleWithParams), 256, 40)
-    EVT_RETURN
-    EVT_END
-};
-
-EvtScript D_80293B54 = {
-    EVT_CALL(N(StartRumbleWithParams), 256, 60)
-    EVT_RETURN
-    EVT_END
-};
 
 void start_rumble_type(u32 arg0) {
     if (D_802939C0 != 0) {

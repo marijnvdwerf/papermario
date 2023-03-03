@@ -14,14 +14,7 @@ EvtScript N(EVS_Main) = {
     EVT_SETUP_CAMERA_NO_LEAD()
     EVT_CALL(MakeNpcs, TRUE, EVT_PTR(N(DefaultNPCs)))
     EVT_EXEC_WAIT(N(EVS_MakeEntities))
-    EVT_SWITCH(GB_StoryProgress)
-        EVT_CASE_LT(STORY_CH2_SOLVED_ARTIFACT_PUZZLE)
-            EVT_CALL(SetMusicTrack, 0, SONG_DRY_DRY_RUINS, 0, 8)
-        EVT_CASE_LT(STORY_CH2_DEFEATED_TUTANKOOPA)
-            EVT_CALL(SetMusicTrack, 0, SONG_RUINS_BASEMENT, 0, 8)
-        EVT_CASE_GE(STORY_CH2_DEFEATED_TUTANKOOPA)
-            EVT_CALL(SetMusicTrack, 0, SONG_DRY_DRY_RUINS, 0, 8)
-    EVT_END_SWITCH
+    EVT_CALL(SetMusicTrack, 0, SONG_DRY_DRY_RUINS, 0, 8)
     EVT_SET(LVar0, EVT_PTR(N(EVS_BindExitTriggers)))
     EVT_EXEC(EnterWalk)
     EVT_RETURN

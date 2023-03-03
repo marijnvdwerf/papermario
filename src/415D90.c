@@ -125,11 +125,65 @@ s16 D_802AB340[] = { 28, 40 };
 
 s16 D_802AB344[] = { 0, -2 };
 
+u8 D_PAL_802AB4C8[] = {0x90, 0x9E, 0x94, 0x90};
+u8 D_PAL_802AB4CC[] = {0x90, 0xA0, 0xA0, 0xA0};
+u8 D_PAL_802AB4D0[] = {0x00, 0x14, 0x14, 0x14};
+u8 D_PAL_802AB4D4[] = {0x00, 0x10, 0x10, 0x10};
+u8 D_PAL_802AB4D8[] = {0x08, 0x18, 0x08, 0x10};
+u8 D_PAL_802AB4DC[] = {0x64, 0x51, 0x74, 0x62};
+u8 D_PAL_802AB4E0[] = {0x05, 0x10, 0x08, 0x10};
+u8 D_PAL_802AB4E4[] = {0x9C, 0x9E, 0x9E, 0x9E};
+u8 D_PAL_802AB4E8[] = {0x04, 0x06, 0x06, 0x06};
+u8 D_PAL_802AB4EC[] = {0x12, 0x0E, 0x12, 0x0E};
+u8 D_PAL_802AB4F0[] = {0x59, 0x65, 0x5A, 0x65};
+u8 D_PAL_802AB4F4[] = {0x10, 0x0A, 0x0E, 0x0A};
+u8 D_PAL_802AB4F8[] = {0x00, 0x02, 0x02, 0x02};
+
 IconHudScriptPair battle_menu_JumpHudScripts[] = {
-    { &HES_MenuBoots1Disabled, &HES_MenuBoots1Disabled },
-    { &HES_MenuBoots1, &HES_MenuBoots1Disabled },
-    { &HES_MenuBoots2, &HES_MenuBoots2Disabled },
-    { &HES_MenuBoots3, &HES_MenuBoots3Disabled },
+    { (void*)0x80105928  ,(void*)      0x80105A88 },
+    { (void*)0x80105BE8  ,(void*)      0x80105D48 },
+    { (void*)0x80105954  ,(void*)      0x80105AB4 },
+    { (void*)0x80105C14  ,(void*)      0x80105D74 },
+
+    { (void*)0x80105980,(void*)   0x80105AE0 },
+    { (void*)0x80105C40,(void*)  0x80105DA0 },
+};
+
+
+u32 D_PAL_802AB52C[] = {
+        0x801059AC,
+        0x80105B0C,
+        0x80105C6C,
+        0x80105DCC,
+};
+
+u32 D_PAL_802AB53C[] = {
+        0x801059D8,
+        0x80105B38,
+        0x80105C98,
+        0x80105DF8,
+        0x80105A04,
+        0x80105B64,
+        0x80105CC4,
+        0x80105E24,
+        0x80105A30,
+        0x80105B90,
+        0x80105CF0,
+        0x80105E50,
+};
+
+u32 D_PAL_802AB56C[] = {
+        0x80105A5C,
+        0x80105BBC,
+        0x80105D1C,
+        0x80105E7C,
+};
+
+IconHudScriptPair D_PAL_802AB57C[] = {
+        { &HES_MenuHammer1Disabled, &HES_MenuHammer1Disabled },
+        { &HES_MenuHammer1, &HES_MenuHammer1Disabled },
+        { &HES_MenuHammer2, &HES_MenuHammer2Disabled },
+        { &HES_MenuHammer3, &HES_MenuHammer3Disabled  },
 };
 
 IconHudScriptPair battle_menu_HammerHudScripts[] = {
@@ -294,7 +348,6 @@ s32 PartnerNameMessages[] = {
     MSG_Menus_Party_Goombaria,
     MSG_Menus_Party_Twink,
     MSG_Menus_Party_Peach,
-    0x00000000
 };
 
 BSS s32 D_802ACC60;
@@ -491,6 +544,10 @@ void btl_main_menu_destroy(void) {
     hud_element_free(D_802AD058);
 }
 
+#if 1
+s32 btl_main_menu_update(void);
+INCLUDE_ASM(s32, "415D90", btl_main_menu_update);
+#else
 s32 btl_main_menu_update(void) {
     BattleStatus* battleStatus = &gBattleStatus;
     f32 theta;
@@ -710,6 +767,7 @@ s32 btl_main_menu_update(void) {
     }
     return 0;
 }
+#endif
 
 void btl_main_menu_draw(void) {
     s32 id;
@@ -1040,6 +1098,10 @@ void func_802A2C58(void) {
     battle_menu_moveState = BTL_SUBMENU_MOVES_STATE_UNK_1E;
 }
 
+#if 1
+s32 btl_submenu_moves_update(void);
+INCLUDE_ASM(s32, "415D90", btl_submenu_moves_update);
+#else
 s32 btl_submenu_moves_update(void) {
     BattleStatus* battleStatus = &gBattleStatus;
     s8 temp_v0_14;
@@ -1422,8 +1484,7 @@ s32 btl_submenu_moves_update(void) {
     }
     return 0;
 }
-
-const f32 padding3 = 0.0f;
+#endif
 
 // needs a lot of work -- args should be (void* data, s32 x, s32 y)
 #ifdef NON_MATCHING
@@ -1595,6 +1656,9 @@ void func_802A3C98(void* data, s32 x, s32 y) {
 INCLUDE_ASM(s32, "415D90", func_802A3C98);
 #endif
 
+#if 1
+INCLUDE_ASM(s32, "415D90", func_802A43DC);
+#else
 void func_802A43DC(void* data, s32 x, s32 y) {
     s32 msgID;
     s32 posX;
@@ -1617,6 +1681,7 @@ void func_802A43DC(void* data, s32 x, s32 y) {
     }
     draw_msg(msgID, posX, posY, opacity, palette, DRAW_MSG_STYLE_MENU);
 }
+#endif
 
 void func_802A4448(void* data, s32 x, s32 y) {
     s32 icon = BattleMenu_Moves_TitleID;
@@ -1768,6 +1833,10 @@ void func_802A4A10(void) {
     BattleSubmenuStratsState = 30;
 }
 
+#if 1
+s32 func_802A4A54(void);
+INCLUDE_ASM(s32, "415D90", func_802A4A54);
+#else
 s32 func_802A4A54(void) {
     BattleStatus* battleStatus = &gBattleStatus;
     s32 id;
@@ -1952,8 +2021,9 @@ s32 func_802A4A54(void) {
     }
     return 0;
 }
+#endif
 
-static const f32 padding4 = 0.0f;
+//const f32 padding4 = 0.0f;
 
 // getting there but needs work
 #ifdef NON_EQUIVALENT
@@ -2072,6 +2142,9 @@ void func_802A5738(void* data, s32 x, s32 y) {
     }
 }
 
+#if 1
+INCLUDE_ASM(s32, "415D90", func_802A57C8);
+#else
 void func_802A57C8(void* data, s32 x, s32 y) {
     s32 msgID;
     x += 11;
@@ -2090,6 +2163,7 @@ void func_802A57C8(void* data, s32 x, s32 y) {
     }
     draw_msg(msgID, x, y, 255, MSG_PAL_0F, 0);
 }
+#endif
 
 s32 can_btl_state_update_switch_to_player(void) {
     BattleStatus* battleStatus = &gBattleStatus;
@@ -3585,6 +3659,9 @@ void btl_state_draw_player_menu(void) {
 
 static const f32 padding = 0.0f;
 
+#if 1
+INCLUDE_ASM(s32, "415D90", btl_state_update_partner_menu);
+#else
 void btl_state_update_partner_menu(void) {
     BattleStatus* battleStatus = &gBattleStatus;
     PlayerData* playerData = &gPlayerData;
@@ -4393,6 +4470,7 @@ void btl_state_update_partner_menu(void) {
         break;
     }
 }
+#endif
 
 void btl_state_draw_partner_menu(void) {
     switch (gBattleSubState) {

@@ -1,146 +1,162 @@
 #include "pause_common.h"
 
 extern MenuPanel* gPausePanels[];
+
 void pause_tabs_draw_stats(MenuPanel* menu, s32 baseX, s32 baseY, s32 width, s32 height, s32 opacity, s32 darkening);
+
 void pause_tabs_draw_badges(MenuPanel* menu, s32 baseX, s32 baseY, s32 width, s32 height, s32 opacity, s32 darkening);
+
 void pause_tabs_draw_items(MenuPanel* menu, s32 baseX, s32 baseY, s32 width, s32 height, s32 opacity, s32 darkening);
+
 void pause_tabs_draw_party(MenuPanel* menu, s32 baseX, s32 baseY, s32 width, s32 height, s32 opacity, s32 darkening);
+
 void pause_tabs_draw_spirits(MenuPanel* menu, s32 baseX, s32 baseY, s32 width, s32 height, s32 opacity, s32 darkening);
+
 void pause_tabs_draw_map(MenuPanel* menu, s32 baseX, s32 baseY, s32 width, s32 height, s32 opacity, s32 darkening);
+
 void pause_tabs_draw_invis(MenuPanel* menu, s32 baseX, s32 baseY, s32 width, s32 height, s32 opacity, s32 darkening);
+
 void pause_tabs_init(MenuPanel* tab);
+
 void pause_tabs_handle_input(MenuPanel* tab);
+
 void pause_tabs_update(MenuPanel* tab);
+
 void pause_tabs_cleanup(MenuPanel* tab);
 
 static s32 gPauseTabsIconIDs[6];
 static s32 gPauseTabsPreviousTab;
 static s32 gPauseTabsHorizScrollPos;
 
-HudScript* gPauseTabsHudScripts[] = { &HES_HeaderStats, &HES_HeaderBadges, &HES_HeaderItems,
-                            &HES_HeaderParty, &HES_HeaderSpirits, &HES_HeaderMap };
-s8 gPauseTabsGridData[] = { 0, 1, 2, 3, 4, 5 };
-u8 gPauseTabsPanelIDs[] = { 1, 2, 3, 4, 5, 6 };
-u8 gPauseTabsWindowIDs[] = { WINDOW_ID_PAUSE_TAB_STATS, WINDOW_ID_PAUSE_TAB_BADGES, WINDOW_ID_PAUSE_TAB_ITEMS, WINDOW_ID_PAUSE_TAB_PARTY, WINDOW_ID_PAUSE_TAB_SPIRITS, WINDOW_ID_PAUSE_TAB_MAP };
-u8 gPauseTabsPageWindowIDs[] = { WINDOW_ID_PAUSE_STATS, WINDOW_ID_PAUSE_BADGES, WINDOW_ID_PAUSE_ITEMS, WINDOW_ID_PAUSE_PARTNERS, WINDOW_ID_PAUSE_SPIRITS, WINDOW_ID_PAUSE_MAP };
+HudScript* gPauseTabsHudScripts[] = {
+        &HES_HeaderStats, &HES_HeaderBadges, &HES_HeaderItems, &HES_HeaderParty, &HES_HeaderSpirits, &HES_HeaderMap,
+        &HES_HeaderStats, &HES_HeaderBadges, &HES_HeaderItems, &HES_HeaderParty, &HES_HeaderSpirits, &HES_HeaderMap,
+        &HES_HeaderStats, &HES_HeaderBadges, &HES_HeaderItems, &HES_HeaderParty, &HES_HeaderSpirits, &HES_HeaderMap,
+        &HES_HeaderStats, &HES_HeaderBadges, &HES_HeaderItems, &HES_HeaderParty, &HES_HeaderSpirits, &HES_HeaderMap,
+
+};
+s8 gPauseTabsGridData[] = {0, 1, 2, 3, 4, 5};
+u8 gPauseTabsPanelIDs[] = {1, 2, 3, 4, 5, 6};
+u8 gPauseTabsWindowIDs[] = {WINDOW_ID_PAUSE_TAB_STATS, WINDOW_ID_PAUSE_TAB_BADGES, WINDOW_ID_PAUSE_TAB_ITEMS, WINDOW_ID_PAUSE_TAB_PARTY, WINDOW_ID_PAUSE_TAB_SPIRITS, WINDOW_ID_PAUSE_TAB_MAP};
+u8 gPauseTabsPageWindowIDs[] = {WINDOW_ID_PAUSE_STATS, WINDOW_ID_PAUSE_BADGES, WINDOW_ID_PAUSE_ITEMS, WINDOW_ID_PAUSE_PARTNERS, WINDOW_ID_PAUSE_SPIRITS, WINDOW_ID_PAUSE_MAP};
 MenuWindowBP gPauseTabsWindowBPs[] = {
-    {
-        .windowID = WINDOW_ID_PAUSE_TAB_STATS,
-        .unk_01 = 0,
-        .pos = { .x = 0, .y = 7 },
-        .width = 43,
-        .height = 15,
-        .priority = 64,
-        .fpDrawContents = pause_tabs_draw_stats,
-        .tab = NULL,
-        .parentID = WINDOW_ID_PAUSE_MAIN,
-        .fpUpdate = { WINDOW_UPDATE_SHOW },
-        .extraFlags = 0,
-        .style = { .customStyle = &gPauseWS_3 }
-    },
-    {
-        .windowID = WINDOW_ID_PAUSE_TAB_BADGES,
-        .unk_01 = 0,
-        .pos = { .x = 0, .y = 7 },
-        .width = 43,
-        .height = 15,
-        .priority = 0,
-        .fpDrawContents = pause_tabs_draw_badges,
-        .tab = NULL,
-        .parentID = WINDOW_ID_PAUSE_MAIN,
-        .fpUpdate = { .func = pause_update_tab_default },
-        .extraFlags = 0,
-        .style = { .customStyle = &gPauseWS_4 }
-    },
-    {
-        .windowID = WINDOW_ID_PAUSE_TAB_ITEMS,
-        .unk_01 = 0,
-        .pos = { .x = 0, .y = 7 },
-        .width = 43,
-        .height = 15,
-        .priority = 0,
-        .fpDrawContents = pause_tabs_draw_items,
-        .tab = NULL,
-        .parentID = WINDOW_ID_PAUSE_MAIN,
-        .fpUpdate = { .func = pause_update_tab_default },
-        .extraFlags = 0,
-        .style = { .customStyle = &gPauseWS_5 }
-    },
-    {
-        .windowID = WINDOW_ID_PAUSE_TAB_PARTY,
-        .unk_01 = 0,
-        .pos = { .x = 0, .y = 7 },
-        .width = 43,
-        .height = 15,
-        .priority = 0,
-        .fpDrawContents = pause_tabs_draw_party,
-        .tab = NULL,
-        .parentID = WINDOW_ID_PAUSE_MAIN,
-        .fpUpdate = { .func = pause_update_tab_default },
-        .extraFlags = 0,
-        .style = { .customStyle = &gPauseWS_6 }
-    },
-    {
-        .windowID = WINDOW_ID_PAUSE_TAB_SPIRITS,
-        .unk_01 = 0,
-        .pos = { .x = 0, .y = 7 },
-        .width = 43,
-        .height = 15,
-        .priority = 0,
-        .fpDrawContents = pause_tabs_draw_spirits,
-        .tab = NULL,
-        .parentID = WINDOW_ID_PAUSE_MAIN,
-        .fpUpdate = { .func = pause_update_tab_default },
-        .extraFlags = 0,
-        .style = { .customStyle = &gPauseWS_7 }
-    },
-    {
-        .windowID = WINDOW_ID_PAUSE_TAB_MAP,
-        .unk_01 = 0,
-        .pos = { .x = 0, .y = 7 },
-        .width = 43,
-        .height = 15,
-        .priority = 0,
-        .fpDrawContents = pause_tabs_draw_map,
-        .tab = NULL,
-        .parentID = WINDOW_ID_PAUSE_MAIN,
-        .fpUpdate = { .func = pause_update_tab_default },
-        .extraFlags = 0,
-        .style = { .customStyle = &gPauseWS_8 }
-    },
-    {
-        .windowID = WINDOW_ID_PAUSE_TAB_INVIS,
-        .unk_01 = 0,
-        .pos = { .x = 8, .y = 8 },
-        .width = 16,
-        .height = 16,
-        .priority = 64,
-        .fpDrawContents = pause_tabs_draw_invis,
-        .tab = NULL,
-        .parentID = WINDOW_ID_NONE,
-        .fpUpdate = { WINDOW_UPDATE_SHOW },
-        .extraFlags = 0,
-        .style = { .customStyle = &gPauseWS_9 }
-    }
+        {
+                .windowID = WINDOW_ID_PAUSE_TAB_STATS,
+                .unk_01 = 0,
+                .pos = {.x = 0, .y = 7},
+                .width = 43,
+                .height = 15,
+                .priority = 64,
+                .fpDrawContents = pause_tabs_draw_stats,
+                .tab = NULL,
+                .parentID = WINDOW_ID_PAUSE_MAIN,
+                .fpUpdate = {WINDOW_UPDATE_SHOW},
+                .extraFlags = 0,
+                .style = {.customStyle = &gPauseWS_3}
+        },
+        {
+                .windowID = WINDOW_ID_PAUSE_TAB_BADGES,
+                .unk_01 = 0,
+                .pos = {.x = 0, .y = 7},
+                .width = 43,
+                .height = 15,
+                .priority = 0,
+                .fpDrawContents = pause_tabs_draw_badges,
+                .tab = NULL,
+                .parentID = WINDOW_ID_PAUSE_MAIN,
+                .fpUpdate = {.func = pause_update_tab_default},
+                .extraFlags = 0,
+                .style = {.customStyle = &gPauseWS_4}
+        },
+        {
+                .windowID = WINDOW_ID_PAUSE_TAB_ITEMS,
+                .unk_01 = 0,
+                .pos = {.x = 0, .y = 7},
+                .width = 43,
+                .height = 15,
+                .priority = 0,
+                .fpDrawContents = pause_tabs_draw_items,
+                .tab = NULL,
+                .parentID = WINDOW_ID_PAUSE_MAIN,
+                .fpUpdate = {.func = pause_update_tab_default},
+                .extraFlags = 0,
+                .style = {.customStyle = &gPauseWS_5}
+        },
+        {
+                .windowID = WINDOW_ID_PAUSE_TAB_PARTY,
+                .unk_01 = 0,
+                .pos = {.x = 0, .y = 7},
+                .width = 43,
+                .height = 15,
+                .priority = 0,
+                .fpDrawContents = pause_tabs_draw_party,
+                .tab = NULL,
+                .parentID = WINDOW_ID_PAUSE_MAIN,
+                .fpUpdate = {.func = pause_update_tab_default},
+                .extraFlags = 0,
+                .style = {.customStyle = &gPauseWS_6}
+        },
+        {
+                .windowID = WINDOW_ID_PAUSE_TAB_SPIRITS,
+                .unk_01 = 0,
+                .pos = {.x = 0, .y = 7},
+                .width = 43,
+                .height = 15,
+                .priority = 0,
+                .fpDrawContents = pause_tabs_draw_spirits,
+                .tab = NULL,
+                .parentID = WINDOW_ID_PAUSE_MAIN,
+                .fpUpdate = {.func = pause_update_tab_default},
+                .extraFlags = 0,
+                .style = {.customStyle = &gPauseWS_7}
+        },
+        {
+                .windowID = WINDOW_ID_PAUSE_TAB_MAP,
+                .unk_01 = 0,
+                .pos = {.x = 0, .y = 7},
+                .width = 43,
+                .height = 15,
+                .priority = 0,
+                .fpDrawContents = pause_tabs_draw_map,
+                .tab = NULL,
+                .parentID = WINDOW_ID_PAUSE_MAIN,
+                .fpUpdate = {.func = pause_update_tab_default},
+                .extraFlags = 0,
+                .style = {.customStyle = &gPauseWS_8}
+        },
+        {
+                .windowID = WINDOW_ID_PAUSE_TAB_INVIS,
+                .unk_01 = 0,
+                .pos = {.x = 8, .y = 8},
+                .width = 16,
+                .height = 16,
+                .priority = 64,
+                .fpDrawContents = pause_tabs_draw_invis,
+                .tab = NULL,
+                .parentID = WINDOW_ID_NONE,
+                .fpUpdate = {WINDOW_UPDATE_SHOW},
+                .extraFlags = 0,
+                .style = {.customStyle = &gPauseWS_9}
+        }
 };
 s32 gPauseTabsCurrentTab = 0;
-s32 gPauseTabsMessages[] = { 27, 28, 29, 30, 31, 32 };
-u8 gPauseTabsInterpTable[] = { 0, 1, 2, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8 };
+s32 gPauseTabsMessages[] = {27, 28, 29, 30, 31, 32};
+u8 gPauseTabsInterpTable[] = {0, 1, 2, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8};
 s32 gPauseDoBasicWindowUpdate = TRUE; // TODO rename (eth name)
 MenuPanel gPausePanelTabs = {
-    .initialized = FALSE,
-    .col = 0,
-    .row = 0,
-    .selected = 0,
-    .page = 0,
-    .numCols = 6,
-    .numRows = 1,
-    .numPages = 0,
-    .gridData = gPauseTabsGridData,
-    .fpInit = pause_tabs_init,
-    .fpHandleInput = pause_tabs_handle_input,
-    .fpUpdate = pause_tabs_update,
-    .fpCleanup = pause_tabs_cleanup
+        .initialized = FALSE,
+        .col = 0,
+        .row = 0,
+        .selected = 0,
+        .page = 0,
+        .numCols = 6,
+        .numRows = 1,
+        .numPages = 0,
+        .gridData = gPauseTabsGridData,
+        .fpInit = pause_tabs_init,
+        .fpHandleInput = pause_tabs_handle_input,
+        .fpUpdate = pause_tabs_update,
+        .fpCleanup = pause_tabs_cleanup
 };
 
 void pause_tabs_draw_invis(MenuPanel* menu, s32 baseX, s32 baseY, s32 width, s32 height, s32 opacity, s32 darkening) {
@@ -254,6 +270,9 @@ void pause_tabs_draw_map(MenuPanel* menu, s32 baseX, s32 baseY, s32 width, s32 h
     }
 }
 
+#if 1
+INCLUDE_ASM(void, "pause/pause_tabs", pause_tabs_init);
+#else
 void pause_tabs_init(MenuPanel* tab) {
     s32 i;
 
@@ -272,6 +291,7 @@ void pause_tabs_init(MenuPanel* tab) {
     tab->initialized = TRUE;
     gPauseTabsPreviousTab = 5;
 }
+#endif
 
 void pause_tabs_handle_input(MenuPanel* tab) {
     Window* pauseWindows;
@@ -326,10 +346,10 @@ void pause_tabs_update(MenuPanel* tab) {
     f32 delta;
     f32 deltaBefore;
     f32 f7;
-    void (*fpUpdateInactive)(s32 windowIndex, s32* flags, s32* posX, s32* posY, s32* posZ, f32* scaleX, f32* scaleY,
-                                 f32* rotX, f32* rotY, f32* rotZ, s32* darkening, s32* opacity);
-    void (*fpUpdateActive)(s32 windowIndex, s32* flags, s32* posX, s32* posY, s32* posZ, f32* scaleX, f32* scaleY,
-                                 f32* rotX, f32* rotY, f32* rotZ, s32* darkening, s32* opacity);
+    void (* fpUpdateInactive)(s32 windowIndex, s32* flags, s32* posX, s32* posY, s32* posZ, f32* scaleX, f32* scaleY,
+                              f32* rotX, f32* rotY, f32* rotZ, s32* darkening, s32* opacity);
+    void (* fpUpdateActive)(s32 windowIndex, s32* flags, s32* posX, s32* posY, s32* posZ, f32* scaleX, f32* scaleY,
+                            f32* rotX, f32* rotY, f32* rotZ, s32* darkening, s32* opacity);
     WindowUpdateFunc fpUpdate;
     s32 i;
     s32 flag;
@@ -375,7 +395,7 @@ void pause_tabs_update(MenuPanel* tab) {
                                       fpUpdate.func == pause_update_page_active_2 ||
                                       fpUpdate.func == basic_window_update ||
                                       fpUpdate.i == 1)) {
-                    set_window_update(gPauseTabsPageWindowIDs[i], (s32)fpUpdateInactive);
+                    set_window_update(gPauseTabsPageWindowIDs[i], (s32) fpUpdateInactive);
                     flag = TRUE;
                 }
             }
@@ -390,7 +410,7 @@ void pause_tabs_update(MenuPanel* tab) {
                     gPauseDoBasicWindowUpdate = FALSE;
                 }
 
-                set_window_update(gPauseTabsPageWindowIDs[tab->col], (s32)fpUpdateActive);
+                set_window_update(gPauseTabsPageWindowIDs[tab->col], (s32) fpUpdateActive);
             }
         }
     }

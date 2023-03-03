@@ -60,6 +60,8 @@ EvtScript N(EVS_Main) = {
     EVT_SET(GB_WorldLocation, LOCATION_TOAD_TOWN)
     EVT_CALL(SetSpriteShading, SHADING_NONE)
     EVT_SETUP_CAMERA_NO_LEAD()
+    EVT_CALL(func_PAL_802D8B04, LocalVar(0))
+    EVT_CALL(SetModelTexVariant, 57, LocalVar(0))
     EVT_SET(AF_MAC_20, FALSE)
     EVT_SET(AF_MAC_21, FALSE)
     EVT_SET(AF_MAC_22, FALSE)

@@ -551,3 +551,6 @@ ApiStatus ClampAngleFloat(Evt* script, s32 isInitialCall) {
 
     return ApiStatus_DONE2;
 }
+
+
+INCLUDE_ASM(ApiStatus, "evt/f8f60_len_1560", func_PAL_802D8B04);

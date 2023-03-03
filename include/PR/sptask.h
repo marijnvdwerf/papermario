@@ -72,8 +72,8 @@ extern "C" {
  *
  */
 typedef struct {
-	u32	type;
-	u32	flags;
+	/*00*/u32	type;
+	/*14*/u32	flags;
 
 	u64	*ucode_boot;
 	u32	ucode_boot_size;

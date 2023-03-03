@@ -5,10 +5,10 @@ BSS EffectInstance* N(ChapterEffect);
 BSS s32 N(ChapterEffectTime);
 
 s16 N(AnimTextOffsets)[] = {
-    310, 290, 270, 250, 230,
-    210, 190, 170, 150, 130, 
-    110,  90,  70,  50,  32,
-     16,   8,   4,   2,   1,
+    0x136, 0x10E, 0xF0, 0xD2,
+    0xB4, 0x96, 0x78, 0x64,
+    0x50, 0x32, 0x18, 0xC,
+    5, 3, 2, 1,
 };
 
 API_CALLABLE(N(ManageEffects)) {

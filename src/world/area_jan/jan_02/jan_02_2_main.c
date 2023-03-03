@@ -58,6 +58,8 @@ EvtScript N(EVS_Main) = {
     EVT_SET(GB_WorldLocation, LOCATION_YOSHIS_VILLAGE)
     EVT_CALL(SetSpriteShading, SHADING_NONE)
     EVT_SETUP_CAMERA_NO_LEAD()
+    EVT_CALL(func_PAL_802D8B04, LocalVar(0))
+    EVT_CALL(SetModelTexVariant, 80, LocalVar(0))
     EVT_SET(GF_MAP_YoshisVillage, TRUE)
     EVT_SET(AF_JAN02_RaphaelComment, FALSE)
     EVT_SET(AF_JAN02_MetCouncillor, FALSE)

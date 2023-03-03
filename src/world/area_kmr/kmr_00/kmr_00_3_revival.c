@@ -95,6 +95,10 @@ API_CALLABLE(N(func_802405CC_8AC55C)) {
     return ApiStatus_DONE2;
 }
 
+#if 1
+API_CALLABLE(N(func_802405F0_8AC580));
+INCLUDE_ASM(ApiStatus, "world/area_kmr/kmr_00/kmr_00_3_revival", kmr_00_func_802405F0_8AC580);
+#else
 API_CALLABLE(N(func_802405F0_8AC580)) {
     enum {
         FUNC_STATE_0        = 0,
@@ -182,6 +186,7 @@ API_CALLABLE(N(func_802405F0_8AC580)) {
     npc->moveToPos.x += npc->moveToPos.y;
     return retVal;
 }
+#endif
 
 API_CALLABLE(N(func_80240BD8_8ACB68)) {
     Bytecode* args = script->ptrReadPos;
@@ -204,6 +209,9 @@ API_CALLABLE(N(func_80240BD8_8ACB68)) {
 
     return ApiStatus_BLOCK;
 }
+
+API_CALLABLE(func_PAL_80240D08);
+INCLUDE_ASM(void, "world/area_kmr/kmr_00/kmr_00_3_revival", func_PAL_80240D08);
 
 EvtScript N(EVS_Scene_MarioRevived) = {
     EVT_IF_GE(GB_StoryProgress, STORY_CH0_WAKE_UP)
@@ -296,6 +304,7 @@ EvtScript N(EVS_Scene_MarioRevived) = {
     EVT_END_THREAD
     EVT_WAIT(90)
     EVT_CALL(func_802D4D88)
+    EVT_SET(MapVar(2), 0)
     EVT_THREAD
         EVT_CALL(N(func_802405F0_8AC580), 1, 0, 180)
     EVT_END_THREAD
@@ -328,10 +337,11 @@ EvtScript N(EVS_Scene_MarioRevived) = {
             EVT_GOTO(25)
         EVT_END_IF
     EVT_END_THREAD
-    EVT_WAIT(550)
+    EVT_WAIT(458)
+    EVT_WAIT(12)
+    EVT_CALL(func_PAL_80240D08)
     EVT_CALL(GetNpcPos, NPC_Kalmar, LVar6, LVar7, LVar8)
     EVT_CALL(GetNpcPos, NPC_Mamar, LVar9, LVarA, LVarB)
-    EVT_WAIT(15)
     EVT_CALL(SetCamSpeed, CAM_DEFAULT, EVT_FLOAT(3.0))
     EVT_CALL(SetCamDistance, CAM_DEFAULT, -200)
     EVT_CALL(PanToTarget, CAM_DEFAULT, 0, 1)
@@ -346,28 +356,28 @@ EvtScript N(EVS_Scene_MarioRevived) = {
     EVT_THREAD
         EVT_LOOP(3)
             EVT_CALL(N(func_80240530_8AC4C0), NPC_Kalmar)
-            EVT_WAIT(6)
+            EVT_WAIT(5)
         EVT_END_LOOP
     EVT_END_THREAD
-    EVT_WAIT(10)
+    EVT_WAIT(8)
     EVT_THREAD
         EVT_CALL(N(func_80240530_8AC4C0), NPC_Mamar)
         EVT_CALL(SetNpcAnimation, NPC_Mamar, ANIM_WorldMamar_LeanLeft)
         EVT_CALL(NpcFlyTo, NPC_Mamar, -20, 10, -5, 25, -10, EASING_QUADRATIC_OUT)
-        EVT_WAIT(5)
+        EVT_WAIT(4)
         EVT_CALL(SetNpcAnimation, NPC_Mamar, ANIM_WorldMamar_LeanLeftAlt)
-        EVT_WAIT(30)
+        EVT_WAIT(25)
         EVT_CALL(SetNpcAnimation, NPC_Mamar, ANIM_WorldMamar_LeanRight)
     EVT_END_THREAD
     EVT_THREAD
         EVT_LOOP(3)
             EVT_CALL(N(func_80240530_8AC4C0), NPC_Mamar)
-            EVT_WAIT(6)
+            EVT_WAIT(5)
         EVT_END_LOOP
     EVT_END_THREAD
-    EVT_WAIT(35)
+    EVT_WAIT(29)
     EVT_CALL(SpeakToPlayer, NPC_Mamar, ANIM_WorldMamar_TalkHappy, ANIM_WorldMamar_Idle, 5, MSG_CH0_0000)
-    EVT_WAIT(15)
+    EVT_WAIT(12)
     EVT_CALL(SpeakToPlayer, NPC_Kalmar, ANIM_WorldMamar_TalkHappy, ANIM_WorldMamar_Idle, 5, MSG_CH0_0001)
     EVT_WAIT(3)
     EVT_THREAD

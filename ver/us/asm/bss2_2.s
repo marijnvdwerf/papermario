@@ -219,3 +219,6 @@ dlabel gPlayerData
 
 dlabel gSpinHistoryPosAngle
 .space 0x10
+
+# EU spacing
+.space 0x10

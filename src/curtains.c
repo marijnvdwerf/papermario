@@ -171,7 +171,9 @@ Gfx D_800760C0[] = {
     gsSPEndDisplayList(),
 };
 
-#include "ui/no_controller.png.inc.c"
+//#include "ui/no_controller.png.inc.c"
+
+extern u8 ui_no_controller_png[];
 
 Gfx D_80077140[] = {
     gsDPPipeSync(),
@@ -203,7 +205,12 @@ Gfx D_800771E8[] = {
 // BSS
 extern Mtx D_8009BAA8[];
 
+int var2;
+int var3;
+
 void initialize_curtains(void) {
+    var2 = 0;
+    var3 = 6;
     gCurtainDrawCallback = NULL;
     gCurtainScale = 2.0f;
     gCurtainScaleGoal = 2.0f;
@@ -214,6 +221,9 @@ void initialize_curtains(void) {
 void update_curtains(void) {
 }
 
+#if 1
+INCLUDE_ASM(void, "curtains", render_curtains)
+#else
 void render_curtains(void) {
     if (gCurtainScaleGoal != gCurtainScale) {
         gCurtainScale += (gCurtainScaleGoal - gCurtainScale) * 0.1;
@@ -275,6 +285,7 @@ void render_curtains(void) {
         }
     }
 }
+#endif
 
 void set_curtain_scale_goal(f32 scale) {
     gCurtainScaleGoal = scale;

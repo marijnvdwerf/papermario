@@ -296,6 +296,9 @@ void enforce_hpfp_limits(void) {
     }
 }
 
+#if 1
+INCLUDE_ASM(void, "80850_len_3060", initialize_status_menu);
+#else
 void initialize_status_menu(void) {
     UiStatus* uiStatus = &gUIStatus;
     PlayerData* playerData = &gPlayerData;
@@ -411,6 +414,7 @@ void initialize_status_menu(void) {
 
     func_800F0D5C();
 }
+#endif
 
 void status_menu_draw_number(s32 iconID, s32 x, s32 y, s32 value, s32 numDigits) {
     s8 digits[4];

@@ -152,6 +152,78 @@
 #define ui_pow_cost_notenough_png ui_pow_cost_png
 #include "ui/pow_cost.notenough.pal.inc.c"
 
+
+#define ui_pow_cost_png ui_bp_cost_png
+#define ui_pow_cost_pal ui_bp_cost_pal
+#define ui_pow_cost_reduced_pal ui_bp_cost_reduced_pal
+#define ui_pow_cost_reduced_twice_pal ui_bp_cost_reduced_twice_pal
+#define ui_pow_cost_notenough_pal ui_bp_cost_notenough_pal
+#include "ui/pow_cost.png.inc.c"
+#include "ui/pow_cost.pal.inc.c"
+#include "ui/pow_cost.reduced.pal.inc.c"
+#include "ui/pow_cost.reduced_twice.pal.inc.c"
+#include "ui/pow_cost.notenough.pal.inc.c"
+
+
+#define ui_pow_cost_png ui_se_cost_png
+#define ui_pow_cost_pal ui_se_cost_pal
+#define ui_pow_cost_reduced_pal ui_se_cost_reduced_pal
+#define ui_pow_cost_reduced_twice_pal ui_se_cost_reduced_twice_pal
+#define ui_pow_cost_notenough_pal ui_se_cost_notenough_pal
+#include "ui/pow_cost.png.inc.c"
+#include "ui/pow_cost.pal.inc.c"
+#include "ui/pow_cost.reduced.pal.inc.c"
+#include "ui/pow_cost.reduced_twice.pal.inc.c"
+#include "ui/pow_cost.notenough.pal.inc.c"
+
+
+#define ui_pow_cost_png ui_pf_cost_png
+#define ui_pow_cost_pal ui_pf_cost_pal
+#define ui_pow_cost_reduced_pal ui_pf_cost_reduced_pal
+#define ui_pow_cost_reduced_twice_pal ui_pf_cost_reduced_twice_pal
+#define ui_pow_cost_notenough_pal ui_pf_cost_notenough_pal
+#include "ui/pow_cost.png.inc.c"
+#include "ui/pow_cost.pal.inc.c"
+#include "ui/pow_cost.reduced.pal.inc.c"
+#include "ui/pow_cost.reduced_twice.pal.inc.c"
+#include "ui/pow_cost.notenough.pal.inc.c"
+
+
+#define ui_pow_cost_png ui_pe2_cost_png
+#define ui_pow_cost_pal ui_pe2_cost_pal
+#define ui_pow_cost_reduced_pal ui_pe2_cost_reduced_pal
+#define ui_pow_cost_reduced_twice_pal ui_pe2_cost_reduced_twice_pal
+#define ui_pow_cost_notenough_pal ui_pe2_cost_notenough_pal
+#include "ui/pow_cost.png.inc.c"
+#include "ui/pow_cost.pal.inc.c"
+#include "ui/pow_cost.reduced.pal.inc.c"
+#include "ui/pow_cost.reduced_twice.pal.inc.c"
+#include "ui/pow_cost.notenough.pal.inc.c"
+
+
+#define ui_pow_cost_png ui_pf2_cost_png
+#define ui_pow_cost_pal ui_pf2_cost_pal
+#define ui_pow_cost_reduced_pal ui_pf2_cost_reduced_pal
+#define ui_pow_cost_reduced_twice_pal ui_pf2_cost_reduced_twice_pal
+#define ui_pow_cost_notenough_pal ui_pf2_cost_notenough_pal
+#include "ui/pow_cost.png.inc.c"
+#include "ui/pow_cost.pal.inc.c"
+#include "ui/pow_cost.reduced.pal.inc.c"
+#include "ui/pow_cost.reduced_twice.pal.inc.c"
+#include "ui/pow_cost.notenough.pal.inc.c"
+
+
+#define ui_pow_cost_png ui_pe3_cost_png
+#define ui_pow_cost_pal ui_pe3_cost_pal
+#define ui_pow_cost_reduced_pal ui_pe3_cost_reduced_pal
+#define ui_pow_cost_reduced_twice_pal ui_pe3_cost_reduced_twice_pal
+#define ui_pow_cost_notenough_pal ui_pe3_cost_notenough_pal
+#include "ui/pow_cost.png.inc.c"
+#include "ui/pow_cost.pal.inc.c"
+#include "ui/pow_cost.reduced.pal.inc.c"
+#include "ui/pow_cost.reduced_twice.pal.inc.c"
+#include "ui/pow_cost.notenough.pal.inc.c"
+
 #include "ui/green_arrow_down.png.inc.c"
 #include "ui/green_arrow_down.pal.inc.c"
 
@@ -328,6 +400,36 @@
 
 #include "ui/status/text_fp.png.inc.c"
 #include "ui/status/text_fp.pal.inc.c"
+
+#define ui_status_text_hp_png ui_status_text_kp_png
+#define ui_status_text_hp_pal ui_status_text_kp_pal
+#include "ui/status/text_hp.png.inc.c"
+#include "ui/status/text_hp.pal.inc.c"
+
+#define ui_status_text_hp_png ui_status_text_gp_png
+#define ui_status_text_hp_pal ui_status_text_gp_pal
+#include "ui/status/text_hp.png.inc.c"
+#include "ui/status/text_hp.pal.inc.c"
+
+#define ui_status_text_hp_png ui_status_text_pc_png
+#define ui_status_text_hp_pal ui_status_text_pc_pal
+#include "ui/status/text_hp.png.inc.c"
+#include "ui/status/text_hp.pal.inc.c"
+
+#define ui_status_text_hp_png ui_status_text_pf_png
+#define ui_status_text_hp_pal ui_status_text_pf_pal
+#include "ui/status/text_hp.png.inc.c"
+#include "ui/status/text_hp.pal.inc.c"
+
+#define ui_status_text_hp_png ui_status_text_pc2_png
+#define ui_status_text_hp_pal ui_status_text_pc2_pal
+#include "ui/status/text_hp.png.inc.c"
+#include "ui/status/text_hp.pal.inc.c"
+
+#define ui_status_text_hp_png ui_status_text_pf2_png
+#define ui_status_text_hp_pal ui_status_text_pf2_pal
+#include "ui/status/text_hp.png.inc.c"
+#include "ui/status/text_hp.pal.inc.c"
 
 #include "ui/status/pow_unit_1.png.inc.c"
 #include "ui/status/pow_unit_1.pal.inc.c"
@@ -550,18 +652,93 @@
 
 #include "ui/battle/status/peril.png.inc.c"
 #include "ui/battle/status/peril.pal.inc.c"
-
 #include "ui/battle/status/danger.png.inc.c"
 #include "ui/battle/status/danger.pal.inc.c"
-
 #include "ui/battle/status/refund.png.inc.c"
 #include "ui/battle/status/refund.pal.inc.c"
-
 #include "ui/battle/status/happy.png.inc.c"
 #include "ui/battle/status/happy.pal.inc.c"
-
 #include "ui/battle/status/hp_drain.png.inc.c"
 #include "ui/battle/status/hp_drain.pal.inc.c"
+
+
+#define ui_battle_status_peril_png ui_battle_status_peril_german_png
+#define ui_battle_status_peril_pal ui_battle_status_peril_german_pal
+#define ui_battle_status_danger_png ui_battle_status_danger_german_png
+#define ui_battle_status_danger_pal ui_battle_status_danger_german_pal
+#define ui_battle_status_refund_png ui_battle_status_refund_german_png
+#define ui_battle_status_refund_pal ui_battle_status_refund_german_pal
+#define ui_battle_status_happy_png ui_battle_status_happy_german_png
+#define ui_battle_status_happy_pal ui_battle_status_happy_german_pal
+#define ui_battle_status_hp_drain_png ui_battle_status_hp_drain_german_png
+#define ui_battle_status_hp_drain_pal ui_battle_status_hp_drain_german_pal
+#include "ui/battle/status/peril.png.inc.c"
+#include "ui/battle/status/peril.pal.inc.c"
+#include "ui/battle/status/danger.png.inc.c"
+#include "ui/battle/status/danger.pal.inc.c"
+#include "ui/battle/status/refund.png.inc.c"
+#include "ui/battle/status/refund.pal.inc.c"
+#include "ui/battle/status/happy.png.inc.c"
+#include "ui/battle/status/happy.pal.inc.c"
+#include "ui/battle/status/hp_drain.png.inc.c"
+#include "ui/battle/status/hp_drain.pal.inc.c"
+
+
+
+#define ui_battle_status_peril_png ui_battle_status_peril_french_png
+#define ui_battle_status_peril_pal ui_battle_status_peril_french_pal
+#define ui_battle_status_danger_png ui_battle_status_danger_french_png
+#define ui_battle_status_danger_pal ui_battle_status_danger_french_pal
+#define ui_battle_status_refund_png ui_battle_status_refund_french_png
+#define ui_battle_status_refund_pal ui_battle_status_refund_french_pal
+#define ui_battle_status_happy_png ui_battle_status_happy_french_png
+#define ui_battle_status_happy_pal ui_battle_status_happy_french_pal
+#define ui_battle_status_hp_drain_png ui_battle_status_hp_drain_french_png
+#define ui_battle_status_hp_drain_pal ui_battle_status_hp_drain_french_pal
+#include "ui/battle/status/peril.png.inc.c"
+#include "ui/battle/status/peril.pal.inc.c"
+#include "ui/battle/status/danger.png.inc.c"
+#include "ui/battle/status/danger.pal.inc.c"
+#include "ui/battle/status/refund.png.inc.c"
+#include "ui/battle/status/refund.pal.inc.c"
+#include "ui/battle/status/happy.png.inc.c"
+#include "ui/battle/status/happy.pal.inc.c"
+#include "ui/battle/status/hp_drain.png.inc.c"
+#include "ui/battle/status/hp_drain.pal.inc.c"
+
+
+
+#define ui_battle_status_peril_png ui_battle_status_peril_spanish_png
+#define ui_battle_status_peril_pal ui_battle_status_peril_spanish_pal
+#define ui_battle_status_danger_png ui_battle_status_danger_spanish_png
+#define ui_battle_status_danger_pal ui_battle_status_danger_spanish_pal
+#define ui_battle_status_refund_png ui_battle_status_refund_spanish_png
+#define ui_battle_status_refund_pal ui_battle_status_refund_spanish_pal
+#define ui_battle_status_happy_png ui_battle_status_happy_spanish_png
+#define ui_battle_status_happy_pal ui_battle_status_happy_spanish_pal
+#define ui_battle_status_hp_drain_png ui_battle_status_hp_drain_spanish_png
+#define ui_battle_status_hp_drain_pal ui_battle_status_hp_drain_spanish_pal
+#include "ui/battle/status/peril.png.inc.c"
+#include "ui/battle/status/peril.pal.inc.c"
+#include "ui/battle/status/danger.png.inc.c"
+#include "ui/battle/status/danger.pal.inc.c"
+#include "ui/battle/status/refund.png.inc.c"
+#include "ui/battle/status/refund.pal.inc.c"
+#include "ui/battle/status/happy.png.inc.c"
+#include "ui/battle/status/happy.pal.inc.c"
+#include "ui/battle/status/hp_drain.png.inc.c"
+#include "ui/battle/status/hp_drain.pal.inc.c"
+
+#undef ui_battle_status_peril_png
+#undef ui_battle_status_peril_pal
+#undef ui_battle_status_danger_png
+#undef ui_battle_status_danger_pal
+#undef ui_battle_status_refund_png
+#undef ui_battle_status_refund_pal
+#undef ui_battle_status_happy_png
+#undef ui_battle_status_happy_pal
+#undef ui_battle_status_hp_drain_png
+#undef ui_battle_status_hp_drain_pal
 
 #include "ui/move_basic.png.inc.c"
 #include "ui/move_basic.pal.inc.c"
@@ -1678,20 +1855,42 @@ HudScript HES_BoostPartner = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_battle_status_charge
 HudScript HES_Surprise = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_battle_status_exclamation, 24, 24);
 
 HudScript HES_FPCost = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_fp_cost, 16, 8);
-
 HudScript HES_FPCostReduced = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_fp_cost_reduced, 16, 8);
-
 HudScript HES_FPCostReducedTwice = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_fp_cost_reduced_twice, 16, 8);
-
 HudScript HES_NotEnoughFP = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_fp_cost_notenough, 16, 8);
 
 HudScript HES_POWCost = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_pow_cost, 16, 8);
-
 HudScript HES_POWCostReduced = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_pow_cost_reduced, 16, 8);
-
 HudScript HES_POWCostReducedTwice = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_pow_cost_reduced_twice, 16, 8);
-
 HudScript HES_NotEnoughPOW = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_pow_cost_notenough, 16, 8);
+
+
+HudScript HES_de_FPCost = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_fp_cost, 16, 8);
+HudScript HES_de_FPCostReduced = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_fp_cost_reduced, 16, 8);
+HudScript HES_de_FPCostReducedTwice = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_fp_cost_reduced_twice, 16, 8);
+HudScript HES_de_NotEnoughFP = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_fp_cost_notenough, 16, 8);
+HudScript HES_de_POWCost = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_pow_cost, 16, 8);
+HudScript HES_de_POWCostReduced = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_pow_cost_reduced, 16, 8);
+HudScript HES_de_POWCostReducedTwice = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_pow_cost_reduced_twice, 16, 8);
+HudScript HES_de_NotEnoughPOW = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_pow_cost_notenough, 16, 8);
+
+HudScript HES_fr_FPCost = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_fp_cost, 16, 8);
+HudScript HES_fr_FPCostReduced = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_fp_cost_reduced, 16, 8);
+HudScript HES_fr_FPCostReducedTwice = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_fp_cost_reduced_twice, 16, 8);
+HudScript HES_fr_NotEnoughFP = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_fp_cost_notenough, 16, 8);
+HudScript HES_fr_POWCost = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_pow_cost, 16, 8);
+HudScript HES_fr_POWCostReduced = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_pow_cost_reduced, 16, 8);
+HudScript HES_fr_POWCostReducedTwice = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_pow_cost_reduced_twice, 16, 8);
+HudScript HES_fr_NotEnoughPOW = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_pow_cost_notenough, 16, 8);
+
+HudScript HES_es_FPCost = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_fp_cost, 16, 8);
+HudScript HES_es_FPCostReduced = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_fp_cost_reduced, 16, 8);
+HudScript HES_es_FPCostReducedTwice = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_fp_cost_reduced_twice, 16, 8);
+HudScript HES_es_NotEnoughFP = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_fp_cost_notenough, 16, 8);
+HudScript HES_es_POWCost = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_pow_cost, 16, 8);
+HudScript HES_es_POWCostReduced = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_pow_cost_reduced, 16, 8);
+HudScript HES_es_POWCostReducedTwice = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_pow_cost_reduced_twice, 16, 8);
+HudScript HES_es_NotEnoughPOW = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_pow_cost_notenough, 16, 8);
 
 HudScript HES_GreenArrowDown = {
     hs_SetVisible
@@ -1877,6 +2076,13 @@ HudScript HES_StatusStar7 = HES_TEMPLATE_CI_ENUM_SIZE(ui_status_pow_star_7, 8, 8
 
 HudScript HES_StatusStarEmpty = HES_TEMPLATE_CI_ENUM_SIZE(ui_status_pow_star_empty, 8, 8);
 
+HudScript HES_1 = HES_TEMPLATE_CI_ENUM_SIZE(ui_status_pow_star_empty, 8, 8);
+HudScript HES_2 = HES_TEMPLATE_CI_ENUM_SIZE(ui_status_pow_star_empty, 8, 8);
+HudScript HES_3 = HES_TEMPLATE_CI_ENUM_SIZE(ui_status_pow_star_empty, 8, 8);
+HudScript HES_4 = HES_TEMPLATE_CI_ENUM_SIZE(ui_status_pow_star_empty, 8, 8);
+HudScript HES_5 = HES_TEMPLATE_CI_ENUM_SIZE(ui_status_pow_star_empty, 8, 8);
+HudScript HES_6 = HES_TEMPLATE_CI_ENUM_SIZE(ui_status_pow_star_empty, 8, 8);
+
 HudScript HES_StatusHeart = {
     hs_SetTileSize(HUD_ELEMENT_SIZE_16x16)
     hs_Loop
@@ -2012,7 +2218,164 @@ HudScript HES_Happy = HES_TEMPLATE_CI_ENUM_SIZE(ui_battle_status_happy, 40, 16);
 
 HudScript HES_HPDrain = HES_TEMPLATE_CI_ENUM_SIZE(ui_battle_status_hp_drain, 40, 16);
 
-HudScript HES_BlueMeter = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_unk_bar, 72, 16);
+HudScript HES_801072fc = {
+    hs_SetVisible
+    hs_SetTileSize(HUD_ELEMENT_SIZE_40x16)
+    hs_Loop
+        hs_PlaySound(SOUND_PERIL)
+        hs_ClearFlags(HUD_ELEMENT_FLAG_200000)
+        hs_SetCI(15, ui_battle_status_peril_german)
+        hs_SetFlags(HUD_ELEMENT_FLAG_200000)
+        hs_SetCI(10, ui_battle_status_peril_german)
+    hs_Restart
+    hs_End
+};
+
+HudScript HES_8010734C = {
+    hs_SetVisible
+    hs_SetTileSize(HUD_ELEMENT_SIZE_40x16)
+    hs_Loop
+        hs_PlaySound(SOUND_DANGER)
+        hs_ClearFlags(HUD_ELEMENT_FLAG_200000)
+        hs_SetCI(15, ui_battle_status_danger_german)
+        hs_SetFlags(HUD_ELEMENT_FLAG_200000)
+        hs_SetCI(10, ui_battle_status_danger_german)
+    hs_Restart
+    hs_End
+};
+
+HudScript HES_Refund_de = {
+    hs_SetVisible
+    hs_SetTileSize(HUD_ELEMENT_SIZE_40x24)
+    hs_Loop
+        hs_ClearFlags(HUD_ELEMENT_FLAG_200000)
+        hs_SetCI(8, ui_battle_status_refund_german)
+        hs_SetFlags(HUD_ELEMENT_FLAG_200000)
+        hs_SetCI(4, ui_battle_status_refund_german)
+    hs_Restart
+    hs_End
+};
+HudScript HES_801073E4 = {
+    hs_SetVisible
+    hs_SetTileSize(HUD_ELEMENT_SIZE_40x16)
+    hs_Loop
+        hs_SetCI(60, ui_battle_status_happy_german)
+    hs_Restart
+    hs_End
+};
+HudScript HES_8010740C = {
+    hs_SetVisible
+    hs_SetTileSize(HUD_ELEMENT_SIZE_40x16)
+    hs_Loop
+        hs_SetCI(60, ui_battle_status_hp_drain_german)
+    hs_Restart
+    hs_End
+};
+HudScript HES_80107434 = {
+    hs_SetVisible
+    hs_SetTileSize(HUD_ELEMENT_SIZE_40x16)
+    hs_Loop
+        hs_PlaySound(SOUND_PERIL)
+        hs_ClearFlags(HUD_ELEMENT_FLAG_200000)
+        hs_SetCI(15, ui_battle_status_peril_french)
+        hs_SetFlags(HUD_ELEMENT_FLAG_200000)
+        hs_SetCI(10, ui_battle_status_peril_french)
+    hs_Restart
+    hs_End
+};
+HudScript HES_80107484 = {
+    hs_SetVisible
+    hs_SetTileSize(HUD_ELEMENT_SIZE_40x16)
+    hs_Loop
+        hs_PlaySound(SOUND_DANGER)
+        hs_ClearFlags(HUD_ELEMENT_FLAG_200000)
+        hs_SetCI(15, ui_battle_status_danger_french)
+        hs_SetFlags(HUD_ELEMENT_FLAG_200000)
+        hs_SetCI(10, ui_battle_status_danger_french)
+    hs_Restart
+    hs_End
+};
+HudScript HES_Refund_fr = {
+    hs_SetVisible
+    hs_SetTileSize(HUD_ELEMENT_SIZE_40x24)
+    hs_Loop
+        hs_ClearFlags(HUD_ELEMENT_FLAG_200000)
+        hs_SetCI(8, ui_battle_status_refund_french)
+        hs_SetFlags(HUD_ELEMENT_FLAG_200000)
+        hs_SetCI(4, ui_battle_status_refund_french)
+    hs_Restart
+    hs_End
+};
+HudScript HES_8010751C = {
+    hs_SetVisible
+    hs_SetTileSize(HUD_ELEMENT_SIZE_40x16)
+    hs_Loop
+        hs_SetCI(60, ui_battle_status_happy_french)
+    hs_Restart
+    hs_End
+};
+HudScript HES_80107544 = {
+    hs_SetVisible
+    hs_SetTileSize(HUD_ELEMENT_SIZE_40x16)
+    hs_Loop
+        hs_SetCI(60, ui_battle_status_hp_drain_french)
+    hs_Restart
+    hs_End
+};
+
+HudScript HES_8010756C = {
+    hs_SetVisible
+    hs_SetTileSize(HUD_ELEMENT_SIZE_40x16)
+    hs_Loop
+        hs_PlaySound(SOUND_PERIL)
+        hs_ClearFlags(HUD_ELEMENT_FLAG_200000)
+        hs_SetCI(15, ui_battle_status_peril_spanish)
+        hs_SetFlags(HUD_ELEMENT_FLAG_200000)
+        hs_SetCI(10, ui_battle_status_peril_spanish)
+    hs_Restart
+    hs_End
+};
+HudScript HES_801075BC = {
+    hs_SetVisible
+    hs_SetTileSize(HUD_ELEMENT_SIZE_40x16)
+    hs_Loop
+        hs_PlaySound(SOUND_DANGER)
+        hs_ClearFlags(HUD_ELEMENT_FLAG_200000)
+        hs_SetCI(15, ui_battle_status_danger_spanish)
+        hs_SetFlags(HUD_ELEMENT_FLAG_200000)
+        hs_SetCI(10, ui_battle_status_danger_spanish)
+    hs_Restart
+    hs_End
+};
+HudScript HES_Refund_es = {
+    hs_SetVisible
+    hs_SetTileSize(HUD_ELEMENT_SIZE_40x24)
+    hs_Loop
+        hs_ClearFlags(HUD_ELEMENT_FLAG_200000)
+        hs_SetCI(8, ui_battle_status_refund_spanish)
+        hs_SetFlags(HUD_ELEMENT_FLAG_200000)
+        hs_SetCI(4, ui_battle_status_refund_spanish)
+    hs_Restart
+    hs_End
+};
+HudScript HES_80107654 = {
+    hs_SetVisible
+    hs_SetTileSize(HUD_ELEMENT_SIZE_40x16)
+    hs_Loop
+        hs_SetCI(60, ui_battle_status_happy_spanish)
+    hs_Restart
+    hs_End
+};
+HudScript HES_8010767C = {
+    hs_SetVisible
+    hs_SetTileSize(HUD_ELEMENT_SIZE_40x16)
+    hs_Loop
+        hs_SetCI(60, ui_battle_status_hp_drain_spanish)
+    hs_Restart
+    hs_End
+};
+
+HudScript HES_BlueMeter = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_unk_bar, 72, 16); // 0x00000000801076a4
 
 HudScript HES_AButton = HES_TEMPLATE_CI_CUSTOM_SIZE(ui_input_a_button_unpressed, 48, 40);
 

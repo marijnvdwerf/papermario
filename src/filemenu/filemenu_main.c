@@ -52,11 +52,25 @@ HudScript* filemenu_main_hudElemScripts[] = {
     &HES_Spirit1Missing, &HES_Spirit2Missing, &HES_Spirit3Missing, &HES_Spirit4Missing, &HES_Spirit5Missing,
     &HES_Spirit6Missing, &HES_Spirit7Missing, &HES_JpFile, &HES_JpFileDisabled, &HES_OptionMonoOn, &HES_OptionMonoOff,
     &HES_OptionStereoOn, &HES_OptionStereoOff,
+
+    &HES_Spirit1, &HES_Spirit2, &HES_Spirit3, &HES_Spirit4, &HES_Spirit5, &HES_Spirit6, &HES_Spirit7,
+    &HES_Spirit1Missing, &HES_Spirit2Missing, &HES_Spirit3Missing, &HES_Spirit4Missing, &HES_Spirit5Missing,
+    &HES_Spirit6Missing, &HES_Spirit7Missing, &HES_JpFile, &HES_JpFileDisabled, &HES_OptionMonoOn, &HES_OptionMonoOff,
+    &HES_OptionStereoOn, &HES_OptionStereoOff,
+
+    &HES_Spirit1, &HES_Spirit2, &HES_Spirit3, &HES_Spirit4, &HES_Spirit5, &HES_Spirit6, &HES_Spirit7,
+    &HES_Spirit1Missing, &HES_Spirit2Missing, &HES_Spirit3Missing, &HES_Spirit4Missing, &HES_Spirit5Missing,
+    &HES_Spirit6Missing, &HES_Spirit7Missing, &HES_JpFile, &HES_JpFileDisabled, &HES_OptionMonoOn, &HES_OptionMonoOff,
+    &HES_OptionStereoOn, &HES_OptionStereoOff,
+
+    &HES_Spirit1, &HES_Spirit2, &HES_Spirit3, &HES_Spirit4, &HES_Spirit5, &HES_Spirit6, &HES_Spirit7,
+    &HES_Spirit1Missing, &HES_Spirit2Missing, &HES_Spirit3Missing, &HES_Spirit4Missing, &HES_Spirit5Missing,
+    &HES_Spirit6Missing, &HES_Spirit7Missing, &HES_JpFile, &HES_JpFileDisabled, &HES_OptionMonoOn, &HES_OptionMonoOff,
+    &HES_OptionStereoOn, &HES_OptionStereoOff,
 };
 
 u8 filemenu_main_gridData[] = {
     0, 0, 1, 2, 2, 3, 4, 5, 6,
-    0, 0, 1, 2, 2, 3, 6, 6, 6,
     0, 0, 1, 2, 2, 3, 6, 6, 6,
     0, 0, 1, 2, 2, 3, 6, 6, 6,
     0, 0, 1, 2, 2, 3, 6, 6, 6,
@@ -277,6 +291,9 @@ MenuPanel filemenu_main_menuBP = {
     .fpCleanup = &filemenu_main_cleanup
 };
 
+#if 1
+INCLUDE_ASM(void, "filemenu/filemenu_main", filemenu_draw_contents_title);
+#else
 void filemenu_draw_contents_title(
     MenuPanel* menu,
     s32 baseX, s32 baseY,
@@ -318,6 +335,7 @@ void filemenu_draw_contents_title(
 
     filemenu_draw_message(filemenu_get_menu_message(msgIdx), baseX + xOffset, baseY + yOffset, 255, 0, 0);
 }
+#endif
 
 void filemenu_draw_contents_stereo(
     MenuPanel* menu,
@@ -349,6 +367,9 @@ void filemenu_draw_contents_mono(
     }
 }
 
+#if 1
+INCLUDE_ASM(void, "filemenu/filemenu_main", filemenu_draw_contents_option_left);
+#else
 void filemenu_draw_contents_option_left(
     MenuPanel* menu,
     s32 baseX, s32 baseY,
@@ -362,7 +383,11 @@ void filemenu_draw_contents_option_left(
         filemenu_draw_message(filemenu_get_menu_message(FILE_MESSAGE_DELETE_FILE), baseX + 8 + OFFSET_WIDTH, baseY + 2, 255, 0, 1);
     }
 }
+#endif
 
+#if 1
+INCLUDE_ASM(void, "filemenu/filemenu_main", filemenu_draw_contents_option_center);
+#else
 void filemenu_draw_contents_option_center(
     MenuPanel* menu,
     s32 baseX, s32 baseY,
@@ -397,7 +422,11 @@ void filemenu_draw_contents_option_center(
 
     filemenu_draw_message(filemenu_get_menu_message(msgIdx), baseX + xOffset, baseY + yOffset + 2, 255, 0, 1);
 }
+#endif
 
+#if 1
+INCLUDE_ASM(void, "filemenu/filemenu_main", filemenu_draw_contents_option_right);
+#else
 void filemenu_draw_contents_option_right(
     MenuPanel* menu,
     s32 baseX, s32 baseY,
@@ -411,7 +440,17 @@ void filemenu_draw_contents_option_right(
         filemenu_draw_message(filemenu_get_menu_message(FILE_MESSAGE_CANCEL), baseX + RIGHT_CANCEL_X, baseY + 2, 255, 0, 1);
     }
 }
+#endif
 
+#if 1
+void filemenu_draw_contents_file_info(s32 fileIdx,
+                                      MenuPanel* menu,
+                                      s32 baseX, s32 baseY,
+                                      s32 width, s32 height,
+                                      s32 opacity, s32 darkening
+);
+INCLUDE_ASM(void, "filemenu/filemenu_main", filemenu_draw_contents_file_info);
+#else
 void filemenu_draw_contents_file_info(s32 fileIdx,
     MenuPanel* menu,
     s32 baseX, s32 baseY,
@@ -473,7 +512,17 @@ void filemenu_draw_contents_file_info(s32 fileIdx,
         }
     }
 }
+#endif
 
+#if 1
+void filemenu_draw_contents_file_title(
+        s32 fileIdx,
+        MenuPanel* menu,
+        s32 baseX, s32 baseY,
+        s32 width, s32 height,
+        s32 opacity, s32 darkening);
+INCLUDE_ASM(void, "filemenu/filemenu_main", filemenu_draw_contents_file_title);
+#else
 void filemenu_draw_contents_file_title(
     s32 fileIdx,
     MenuPanel* menu,
@@ -497,6 +546,7 @@ void filemenu_draw_contents_file_title(
             baseX + FILE_NAME_X, baseY + 1, 255, 0, 1, 9);
     }
 }
+#endif
 
 void filemenu_draw_contents_file_0_info(
     MenuPanel* menu,
@@ -570,6 +620,10 @@ void filemenu_draw_contents_file_3_title(
     filemenu_draw_contents_file_title(3, menu, baseX, baseY, width, height, opacity, darkening);
 }
 
+
+#if 1
+INCLUDE_ASM(void, "filemenu/filemenu_main", filemenu_main_init);
+#else
 void filemenu_main_init(MenuPanel* menu) {
     s32 halfWidth;
     s32 halfWidth2;
@@ -625,7 +679,11 @@ void filemenu_main_init(MenuPanel* menu) {
     }
     menu->initialized = 1;
 }
+#endif
 
+#if 1
+INCLUDE_ASM(void, "filemenu/filemenu_main", filemenu_main_handle_input);
+#else
 void filemenu_main_handle_input(MenuPanel* menu) {
     s32 originalSelected = menu->selected;
     s32 i;
@@ -1065,6 +1123,7 @@ void filemenu_main_handle_input(MenuPanel* menu) {
         }
     }
 }
+#endif
 
 void filemenu_main_update(MenuPanel* menu) {
     gWindowStyles[WINDOW_ID_FILEMENU_FILE0_INFO].customStyle = &filemenu_windowStyles[15];

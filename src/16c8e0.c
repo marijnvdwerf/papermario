@@ -245,6 +245,9 @@ void update_actor_shadows(void) {
     }
 }
 
+#if 1
+INCLUDE_ASM(void, "16c8e0", btl_update);
+#else
 void btl_update(void) {
     BattleStatus* battleStatus = &gBattleStatus;
     PlayerData* playerData = &gPlayerData;
@@ -476,6 +479,7 @@ void btl_update(void) {
         }
     }
 }
+#endif
 
 void btl_draw_ui(void) {
     s32 changed = FALSE;

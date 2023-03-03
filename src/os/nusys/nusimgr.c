@@ -7,7 +7,7 @@ extern OSMesg nuSiMesgBuf[8];
 extern OSThread siMgrThread;
 extern s32 D_800A08C0;
 
-static void nuSiMgrThread(void* arg);
+ void nuSiMgrThread(void* arg);
 
 extern u64 siMgrStack[NU_SI_STACK_SIZE/sizeof(u64)];
 

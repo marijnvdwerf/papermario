@@ -40,38 +40,6 @@ API_CALLABLE(N(ShowFlowerRecoveryFX)) {
     return ApiStatus_DONE2;
 }
 
-#include "common/AddHP.inc.c"
-
-API_CALLABLE(N(func_802A1450_7309F0)) {
-    ItemData* item = &gItemTable[ITEM_ELECTRO_POP];
-    PlayerData* playerData = &gPlayerData;
-
-    playerData->curHP += item->potencyA;
-    if (playerData->curHP > playerData->curMaxHP) {
-        playerData->curHP = playerData->curMaxHP;
-    }
-
-    script->varTable[3] = item->potencyA;
-
-    return ApiStatus_DONE2;
-}
-
-API_CALLABLE(N(AddFP)) {
-    PlayerData* playerData = &gPlayerData;
-    s32 amt = evt_get_variable(script, *script->ptrReadPos);
-
-    // @bug Should be playerData->curFP
-    s32 newFP = playerData->curHP + amt;
-
-    if (newFP > playerData->curMaxFP) {
-        newFP = playerData->curMaxFP;
-    }
-
-    playerData->curFP = newFP;
-
-    return ApiStatus_DONE2;
-}
-
 API_CALLABLE(N(func_802A14F0_730A90)) {
     ItemData* item = &gItemTable[ITEM_ELECTRO_POP];
     PlayerData* playerData = &gPlayerData;
@@ -81,7 +49,7 @@ API_CALLABLE(N(func_802A14F0_730A90)) {
         playerData->curFP = playerData->curMaxFP;
     }
 
-    script->varTable[3] = item->potencyB;
+    script->varTable[3] = item->potencyA;
 
     return ApiStatus_DONE2;
 }
@@ -107,7 +75,6 @@ EvtScript N(EVS_UseItem) = {
     EVT_CALL(GetActorPos, ACTOR_PLAYER, LVar0, LVar1, LVar2)
     EVT_ADD(LVar1, 25)
     EVT_CALL(ShowStartRecoveryShimmer, LVar0, LVar1, LVar2, LVar3)
-    EVT_CALL(N(AddFP), LVar3)
     EVT_WAIT(10)
     EVT_CALL(SetAnimation, ACTOR_PLAYER, 0, ANIM_Mario1_ThumbsUp)
     EVT_WAIT(30)

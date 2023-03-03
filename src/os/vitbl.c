@@ -1743,4 +1743,35 @@ OSViMode osViModeTable[56] = {
 
 // TODO move into separate files and define properly
 
-OSViMode osViModeNtscLan1 = { 0x02, { 0x0000311E, 0x00000140, 0x03E52239, 0x0000020D, 0x00000C15, 0x0C150C15, 0x006C02EC, 0x00000200, 0x00000000 }, { { 0x00000280, 0x00000400, 0x002501FF, 0x000E0204, 0x00000002 }, { 0x00000280, 0x00000400, 0x002501FF, 0x000E0204, 0x00000002 } } };
+OSViMode osviModeFpalLpn1 =
+        {
+                OS_VI_FPAL_LPN1,  // type
+                { // comRegs
+                        VI_CTRL_TYPE_16 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON |
+                        VI_CTRL_ANTIALIAS_MODE_2 | VI_CTRL_PIXEL_ADV_3,  // ctrl
+                        WIDTH(320),                             // width
+                        BURST(58, 30, 4, 69),                   // burst
+                        VSYNC(625),                             // vSync
+                        HSYNC(3177, 23),                        // hSync
+                        LEAP(3183, 3181),                       // leap
+                        HSTART(128, 768),                       // hStart
+                        SCALE(2, 0),                            // xScale
+                        VCURRENT(0),                            // vCurrent
+                },
+                { // fldRegs
+                        { // [0]
+                                ORIGIN(640),          // origin
+                                SCALE(1, 0),          // yScale
+                                HSTART(47, 617),      // vStart
+                                BURST(107, 2, 9, 0),  // vBurst
+                                VINTR(2),             // vIntr
+                        },
+                        { // [1]
+                                ORIGIN(640),          // origin
+                                SCALE(1, 0),          // yScale
+                                HSTART(47, 617),      // vStart
+                                BURST(107, 2, 9, 0),  // vBurst
+                                VINTR(2),             // vIntr
+                        }
+                }
+};

@@ -1152,3 +1152,7 @@
 #define MSG_PartnerMoveName_Hurricane MESSAGE_ID(0x2F, 0x02F)
 
 #endif
+
+
+
+

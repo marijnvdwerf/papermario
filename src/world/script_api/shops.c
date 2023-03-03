@@ -85,6 +85,10 @@ s32 shop_owner_begin_speech(s32 messageIndex) {
     return script->id;
 }
 
+#if 1
+s32 shop_owner_buy_dialog(s32 messageIndex, s32 itemName, s32 coinCost, s32 bpCost);
+INCLUDE_ASM(s32, "world/script_api/shops", shop_owner_buy_dialog);
+#else
 s32 shop_owner_buy_dialog(s32 messageIndex, s32 itemName, s32 coinCost, s32 bpCost) {
     Shop* shop = gGameStatusPtr->mapShop;
     s32 shopMsgID = shop->owner->shopMsgIDs[messageIndex];
@@ -113,6 +117,7 @@ s32 shop_owner_buy_dialog(s32 messageIndex, s32 itemName, s32 coinCost, s32 bpCo
 
     return script->id;
 }
+#endif
 
 s32 shop_owner_continue_speech(s32 messageIndex) {
     Shop* shop = gGameStatusPtr->mapShop;
@@ -127,6 +132,10 @@ s32 shop_owner_continue_speech(s32 messageIndex) {
     return script->id;
 }
 
+#if 1
+s32 shop_owner_continue_speech_with_quantity(s32 messageIndex, s32 amount);
+INCLUDE_ASM(s32, "world/script_api/shops", shop_owner_continue_speech_with_quantity);
+#else
 s32 shop_owner_continue_speech_with_quantity(s32 messageIndex, s32 amount) {
     Shop* shop = gGameStatusPtr->mapShop;
     s32 shopMsgID = shop->owner->shopMsgIDs[messageIndex];
@@ -151,6 +160,7 @@ s32 shop_owner_continue_speech_with_quantity(s32 messageIndex, s32 amount) {
 
     return script->id;
 }
+#endif
 
 s32 shop_owner_reset_speech(s32 messageIndex) {
     Shop* shop = gGameStatusPtr->mapShop;

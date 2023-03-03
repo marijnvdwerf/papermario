@@ -2376,6 +2376,33 @@ s16 bMsgHeights[] = { 28, 40 }; // keyed by number of lines in the message (1 or
 s16 D_802835D4[] = { 0, -2 };
 s16 D_802835D8[] = { 0, -12 };
 
+u16 D_PAL_802839CC[] = { 0x0000, 0xFFF8 };
+u16 D_PAL_802839D0[] = { 0x0041, 0x0047, 0x0070, 0x0043 };
+u16 D_PAL_802839D8[] = { 0x0037, 0x0047, 0x005C, 0x0058 };
+u16 D_PAL_802839E0[] = { 0x0049, 0x0056, 0x00A0, 0x00E0 };
+u16 D_PAL_802839E8[] = { 0x0040, 0x0047, 0x0071, 0x0043 };
+u16 D_PAL_802839F0[] = { 0x0043, 0x004B, 0x0072, 0x0047 };
+u16 D_PAL_802839F8[] = { 0x0038, 0x0049, 0x0046, 0x0058 };
+u16 D_PAL_80283A00[] = { 0x0041, 0x0048, 0x005D, 0x0058 };
+u16 D_PAL_80283A08[] = { 0x0092, 0x0056, 0x0089, 0x00DD };
+u16 D_PAL_80283A10[] = { 0x0040, 0x0047, 0x0070, 0x0043 };
+u16 D_PAL_80283A18[] = { 0x0056, 0x005D, 0x0086, 0x0059 };
+u16 D_PAL_80283A20[] = { 0x006C, 0x0073, 0x009C, 0x006F };
+u16 D_PAL_80283A28[] = { 0x0069, 0x0081, 0x0017, 0x008C };
+u16 D_PAL_80283A30[] = { 0x0041, 0x0048, 0x0070, 0x0043 };
+u16 D_PAL_80283A38[] = { 0x000D, 0x000D, 0x001F, 0x000D };
+u16 D_PAL_80283A40[] = { 0x0041, 0x0049, 0x0071, 0x0044 };
+u16 D_PAL_80283A48[] = { 0x0056, 0x005E, 0x0086, 0x0059 };
+u16 D_PAL_80283A50[] = { 0x007C, 0x0040, 0x00E2, 0x0057 };
+u16 D_PAL_80283A58[] = { 0x0035, 0x003D, 0x005D, 0x004F };
+u16 D_PAL_80283A60[] = { 0x0038, 0x0038, 0x0088, 0x0048 };
+u16 D_PAL_80283A68[] = { 0x0038, 0x0049, 0x0058, 0x005A };
+u16 D_PAL_80283A70[] = { 0x006B, 0x0076, 0x008E, 0x0086 };
+u16 D_PAL_80283A78[] = { 0x00D2, 0x0030, 0x0063, 0x002F };
+u16 D_PAL_80283A80[] = { 0x000F, 0x0020, 0x0020, 0x0020 };
+u16 D_PAL_80283A88[] = { 0x0040, 0x0048, 0x0070, 0x0043 };
+u16 D_PAL_80283A90[] = { 0x0040, 0x0048, 0x00B9, 0x0043 };
+
 //TODO Vec3f[]
 f32 D_802835DC[] = {
     0.0f, 4.5, 0.0f, 1.0f, 4.0f, 0.0f, 2.0f, 3.0f, 0.0f, 3.0f, 2.0f, 0.0f, 3.5f, 1.0f, 0.0f, 4.0f, 0.0f, 0.0f, 4.5,
@@ -2514,6 +2541,7 @@ s32 bActorMessages[] = {
 PopupMessage* bPopupMessage = NULL;
 
 s32 D_802838FC_padding = 0;
+s32 D_802838FC_padding2 = 0;
 
 //TODO split files
 
@@ -3580,6 +3608,10 @@ void btl_update_message_popup(void* data) {
     }
 }
 
+#if 1
+void func_80250818(void* data, s32 x, s32 y);
+INCLUDE_ASM(void, "17D6A0", func_80250818);
+#else
 void func_80250818(void* data, s32 x, s32 y) {
     PopupMessage* popup = data;
     s32 messageID;
@@ -3837,6 +3869,7 @@ void func_80250818(void* data, s32 x, s32 y) {
             break;
     }
 }
+#endif
 
 void btl_show_message_popup(void* data) {
     PopupMessage* popup = data;

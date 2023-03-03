@@ -1,0 +1,3 @@
+.section .text
+
+.skip 0x13A0000- 0xf0b5c0, 0xFF

@@ -397,11 +397,11 @@ typedef struct	st_SCClient {		/* Client list structure */
 } NUScClient; // size = 0xA
 
 typedef struct st_SCTask {		/* Task structure */
-    struct st_SCTask	*next;
-    u32		state;
-    u32		flags;
-    void	*framebuffer;		/* For graphics tasks */
-    OSTask	list;
+    /*00*/struct st_SCTask	*next;
+   /*04*/ u32		state;
+    /*08*/u32		flags;
+   /*0c*/ void	*framebuffer;		/* For graphics tasks */
+   /*10*/ OSTask	list;
     OSMesgQueue	*msgQ;
     OSMesg	msg;
 } NUScTask;

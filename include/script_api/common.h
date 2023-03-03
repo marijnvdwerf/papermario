@@ -346,6 +346,8 @@ ApiStatus MakeTransformGroup(Evt* script, s32 isInitialCall);
 ApiStatus SetMotionBlurParams(Evt* script, s32 isInitialCall);
 ApiStatus ShowSweat(Evt* script, s32 isInitialCall);
 
+ApiStatus func_PAL_802D8B04(Evt* script, s32 isInitialCall);
+
 extern EvtScript EnemyNpcHit;
 extern EvtScript EnemyNpcDefeat;
 

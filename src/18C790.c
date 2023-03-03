@@ -161,6 +161,59 @@ extern HudScript HES_level_up_select_one_to_upgrade;
 
 s32 bFadeToBlackAmt = 255;
 
+
+u16 D_PAL_80284614[] = {0x001C,0x0028};
+u16 D_PAL_80284618[] = { 0x0000, 0xFFFE };
+
+u32 D_PAL_8028461C[] = {
+ 0x007F8000,
+ 0x007F8000,
+ 0x007FEAD0,
+ 0x00806610,
+ };
+
+u32 D_PAL_8028462C[] = {
+ 0x007FEAD0,
+ 0x007FEAD0,
+ 0x00806610,
+ 0x0080E070,
+ };
+
+u32 D_PAL_8028463C[] = {
+ 0x802A6420,
+ 0x802A6420,
+ 0x802A6420,
+ 0x802A6420,
+};
+
+u32 D_PAL_8028464C[] = {
+ 0x00818CF0,
+ 0x0081B030,
+ 0x0081D370,
+ 0x0081F6B0,
+ };
+
+u32 D_PAL_8028465C[] = {
+ 0x0081B030,
+ 0x0081D370,
+ 0x0081F6B0,
+ 0x008219F0,
+ };
+
+u32 D_PAL_8028466C[] = {
+ 0x802ABC80,
+ 0x802ABC80,
+ 0x802ABC80,
+ 0x802ABC80,
+ };
+
+u32 D_PAL_8028467C[] = {
+ 0x802A6370,
+ 0x802A639C,
+ 0x802A63C8,
+ 0x802A63F4,
+ };
+
 s32 D_80284154[] = {
     [PARTNER_NONE]          = 0,
     [PARTNER_GOOMBARIO]     = ANIM_BattleGoombario_Walk,
@@ -192,9 +245,20 @@ EntityModelScript* starpoint_digit_scripts[] = {
 
 EntityModelScript* starpoint_space_script = &EMS_starpoint_dummy;
 
-HudScript* levelup_stat_scripts[3] = {
+HudScript* levelup_stat_scripts[] = {
     &HES_level_up_FP,
     &HES_level_up_HP,
+    &HES_level_up_BP,
+    &HES_level_up_BP,
+
+    &HES_level_up_FP,
+    &HES_level_up_HP,
+    &HES_level_up_BP,
+    &HES_level_up_BP,
+
+    &HES_level_up_FP,
+    &HES_level_up_HP,
+    &HES_level_up_BP,
     &HES_level_up_BP,
 };
 
@@ -357,11 +421,31 @@ EvtScript EVS_ShowStarpoints = {
         EVT_RETURN
     EVT_END_IF
     EVT_IF_LT(LVar0, 2)
-        EVT_CALL(CreateVirtualEntity, LVar6, EVT_PTR(EMS_starpoint_starpoint))
+        EVT_CALL(0x802D8B04, LocalVar(1))
+        EVT_SWITCH(LocalVar(1))
+            EVT_CASE_EQ(0)
+                EVT_CALL(CreateVirtualEntity, LocalVar(6), 0x802ADF80)
+            EVT_CASE_EQ(1)
+                EVT_CALL(CreateVirtualEntity, LocalVar(6), 0x802ADF80)
+            EVT_CASE_EQ(2)
+                EVT_CALL(CreateVirtualEntity, LocalVar(6), 0x802ADF80)
+            EVT_CASE_EQ(3)
+                EVT_CALL(CreateVirtualEntity, LocalVar(6), 0x802ADF80)
+        EVT_END_SWITCH
         EVT_CALL(SetVirtualEntityPosition, LVar6, -278, 68, 70)
         EVT_CALL(SetVirtualEntityScale, LVar6, EVT_FLOAT(0.5), EVT_FLOAT(0.5), EVT_FLOAT(0.5))
     EVT_ELSE
-        EVT_CALL(CreateVirtualEntity, LVar6, EVT_PTR(EMS_starpoint_starpoints))
+        EVT_CALL(0x802D8B04, LocalVar(1))
+        EVT_SWITCH(LocalVar(1))
+            EVT_CASE_EQ(0)
+                EVT_CALL(0x802D6474, LocalVar(6), 0x802ADF9C)
+            EVT_CASE_EQ(1)
+                EVT_CALL(0x802D6474, LocalVar(6), 0x802ADF9C)
+            EVT_CASE_EQ(2)
+                EVT_CALL(0x802D6474, LocalVar(6), 0x802ADF9C)
+            EVT_CASE_EQ(3)
+                EVT_CALL(0x802D6474, LocalVar(6), 0x802ADF9C)
+        EVT_END_SWITCH
         EVT_CALL(SetVirtualEntityPosition, LVar6, -278, 68, 70)
         EVT_CALL(SetVirtualEntityScale, LVar6, EVT_FLOAT(0.5), EVT_FLOAT(0.5), EVT_FLOAT(0.5))
         EVT_SET(LocalFlag(0), 1)
@@ -443,7 +527,18 @@ EvtScript EVS_ShowStarpoints = {
 };
 
 EvtScript EVS_ShowLevelUp = {
-    EVT_CALL(CreateVirtualEntity, LVar9, EVT_PTR(EMS_level_up))
+        EVT_CALL(0x802D8B04, LocalVar(0))
+        EVT_SWITCH(LocalVar(0))
+        EVT_CASE_EQ(0)
+        EVT_CALL(0x802D6474, LocalVar(9), 0x802ACED0)
+        EVT_CASE_EQ(1)
+        EVT_CALL(0x802D6474, LocalVar(9), 0x802ACED0)
+        EVT_CASE_EQ(2)
+        EVT_CALL(0x802D6474, LocalVar(9), 0x802ADF40)
+        EVT_CASE_EQ(3)
+        EVT_CALL(0x802D6474, LocalVar(9), 0x802ADE58)
+        EVT_END_SWITCH
+
     EVT_CALL(SetVirtualEntityPosition, LVar9, 0, 210, 70)
     EVT_CALL(InitLevelUpModelFlags)
     EVT_CHILD_THREAD
@@ -471,6 +566,9 @@ EvtScript EVS_ShowLevelUp = {
     EVT_END
 };
 
+#if 1
+INCLUDE_ASM(void, "18C790", btl_state_update_celebration);
+#else
 void btl_state_update_celebration(void) {
     BattleStatus* battleStatus = &gBattleStatus;
     PlayerData* playerData = &gPlayerData;
@@ -1196,6 +1294,7 @@ void btl_state_update_celebration(void) {
     }
     CelebrateStateTime++;
 }
+#endif
 
 void btl_draw_upgrade_windows(s32 phase) {
     BattleStatus* battleStatus = &gBattleStatus;
@@ -1449,6 +1548,9 @@ void btl_state_draw_celebration(void) {
     }
 }
 
+#if 1
+INCLUDE_ASM(void, "18C790", draw_content_level_up_textbox);
+#else
 void draw_content_level_up_textbox(void* data, s32 posX, s32 posY) {
     BattleStatus* battleStatus = &gBattleStatus;
     s32 xOffset;
@@ -1488,7 +1590,12 @@ void draw_content_level_up_textbox(void* data, s32 posX, s32 posY) {
             break;
     }
 }
+#endif
 
+#if 1
+INCLUDE_ASM(void, "18C790", draw_content_cant_increase_popup);
+#else
 void draw_content_cant_increase_popup(void* data, s32 posX, s32 posY) {
     draw_msg(MSG_Menus_CantIncrease, posX + 11, posY + 6, 255, MSG_PAL_0F, 0);
 }
+#endif

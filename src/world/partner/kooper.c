@@ -179,6 +179,11 @@ void func_802BD5F4_31B614(Npc* kooper) {
     }
 }
 
+
+#if 1
+ApiStatus func_802BD638_31B658(Evt* script, s32 isInitialCall);
+INCLUDE_ASM(ApiStatus, "world/partner/kooper", func_802BD638_31B658);
+#else
 ApiStatus func_802BD638_31B658(Evt* script, s32 isInitialCall) {
     Camera* cam;
     ItemEntity* itemGrabbed;
@@ -592,6 +597,7 @@ ApiStatus func_802BD638_31B658(Evt* script, s32 isInitialCall) {
     }
     return ApiStatus_BLOCK;
 }
+#endif
 
 EvtScript world_kooper_use_ability = {
     EVT_CALL(func_802BD638_31B658)

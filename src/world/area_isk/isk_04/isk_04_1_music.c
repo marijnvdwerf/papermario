@@ -18,14 +18,7 @@ EvtScript N(EVS_SetupMusic) = {
         EVT_END_THREAD
         EVT_RETURN
     EVT_END_IF
-    EVT_SWITCH(GB_StoryProgress)
-        EVT_CASE_LT(STORY_CH2_SOLVED_ARTIFACT_PUZZLE)
-            EVT_CALL(SetMusicTrack, 0, SONG_DRY_DRY_RUINS, 0, 8)
-        EVT_CASE_LT(STORY_CH2_DEFEATED_TUTANKOOPA)
-            EVT_CALL(SetMusicTrack, 0, SONG_RUINS_BASEMENT, 0, 8)
-        EVT_CASE_GE(STORY_CH2_DEFEATED_TUTANKOOPA)
-            EVT_CALL(SetMusicTrack, 0, SONG_DRY_DRY_RUINS, 0, 8)
-    EVT_END_SWITCH
+    EVT_CALL(SetMusicTrack, 0, SONG_DRY_DRY_RUINS, 0, 8)
     EVT_RETURN
     EVT_END
 };

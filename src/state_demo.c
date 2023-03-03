@@ -140,15 +140,7 @@ DemoSceneData DemoScenes[] = {
     {} // final entry blank
 };
 
-#if VERSION_JP
-char versionString[] = "Prg Ver.00/07/06 22:22";
-#elif VERSION_US
-char versionString[] = "Prg Ver.00/12/05 16:54";
-#elif VERSION_CN
-char versionString[] = "Prg Ver.04/05/18 10:52";
-#else
-char versionString[] = "Prg Ver.??/??/?? ??:??";
-#endif
+char versionString[] = "Prg Ver. 01/06/08 21:14";
 
 void state_init_demo(void) {
     if (gGameStatusPtr->demoState == 0) {
@@ -284,4 +276,3 @@ void state_drawUI_demo(void) {
 
 }
 
-static const f32 pad[] = {0.0f, 0.0f};

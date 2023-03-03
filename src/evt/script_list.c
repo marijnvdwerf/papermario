@@ -81,6 +81,8 @@ BSS u32 gBattleMapVars[MAX_MAPVARS];
 BSS s32 DoorModelsSwingCCW[3];
 BSS u32 gBattleMapFlags[MAX_MAPFLAGS];
 
+BSS u8 eu_padding[0x20];
+
 s32 evt_execute_next_command(Evt* script);
 
 void sort_scripts(void) {

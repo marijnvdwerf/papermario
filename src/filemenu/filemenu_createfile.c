@@ -76,6 +76,9 @@ void filemenu_update_change_layout(
     }
 }
 
+#if 1
+INCLUDE_ASM(void, "filemenu/filemenu_createfile", filemenu_draw_contents_file_create_header);
+#else
 void filemenu_draw_contents_file_create_header(
     MenuPanel* menu,
     s32 baseX, s32 baseY,
@@ -111,7 +114,11 @@ void filemenu_draw_contents_file_create_header(
         hud_element_draw_next(filemenu_createfile_hudElems[0]);
     }
 }
+#endif
 
+#if 1
+INCLUDE_ASM(void, "filemenu/filemenu_createfile", filemenu_draw_contents_choose_name);
+#else
 void filemenu_draw_contents_choose_name(
     MenuPanel* menu,
     s32 baseX, s32 baseY,
@@ -243,6 +250,7 @@ void filemenu_draw_contents_choose_name(
         filemenu_set_cursor_goal_pos(WINDOW_ID_FILEMENU_KEYBOARD, baseX + 2 + menu->col * 19, baseY + 13 + menu->row * 17);
     }
 }
+#endif
 
 void filemenu_choose_name_init(MenuPanel* menu) {
     s32 i;
@@ -269,6 +277,9 @@ void filemenu_choose_name_init(MenuPanel* menu) {
     menu->initialized = TRUE;
 }
 
+#if 1
+INCLUDE_ASM(void, "filemenu/filemenu_createfile", filemenu_choose_name_handle_input);
+#else
 void filemenu_choose_name_handle_input(MenuPanel* menu) {
     s32 oldSelected = menu->selected;
     MenuPanel* newMenu;
@@ -470,6 +481,7 @@ void filemenu_choose_name_handle_input(MenuPanel* menu) {
         filemenu_set_selected(newMenu2, 0, 0);
     }
 }
+#endif
 
 static const f32 padding[2] = { 0.0f, 0.0f }; // not sure why this is needed
 
