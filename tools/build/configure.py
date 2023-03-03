@@ -72,7 +72,7 @@ def write_ninja_rules(ninja: ninja_syntax.Writer, cpp: str, extra_cppflags: str,
 
     ld_args = f"-T ver/$version/build/undefined_syms.txt -T ver/$version/undefined_syms_auto.txt -T ver/$version/undefined_funcs_auto.txt -Map $mapfile --no-check-sections -T $in -o $out"
 
-    if shift:
+    if 1:
         # For the shiftable build, we link twice to resolve some addresses that gnu ld can't figure out all in one go.
         ninja.rule("ld",
             description="link($version) $out",

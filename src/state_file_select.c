@@ -131,7 +131,7 @@ void state_step_language_select(void) {
                 D_800A0930--;
                 if (D_800A0930 == 0) {
                     D_800A0930 = -1;
-                    sfx_stop_env_sounds();
+                    battle_heap_create();
                     nuPiReadRomOverlay(&D_8007798C);
                     func_802489A8(2);
                 }

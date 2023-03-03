@@ -391,8 +391,7 @@ segments:
     type: code
     start: 0x759B0
     vram: 0x800DC500
-    vram_of_symbol: overlays_start
-    #follows_vram: main
+    follows_vram: main
     subsegments:
     - [0x759B0, hasm, bss2]
     - [0x759B0, c, npc_collision]
@@ -884,7 +883,7 @@ segments:
     type: code
     start: 0xE79B0
     vram: 0x80197000
-    subalign: 0x1000
+    subalign: 0
     follows_vram: engine2
     subsegments:
     - [0xE79B0, c, heaps]
@@ -892,8 +891,8 @@ segments:
     type: code
     dir: evt
     start: 0xE79B0
-    vram: 0x802C3000
-    follows_vram: world_use_item
+    vram: 0x802C6000
+#    follows_vram: world_use_item
     subsegments:
     - [0xE79B0, c, script_list]
     - [0xE92D0, c, evt]
@@ -1297,7 +1296,7 @@ segments:
     dir: pause
     start: 0x135EE0
     vram: 0x80242BA0
-    follows_vram: ui_images
+    vram_of_symbol: pause_filemenu_start
     subsegments:
     - [0x135EE0, c, pause_main]
     - [0x137ED0, c, pause_tabs]
@@ -1356,6 +1355,7 @@ segments:
   - name: pause_en.data
     start: 0x163400
     vram: 0x8027AA10
+    follows_vram: pause
     type: code
     subsegments:
     - [auto, hasm, pause_en.data]
@@ -1364,6 +1364,7 @@ segments:
   - name: pause_de.data
     start: 0x163400
     vram: 0x8027AA10
+    follows_vram: pause
     type: code
     subsegments:
     - [auto, hasm, pause_de.data]
@@ -1372,6 +1373,7 @@ segments:
   - name: pause_fr.data
     start: 0x163400
     vram: 0x8027AA10
+    follows_vram: pause
     type: code
     subsegments:
     - [auto, hasm, pause_fr.data]
@@ -1380,6 +1382,7 @@ segments:
   - name: pause_es.data
     start: 0x163400
     vram: 0x8027AA10
+    follows_vram: pause
     type: code
     subsegments:
     - [auto, hasm, pause_es.data]
@@ -1389,7 +1392,7 @@ segments:
     dir: filemenu
     start: 0x163400
     vram: 0x80242BA0
-    follows_vram: ui_images
+    vram_of_symbol: pause_filemenu_start
     subsegments:
     - [0x163400, c, filemenu_common]
     - [0x165490, c, filemenu_main]
@@ -1419,7 +1422,7 @@ segments:
     start: 0x16C8E0
     name: battle_code
     vram: 0x8023E000
-    vram_of_symbol: battle_code_vram_start
+    vram_of_symbol: battle_code_vram_start2
     subsegments:
     - [0x16C8E0, c, 16c8e0]
     - [0x16F740, c, 16F740]
@@ -2693,7 +2696,7 @@ segments:
     name: world_partner_goombario
     start: 0x317020
     vram: 0x802BD100
-    vram_of_symbol: entity_data_vram_end
+    vram_of_symbol: entity_data_vram_end2
     subsegments:
     - [0x317020, c, goombario]
     - [0x317B60]
@@ -2702,7 +2705,7 @@ segments:
     name: world_partner_bombette
     start: 0x317E50
     vram: 0x802BD100
-    vram_of_symbol: entity_data_vram_end
+    vram_of_symbol: entity_data_vram_end2
     subsegments:
     - [0x317E50, c, bombette]
     - [0x3195D0]
@@ -2711,7 +2714,7 @@ segments:
     name: world_partner_parakarry
     start: 0x319670
     vram: 0x802BD100
-    vram_of_symbol: entity_data_vram_end
+    vram_of_symbol: entity_data_vram_end2
     subsegments:
     - [0x319670, c, parakarry]
     - [0x31B000]
@@ -2720,7 +2723,7 @@ segments:
     name: world_partner_kooper
     start: 0x31B120
     vram: 0x802BD100
-    vram_of_symbol: entity_data_vram_end
+    vram_of_symbol: entity_data_vram_end2
     subsegments:
     - [0x31B120, c, kooper]
     - [0x31CB60]
@@ -2729,7 +2732,7 @@ segments:
     name: world_partner_watt
     start: 0x31CC70
     vram: 0x802BD100
-    vram_of_symbol: entity_data_vram_end
+    vram_of_symbol: entity_data_vram_end2
     subsegments:
     - [0x31CC70, c, watt]
     - [0x31DDC0]
@@ -2738,7 +2741,7 @@ segments:
     name: world_partner_sushie
     start: 0x31DE70
     vram: 0x802BD100
-    vram_of_symbol: entity_data_vram_end
+    vram_of_symbol: entity_data_vram_end2
     subsegments:
     - [0x31DE70, c, sushie]
     - [0x320B20]
@@ -2747,7 +2750,7 @@ segments:
     name: world_partner_lakilester
     start: 0x320C50
     vram: 0x802BD100
-    vram_of_symbol: entity_data_vram_end
+    vram_of_symbol: entity_data_vram_end2
     subsegments:
     - [0x320C50, c, lakilester]
     - [0x3239B0]
@@ -2756,7 +2759,7 @@ segments:
     name: world_partner_bow
     start: 0x323A50
     vram: 0x802BD100
-    vram_of_symbol: entity_data_vram_end
+    vram_of_symbol: entity_data_vram_end2
     subsegments:
     - [0x323A50, c, bow]
     - [0x324930]
@@ -2765,7 +2768,7 @@ segments:
     name: world_partner_goompa
     start: 0x324A10
     vram: 0x802BD100
-    vram_of_symbol: entity_data_vram_end
+    vram_of_symbol: entity_data_vram_end2
     subsegments:
     - [0x324A10, c, goompa]
     - [0x324E80]
@@ -2774,7 +2777,7 @@ segments:
     name: world_partner_goombaria
     start: 0x324F10
     vram: 0x802BD100
-    vram_of_symbol: entity_data_vram_end
+    vram_of_symbol: entity_data_vram_end2
     subsegments:
     - [0x324F10, c, goombaria]
     - [0x325000]
@@ -2783,7 +2786,7 @@ segments:
     name: world_partner_twink
     start: 0x325070
     vram: 0x802BD100
-    vram_of_symbol: entity_data_vram_end
+    vram_of_symbol: entity_data_vram_end2
     subsegments:
     - [0x325070, c, twink]
     - [0x325160]
@@ -15697,7 +15700,7 @@ segments:
     type: code
     start: 0xE20110
     vram: 0x80267FF0
-    vram_of_symbol: map_vram_end
+    vram_of_symbol: map_vram_end2
     subsegments:
     - [0xE20110, c, heaps2]
   - type: code

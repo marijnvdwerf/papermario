@@ -1418,7 +1418,6 @@ dlabel func_80146A74
 dlabel func_80136E40
 dlabel func_80248C54
 dlabel func_80248B90
-dlabel func_80027008
 dlabel func_80033810
 dlabel func_8006C3F0
 dlabel func_800671C0
