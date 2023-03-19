@@ -422,6 +422,9 @@ void remove_all_effects(void) {
     }
 }
 
+#if VERSION_PAL
+INCLUDE_ASM(s32, "effects", load_effect);
+#else
 s32 load_effect(s32 effectIndex) {
     EffectTableEntry* effectEntry = &gEffectTable[effectIndex];
     EffectGraphics* curEffect;
@@ -476,3 +479,4 @@ s32 load_effect(s32 effectIndex) {
     curEffect->flags = EFFECT_LOADED;
     return 1;
 }
+#endif

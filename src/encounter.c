@@ -1250,6 +1250,9 @@ START_BATTLE:
 void draw_encounters_neutral(void) {
 }
 
+#if 1
+INCLUDE_ASM(void, "encounter", update_encounters_pre_battle);
+#else
 void update_encounters_pre_battle(void) {
     EncounterStatus* currentEncounter = &gCurrentEncounter;
     PlayerData* playerData = &gPlayerData;
@@ -1453,6 +1456,7 @@ void update_encounters_pre_battle(void) {
             break;
     }
 }
+#endif
 
 void draw_encounters_pre_battle(void) {
     EncounterStatus* encounter = &gCurrentEncounter;

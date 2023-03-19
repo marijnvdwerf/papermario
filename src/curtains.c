@@ -2,11 +2,18 @@
 #include "sprite/unk_checkers.png.h"
 #include "sprite/curtains.png.h"
 #include "sprite/checkers.png.h"
+#if !VERSION_PAL
 #include "ui/no_controller.png.h"
+#endif
 #include "ld_addrs.h"
 #include "nu/nusys.h"
 
 #include "sprite/unk_checkers.png.inc.c"
+
+#if VERSION_PAL
+#define ui_no_controller_png_width 128
+#define ui_no_controller_png_height 32
+#endif
 
 Gfx D_800746E0[] = {
     gsDPSetTextureLUT(G_TT_NONE),
@@ -171,7 +178,11 @@ Gfx D_800760C0[] = {
     gsSPEndDisplayList(),
 };
 
+#if VERSION_PAL
+extern u8 ui_no_controller_png[];
+#else
 #include "ui/no_controller.png.inc.c"
+#endif
 
 Gfx D_80077140[] = {
     gsDPPipeSync(),
@@ -203,17 +214,30 @@ Gfx D_800771E8[] = {
 // BSS
 extern Mtx D_8009BAA8[];
 
+#if VERSION_PAL
+extern s32 D_8009A208;
+extern s32 D_8009A204;
+#endif
+
 void initialize_curtains(void) {
     gCurtainDrawCallback = NULL;
     gCurtainScale = 2.0f;
     gCurtainScaleGoal = 2.0f;
     gCurtainFade = 0.0f;
     gCurtainFadeGoal = 0.0f;
+#if VERSION_PAL
+    D_8009A204 = 6;
+    D_8009A208 = 0;
+#endif
 }
 
 void update_curtains(void) {
 }
 
+
+#if VERSION_PAL
+INCLUDE_ASM(void, "curtains", render_curtains)
+#else
 void render_curtains(void) {
     if (gCurtainScaleGoal != gCurtainScale) {
         gCurtainScale += (gCurtainScaleGoal - gCurtainScale) * 0.1;
@@ -275,6 +299,7 @@ void render_curtains(void) {
         }
     }
 }
+#endif
 
 void set_curtain_scale_goal(f32 scale) {
     gCurtainScaleGoal = scale;

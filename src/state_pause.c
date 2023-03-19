@@ -6,7 +6,7 @@
 #include "sprite.h"
 #include "model.h"
 
-#if VERSION_JP
+#if VERSION_JP || VERSION_PAL
 // TODO: split this segment
 extern Addr pause_ROM_START;
 extern Addr pause_ROM_END;
@@ -37,6 +37,57 @@ NUPiOverlaySegment D_8007795C = {
     .bssStart = pause_BSS_START,
     .bssEnd = pause_BSS_END,
 };
+
+#if VERSION_PAL
+
+extern int gCurrentLanguage;
+
+NUPiOverlaySegment D_8007795C_0 = {
+        (void *) 0x001672D0,
+        (void *) 0x00169350,
+        (void *) 0x8027AA10,
+        (void *) 0x8027AA10,
+        (void *) 0x8027AA10,
+        (void *) 0x8027AA10,
+        (void *) 0x8027CA90,
+        (void *) 0x8027CA90,
+        (void *) 0x8027CA90,
+};
+NUPiOverlaySegment D_8007795C_1 = {
+        (void *)  0x00169350,
+        (void *)  0x0016B3D0,
+        (void *)  0x8027AA10,
+        (void *)  0x8027AA10,
+        (void *)  0x8027AA10,
+        (void *)  0x8027AA10,
+        (void *)  0x8027CA90,
+        (void *)  0x8027CA90,
+        (void *)  0x8027CA90,
+};
+NUPiOverlaySegment D_8007795C_2 = {
+        (void *)   0x0016B3D0,
+        (void *)   0x0016D450,
+        (void *)   0x8027AA10,
+        (void *)   0x8027AA10,
+        (void *)   0x8027AA10,
+        (void *)   0x8027AA10,
+        (void *)   0x8027CA90,
+        (void *)   0x8027CA90,
+        (void *)   0x8027CA90,
+};
+NUPiOverlaySegment D_8007795C_3 = {
+        (void *)   0x0016D450,
+        (void *)   0x0016F4D0,
+        (void *)   0x8027AA10,
+        (void *)   0x8027AA10,
+        (void *)   0x8027AA10,
+        (void *)   0x8027AA10,
+        (void *)   0x8027CA90,
+        (void *)   0x8027CA90,
+        (void *)   0x8027CA90,
+};
+
+#endif
 
 void state_init_pause(void) {
     D_800A0921 = 0;
@@ -102,6 +153,22 @@ void state_step_pause(void) {
                     sfx_set_reverb_mode(0);
                     bgm_quiet_max_volume();
                     nuPiReadRomOverlay(&D_8007795C);
+#if VERSION_PAL
+                    switch(gCurrentLanguage) {
+                        case 0:
+                            nuPiReadRomOverlay(&D_8007795C_0);
+                            break;
+                        case 1:
+                            nuPiReadRomOverlay(&D_8007795C_1);
+                            break;
+                        case 2:
+                            nuPiReadRomOverlay(&D_8007795C_2);
+                            break;
+                        case 3:
+                            nuPiReadRomOverlay(&D_8007795C_3);
+                            break;
+                    }
+#endif
                     pause_init();
                     gOverrideFlags &= ~GLOBAL_OVERRIDES_8;
                 }

@@ -30,6 +30,9 @@ extern u64 n_aspMain_data_bin[];
 extern u8 AuHeapBase[AUDIO_HEAP_SIZE];
 extern u64 AuStack[NU_AU_STACK_SIZE / sizeof(u64)];
 
+#if VERSION_PAL
+INCLUDE_ASM(void, "audio/25f00_len_940", create_audio_system);
+#else
 void create_audio_system(void) {
     u32 i;
     u32 outputRate, frameSize;
@@ -93,6 +96,7 @@ void create_audio_system(void) {
     osCreateThread(&nuAuMgrThread, NU_MAIN_THREAD_ID, nuAuMgr, NULL, &AuStack[NU_AU_STACK_SIZE / sizeof(u64)], NU_AU_MGR_THREAD_PRI); //why main thread?
     osStartThread(&nuAuMgrThread);
 }
+#endif
 
 void nuAuPreNMIFuncSet(NUAuPreNMIFunc func) {
     OSIntMask mask = osSetIntMask(OS_IM_NONE);
@@ -156,7 +160,7 @@ void nuAuMgr(void* arg) {
                     cmdListBuf = AlCmdListBuffers[cmdListIndex];
                     bufferPtr = D_800A3628[bufferIndex];
                 }
-                if (sampleSize < AUDIO_SAMPLES || cond) {
+                if (sampleSize < AUDIO_SAMPLES_2 || cond) {
                     samples = AlFrameSize;
                     cond = FALSE;
                 } else {
