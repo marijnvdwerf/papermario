@@ -1250,9 +1250,6 @@ START_BATTLE:
 void draw_encounters_neutral(void) {
 }
 
-#if VERSION_PAL
-INCLUDE_ASM(void, "encounter", update_encounters_pre_battle);
-#else
 void update_encounters_pre_battle(void) {
     EncounterStatus* currentEncounter = &gCurrentEncounter;
     PlayerData* playerData = &gPlayerData;
@@ -1263,6 +1260,9 @@ void update_encounters_pre_battle(void) {
 
     switch (gEncounterSubState) {
         case ENCOUNTER_SUBSTATE_PRE_BATTLE_INIT:
+#if VERSION_PAL
+            gPlayerStatusPtr->pitch = 0;
+#endif
             currentEncounter->fadeOutAmount = 0;
             currentEncounter->unk_94 = 1;
             currentEncounter->fadeOutAccel = 1;
@@ -1456,7 +1456,6 @@ void update_encounters_pre_battle(void) {
             break;
     }
 }
-#endif
 
 void draw_encounters_pre_battle(void) {
     EncounterStatus* encounter = &gCurrentEncounter;
