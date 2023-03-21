@@ -1250,7 +1250,7 @@ START_BATTLE:
 void draw_encounters_neutral(void) {
 }
 
-#if 1
+#if VERSION_PAL
 INCLUDE_ASM(void, "encounter", update_encounters_pre_battle);
 #else
 void update_encounters_pre_battle(void) {
