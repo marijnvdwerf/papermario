@@ -234,10 +234,6 @@ void initialize_curtains(void) {
 void update_curtains(void) {
 }
 
-
-#if VERSION_PAL
-INCLUDE_ASM(void, "curtains", render_curtains)
-#else
 void render_curtains(void) {
     if (gCurtainScaleGoal != gCurtainScale) {
         gCurtainScale += (gCurtainScaleGoal - gCurtainScale) * 0.1;
@@ -292,14 +288,40 @@ void render_curtains(void) {
                 alpha = 255;
             }
 
+#if VERSION_PAL
+            if (alpha == 0) {
+                D_8009A204 = 6;
+            }
+
+            if (D_8009A204 == 0) {
+                gSPDisplayList(gMainGfxPos++, &D_800760C0);
+                gSPDisplayList(gMainGfxPos++, &D_80077140);
+                gDPSetPrimColor(gMainGfxPos++, 0, 0, 0xFF, 0x20, 0x10, alpha);
+                gSPDisplayList(gMainGfxPos++, &D_800771E8);
+            }
+
+            if (D_8009A204 == 3) {
+                void* temp_a1_3 = no_controller_ROM_START + (D_8009A208 / 2) * 0x1000;
+                void* temp_a1_4 = no_controller_ROM_START + (D_8009A208 / 2) * 0x1000 + 0x1000;
+                dma_copy(temp_a1_3, temp_a1_4, ui_no_controller_png);
+                D_8009A208++;
+                if (D_8009A208 >= 8) {
+                    D_8009A208 = 0;
+                }
+            }
+
+            if (D_8009A204 != 0) {
+                D_8009A204 -= 1;
+            }
+#else
             gSPDisplayList(gMainGfxPos++, &D_800760C0);
             gSPDisplayList(gMainGfxPos++, &D_80077140);
             gDPSetPrimColor(gMainGfxPos++, 0, 0, 0xFF, 0x20, 0x10, alpha);
             gSPDisplayList(gMainGfxPos++, &D_800771E8);
+#endif
         }
     }
 }
-#endif
 
 void set_curtain_scale_goal(f32 scale) {
     gCurtainScaleGoal = scale;
