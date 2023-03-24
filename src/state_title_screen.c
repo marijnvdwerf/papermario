@@ -2,6 +2,7 @@
 #include "nu/nusys.h"
 #include "hud_element.h"
 #include "sprite.h"
+#include "ld_addrs.h"
 
 #if VERSION_JP
 #define TITLE_WIDTH 272
@@ -84,6 +85,15 @@ extern s32* JP_800A0980;
 extern s16 D_800A0988;
 
 #if VERSION_PAL
+extern void* D_PAL_8009F0E8;
+extern void* D_PAL_8009F0EC;
+extern int D_PAL_8009F0F4;
+extern int D_PAL_8009F0F8;
+extern s32 gCurrentLanguage;
+extern u32* press_start_buffer;
+#endif
+
+#if VERSION_PAL
 u32 D_PAL_80073E38[4] = {
         0x00000060,
         0x00000058,
@@ -120,9 +130,6 @@ void title_screen_draw_logo(f32);
 void title_screen_draw_press_start(void);
 void title_screen_draw_copyright(f32);
 
-#if VERSION_PAL
-INCLUDE_ASM(void, "state_title_screen", state_init_title_screen);
-#else
 void state_init_title_screen(void) {
     s32 titleDataSize;
     void* titleDataDst;
@@ -149,6 +156,13 @@ void state_init_title_screen(void) {
     D_800A0980 = (s32*)(D_800A0974->unk_08 + (s32) D_800A0974);
 #if VERSION_JP
     JP_800A0980 = (s32*)(D_800A0974->img2_pal + (s32) D_800A0974);
+#endif
+
+#if VERSION_PAL
+    press_start_buffer = (u32*) heap_malloc((s32) press_start_DATA_SIZE);
+    dma_copy(press_start_ROM_START, press_start_ROM_END, press_start_buffer);
+    D_PAL_8009F0E8 = (void*) (press_start_buffer[gCurrentLanguage * 2] + (s32) press_start_buffer);
+    D_PAL_8009F0EC = (void*) (press_start_buffer[gCurrentLanguage * 2 + 1] + (s32) press_start_buffer);
 #endif
 
     create_cameras_a();
@@ -194,14 +208,11 @@ void state_init_title_screen(void) {
     load_map_bg("title_bg");
     read_background_size(&gBackgroundImage);
     bgm_set_song(0, SONG_MAIN_THEME, 0, 500, 8);
-    D_800A0988 = 480;
+    D_800A0988 = 480 * DT;
 }
-#endif
 
-#if VERSION_PAL
-INCLUDE_ASM(void, "state_title_screen", state_step_title_screen);
-#else
 void state_step_title_screen(void) {
+    int mask;
     s16* temp;
     u32 pressedButtons = gGameStatusPtr->pressedButtons[0];
 
@@ -237,6 +248,24 @@ void state_step_title_screen(void) {
             }
             break;
         case INTRO_STATE_2:
+#if VERSION_PAL
+            if (gGameStatusPtr->pressedButtons[0] & BUTTON_STICK_DOWN) {
+                D_PAL_80073D8C = 1;
+            }
+
+            if (gGameStatusPtr->pressedButtons[0] & BUTTON_STICK_UP) {
+                D_PAL_80073D8C = 0;
+            }
+
+            if (D_PAL_80073D88 != D_PAL_80073D8C) {
+                D_PAL_80073D88 = D_PAL_80073D8C;
+                sfx_play_sound(SOUND_MENU_CHANGE_TAB);
+                if (D_800A0988 < 125) {
+                    D_800A0988 = 125;
+                }
+            }
+#endif
+
             if (D_80077A34[0] != NULL && D_800A0988 == 120) {
                 bgm_set_song(0, -1, 0, 3900, 8);
             }
@@ -327,7 +356,15 @@ void state_step_title_screen(void) {
                     gGameStatusPtr->areaID = 0;
                     gGameStatusPtr->mapID = 0xB;
                     gGameStatusPtr->entryID = 0;
+#if VERSION_PAL
+                    if (D_PAL_80073D8C) {
+                        set_game_mode(GAME_MODE_LANGUAGE_SELECT);
+                    } else {
+                        set_game_mode(GAME_MODE_FILE_SELECT);
+                    }
+#else
                     set_game_mode(GAME_MODE_FILE_SELECT);
+#endif
                     break;
             }
             return;
@@ -338,17 +375,17 @@ void state_step_title_screen(void) {
         update_cameras();
     }
 }
-#endif
 
-#if VERSION_PAL
-INCLUDE_ASM(void, "state_title_screen", state_drawUI_title_screen);
-#else
 void state_drawUI_title_screen(void) {
     switch (gGameStatusPtr->introState) {
         case INTRO_STATE_0:
             D_80077A28 = 0;
             D_80077A2C = 0;
             D_80077A30 = 0;
+#if VERSION_PAL
+            D_PAL_8009F0F4 = 0;
+            D_PAL_8009F0F8 = 0;
+#endif
             draw_title_screen_NOP();
             break;
         case INTRO_STATE_2:
@@ -358,14 +395,19 @@ void state_drawUI_title_screen(void) {
             }
         case INTRO_STATE_3:
             break;
-        case INTRO_STATE_1:
         case INTRO_STATE_4:
         case INTRO_STATE_5:
+#if VERSION_PAL
+            if (gGameStatusPtr->contBitPattern & 1) {
+                D_80077A2C = 2;
+            }
+            title_screen_draw_press_start();
+#endif
+        case INTRO_STATE_1:
             draw_title_screen_NOP();
             break;
     }
 }
-#endif
 
 void appendGfx_title_screen(void) {
     f32 phi_f12;

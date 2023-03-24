@@ -551,6 +551,11 @@ segments:
 
   - [0x231990, bin]
 
+  - [0x2596C0, bin, press_start] # TODO: split
+  - [0x25C5A0, bin, flags] # TODO: split
+
+  - [0x2705A0, bin]
+
   - [0x33BB40, bin, battle_heap_create_obfuscated] # TODO: split
   - [0x33BCE0, bin, obfuscation_shims] # TODO: split
   - [0x33BDD0, bin, no_controller] # TODO: split
