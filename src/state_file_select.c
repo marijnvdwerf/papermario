@@ -308,10 +308,37 @@ void state_init_exit_file_select(void) {
     gOverrideFlags &= ~GLOBAL_OVERRIDES_40;
 }
 
-#if VERSION_PAL
-INCLUDE_ASM(void, "state_file_select", state_step_exit_language_select)
-#else
 void state_step_exit_language_select(void) {
+#if VERSION_PAL
+    s32 var_a1;
+    int i;
+
+    func_80244BC4();
+    switch (D_800A0931) {
+        case 0:
+            var_a1 = 0;
+            for (i = WINDOW_ID_FILEMENU_MAIN; i <= WINDOW_ID_FILEMENU_FILE3_TITLE; i++) {
+                if (gWindows[i].parent == WINDOW_ID_FILEMENU_MAIN || gWindows[i].parent == -1) {
+                    var_a1 += gWindows[i].flags & WINDOW_FLAG_INITIAL_ANIMATION;
+                }
+            }
+
+            if (var_a1 == 0) {
+                D_800A0931 = 2;
+            }
+            break;
+        case 2:
+            filemenu_cleanup();
+            set_windows_visible(0);
+            D_800A0931 = 3;
+            /* fallthrough */
+        case 3:
+            set_time_freeze_mode(0);
+            set_game_mode(2);
+            gOverrideFlags &= ~GLOBAL_OVERRIDES_WINDOWS_IN_FRONT_OF_CURTAINS;
+            break;
+    }
+#else
     switch (D_800A0931) {
         case 0:
             if (D_800A0932[0] != 0) {
@@ -443,8 +470,8 @@ void state_step_exit_language_select(void) {
             set_screen_overlay_params_front(255, -1.0f);
             break;
         }
-}
 #endif
+}
 
 void state_step_exit_file_select(void) {
     s32 temp_s0 = func_80244BC4();
