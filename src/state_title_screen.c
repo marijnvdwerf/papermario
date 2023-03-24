@@ -94,32 +94,32 @@ extern u32* press_start_buffer;
 #endif
 
 #if VERSION_PAL
-u32 D_PAL_80073E38[4] = {
-        0x00000060,
-        0x00000058,
-        0x00000090,
-        0x00000078,
+s32 D_PAL_80073E38[4] = {
+    0x00000060,
+    0x00000058,
+    0x00000090,
+    0x00000078,
 };
 
-u32 D_PAL_80073E48[4] = {
-        0x00000058,
-        0x00000050,
-        0x00000040,
-        0x00000040,
+s32 D_PAL_80073E48[4] = {
+    0x00000058,
+    0x00000050,
+    0x00000040,
+    0x00000040,
 };
 
-u32 D_PAL_80073E58[4] = {
-        0x00000074,
-        0x00000078,
-        0x00000058,
-        0x0000006A,
+s32 D_PAL_80073E58[4] = {
+    0x00000074,
+    0x00000078,
+    0x00000058,
+    0x0000006A,
 };
 
-u32 D_PAL_80073E68[4] = {
-        0x00000079,
-        0x0000007C,
-        0x00000082,
-        0x00000084,
+s32 D_PAL_80073E68[4] = {
+    0x00000079,
+    0x0000007C,
+    0x00000082,
+    0x00000084,
 };
 #endif
 
@@ -511,7 +511,91 @@ void title_screen_draw_logo(f32 arg0) {
 #endif
 
 #if VERSION_PAL
-INCLUDE_ASM(void, "state_title_screen", title_screen_draw_press_start);
+void title_screen_draw_press_start(void) {
+    switch (D_80077A2C) {
+        case 0:
+            D_80077A28 += 80;
+            if (D_80077A28 > 255) {
+                D_80077A28 = 255;
+                D_80077A2C = 1;
+            }
+            // fallthrough
+        case 1:
+            if (D_PAL_80073D8C == 0) {
+                D_PAL_8009F0F4 += 64;
+                D_PAL_8009F0F8 -= 64;
+                if (D_PAL_8009F0F4 > D_80077A28) {
+                    D_PAL_8009F0F4 = D_80077A28;
+                }
+                if (D_PAL_8009F0F8 < D_80077A28 * 0.5f) {
+                    D_PAL_8009F0F8 = D_80077A28 * 0.5f;
+                }
+            } else {
+                D_PAL_8009F0F8 += 64;
+                D_PAL_8009F0F4 -= 64;
+                if (D_PAL_8009F0F8 > D_80077A28) {
+                    D_PAL_8009F0F8 = D_80077A28;
+                }
+                if (D_PAL_8009F0F4 < D_80077A28 * 0.5f) {
+                    D_PAL_8009F0F4 = D_80077A28 * 0.5f;
+                }
+            }
+            break;
+        case 2:
+            D_80077A28 -= 64;
+            if (D_80077A28 < 0) {
+                D_80077A28 = 0;
+            }
+            break;
+    }
+    if (D_80077A2C != 1) {
+        if (D_PAL_80073D8C == 0) {
+            D_PAL_8009F0F4 = D_80077A28;
+            D_PAL_8009F0F8 = D_80077A28 * 0.5f;
+        } else {
+            D_PAL_8009F0F8 = D_80077A28;
+            D_PAL_8009F0F4 = D_80077A28 * 0.5f;
+        }
+    }
+
+    gSPDisplayList(gMainGfxPos++, D_80077A50);
+    gDPSetCombineMode(gMainGfxPos++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
+    gDPSetPrimColor(gMainGfxPos++, 0, 0, 248, 240, 152, D_PAL_8009F0F4)
+    gDPPipeSync(gMainGfxPos++);
+
+    gDPLoadTextureBlock(
+        gMainGfxPos++, D_PAL_8009F0E8, G_IM_FMT_IA, G_IM_SIZ_8b, D_PAL_80073E38[gCurrentLanguage], 16, 0,
+        G_TX_NOMIRROR | G_TX_WRAP,G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
+    );
+
+    gSPTextureRectangle(
+        gMainGfxPos++,
+        (D_PAL_80073E58[gCurrentLanguage] * 4),
+        0x0254,
+        ((D_PAL_80073E58[gCurrentLanguage] + D_PAL_80073E38[gCurrentLanguage]) * 4),
+        0x0294,
+        G_TX_RENDERTILE, 0, 0, 0x0400, 0x0400
+    );
+
+    gDPSetPrimColor(gMainGfxPos++, 0, 0, 248, 240, 152, D_PAL_8009F0F8);
+    gDPPipeSync(gMainGfxPos++);
+
+    gDPLoadTextureBlock(
+        gMainGfxPos++, D_PAL_8009F0EC, G_IM_FMT_IA, G_IM_SIZ_8b, D_PAL_80073E48[gCurrentLanguage], 16, 0,
+        G_TX_NOMIRROR | G_TX_WRAP,G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
+    );
+
+    gSPTextureRectangle(
+        gMainGfxPos++,
+        D_PAL_80073E68[gCurrentLanguage] * 4,
+        0x02A4,
+        ((D_PAL_80073E68[gCurrentLanguage] + D_PAL_80073E48[gCurrentLanguage]) * 4),
+        0x02E4,
+        G_TX_RENDERTILE, 0, 0, 0x0400, 0x0400
+    );
+
+    gDPPipeSync(gMainGfxPos++);
+}
 #else
 void title_screen_draw_press_start(void) {
     switch (D_80077A2C) {
