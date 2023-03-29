@@ -51,6 +51,8 @@ extern s16 D_8009A690;
 void gfx_init_state(void);
 void gfx_draw_background(void);
 
+int func_8002D040(void);
+
 void step_game_loop(void) {
     PlayerData* playerData = &gPlayerData;
     const int MAX_GAME_TIME = 1000*60*60*60 - 1; // 1000 hours minus one frame at 60 fps
@@ -58,6 +60,10 @@ void step_game_loop(void) {
 #if !VERSION_JP
     update_input();
 #endif
+
+    if(!func_8002D040()) {
+        return;
+    }
 
     gGameStatusPtr->frameCounter++;
 

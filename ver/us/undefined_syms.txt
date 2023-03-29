@@ -458,4 +458,3 @@ dead_Entity_SuperBlock = Entity_SuperBlock + 0xE4B0;
 dead_Entity_ScriptSpring = Entity_ScriptSpring + 0xE4B0;
 dead_Entity_HiddenPanel = Entity_HiddenPanel + 0xE4B0;
 dead_Entity_Chest = Entity_Chest + 0xE4B0;
-func_8004D8E0 = 0x8004D8E0;

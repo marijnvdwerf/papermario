@@ -12,7 +12,7 @@ void fio_deserialize_state(void);
 void fio_serialize_state(void);
 s32 fio_read_flash(s32 pageNum, void* readBuffer, u32 numBytes);
 s32 fio_write_flash(s32 pageNum, s8* readBuffer, u32 numBytes);
-void fio_erase_flash(s32 pageNum);
+int fio_erase_flash(s32 pageNum);
 
 s32 get_spirits_rescued(void) {
     s32 storyProgress = evt_get_variable(NULL, GB_StoryProgress);
@@ -127,6 +127,9 @@ s32 fio_fetch_saved_file_info(void) {
                 logicalSaveInfo[buffer2->saveSlot][0] = i;
                 logicalSaveInfo[buffer2->saveSlot][1] = buffer2->saveCount;
             }
+        } else {
+            physicalSaveInfo[i][1] = 0x0;
+            physicalSaveInfo[i][0] = 0x63;
         }
     }
 
@@ -263,65 +266,20 @@ void fio_serialize_state(void) {
 }
 
 void fio_init_flash(void) {
-    osFlashInit();
+    bzero((void*) 0x80400000, 0x20000);
 }
 
 s32 fio_read_flash(s32 pageNum, void* readBuffer, u32 numBytes) {
-    OSIoMesg mb;
-    OSMesgQueue mesgQueue;
-    OSMesg mesg;
-    s8* buf = (s8*)readBuffer;
-    s32 amt;
-    u16 i;
-
-    osInvalDCache(buf, numBytes);
-    osCreateMesgQueue(&mesgQueue, &mesg, 1);
-
-    i = 0;
-    while (numBytes != 0) {
-        if (numBytes > sizeof(SaveDataHeader)) {
-            amt = sizeof(SaveDataHeader);
-        } else {
-            amt = numBytes;
-        }
-
-        osFlashReadArray(&mb, 0, pageNum * sizeof(SaveDataHeader) + i, buf, 1, &mesgQueue);
-        osRecvMesg(&mesgQueue, NULL, 1);
-        i++;
-        numBytes -= amt;
-        buf += amt;
-    }
+    bcopy((void*) ((pageNum * 0x4000) + 0x80400000), readBuffer, numBytes);
     return TRUE;
 }
 
 s32 fio_write_flash(s32 pageNum, s8* readBuffer, u32 numBytes) {
-    OSIoMesg mb;
-    OSMesgQueue mesgQueue;
-    OSMesg mesg;
-    s32 amt;
-    u16 i;
-
-    osWritebackDCache(readBuffer, numBytes);
-    osCreateMesgQueue(&mesgQueue, &mesg, 1);
-
-    i = 0;
-    while (numBytes != 0) {
-        if (numBytes > sizeof(SaveDataHeader)) {
-            amt = sizeof(SaveDataHeader);
-        } else {
-            amt = numBytes;
-        }
-
-        osFlashWriteBuffer(&mb, 0, readBuffer, &mesgQueue);
-        osFlashWriteArray((pageNum * sizeof(SaveDataHeader)) + i);
-        osRecvMesg(&mesgQueue, NULL, 1);
-        i++;
-        numBytes -= amt;
-        readBuffer += amt;
-    }
-    return TRUE;
+    bcopy(readBuffer, (void*) ((pageNum * 0x4000) + 0x80400000), numBytes);
+    return 1;
 }
 
-void fio_erase_flash(s32 pageNum) {
-    osFlashSectorErase(pageNum * sizeof(SaveDataHeader));
+int fio_erase_flash(s32 pageNum) {
+    bzero((void*) ((pageNum * 0x4000) + 0x80400000), 0x4000);
+    return 1;
 }

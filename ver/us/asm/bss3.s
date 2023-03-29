@@ -128,7 +128,7 @@ dlabel D_80151344
 .space 4
 
 dlabel D_80151348
-.space 0x00000038
+.space 0x00000038 - 0x20
 
 dlabel gWorldEntityList
 .space 0x00000078
@@ -722,7 +722,7 @@ dlabel CreateEntityVarArgBuffer
 .space 0x00000010
 
 dlabel D_8015C7E0
-.space 0x7820
+.space 0x7820 - 0x1CC0
 
 dlabel D_80164000
-.space 0x32C60
+.space 0x1a230 * 2

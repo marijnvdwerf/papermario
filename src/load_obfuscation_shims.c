@@ -3,6 +3,52 @@
 #include "ld_addrs.h"
 #include "mips.h"
 
+extern s32 D_800A0D24;
+extern s32 D_800A0D20;
+extern OSPiHandle D_800A0D28;
+extern OSContPad D_8009A5B8;
+
+int func_8002D040(void) {
+    if ((D_8009A5B8.button & (BUTTON_D_UP | BUTTON_D_DOWN)) == (BUTTON_D_UP | BUTTON_D_DOWN)) {
+        D_800A0D20 = 1;
+    }
+    return 1;
+}
+
+void func_8002D068(void) {
+    D_800A0D20 = 0;
+    D_800A0D24 = 0;
+    D_800A0D28.latency = 5;
+    D_800A0D28.pageSize = 0xD;
+    D_800A0D28.relDuration = 2;
+    D_800A0D28.pulse = 0xC;
+    osEPiLinkHandle(&D_800A0D28);
+}
+
+s32 func_8002D0B8(void) {
+    return D_800A0D20;
+}
+
+s32 func_8002D0C8(void) {
+    if (D_800A0D24 == 0) {
+        if (D_800A0D20 != 0) {
+            osEPiWriteIo(&D_800A0D28, 0x0FF70000, -1);
+            D_800A0D24 = 1;
+            return 1;
+        }
+    } else {
+        nuContDataGet(&D_8009A5B8, 0);
+        if ((D_8009A5B8.button & (BUTTON_D_LEFT | BUTTON_D_RIGHT)) == (BUTTON_D_LEFT | BUTTON_D_RIGHT)) {
+            osEPiWriteIo(&D_800A0D28, 0x0FF70000, 0);
+            D_800A0D20 = 0;
+            D_800A0D24 = 0;
+            return 2;
+        }
+        return 1;
+    }
+    return 0;
+}
+
 extern s8 obfuscated_obfuscation_shims_ROM_START[];
 extern s8 obfuscated_obfuscation_shims_VRAM[];
 

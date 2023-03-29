@@ -48,7 +48,7 @@ glabel appendGfx_animator_node
 /* B61F4 8011FAF4 0C019D80 */  jal       guMtxCatF
 /* B61F8 8011FAF8 0200302D */   daddu    $a2, $s0, $zero
 /* B61FC 8011FAFC 3C120001 */  lui       $s2, 1
-/* B6200 8011FB00 36521630 */  ori       $s2, $s2, 0x1630
+/* B6200 8011FB00 36521630 */  ori       $s2, $s2, 0x2230
 /* B6204 8011FB04 0200202D */  daddu     $a0, $s0, $zero
 /* B6208 8011FB08 3C108007 */  lui       $s0, %hi(gMatrixListPos)
 /* B620C 8011FB0C 261041F0 */  addiu     $s0, $s0, %lo(gMatrixListPos)

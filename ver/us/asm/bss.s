@@ -260,6 +260,15 @@ dlabel siMgrThread
 dlabel siMgrStack
 .space 0x2000
 
+dlabel D_800A0D20
+.space 4
+
+dlabel D_800A0D24
+.space 4
+
+dlabel D_800A0D28
+.space 0x80 - 4 - 4
+
 dlabel gCurrentCamConfiguration
 .space 0x0000001c
 
@@ -763,38 +772,44 @@ dlabel D_800B0B6C
 dlabel D_800B0B70
 .space 0x000000c0
 
-dlabel __osFlashID
+dlabel D_800B1110
+.space 0x10
+dlabel D_800B1120
+.space 2
+dlabel D_800B1122
+.space 2
+dlabel D_800B1124
 .space 4
-
-dlabel D_800B0C34
-.space 0x0000000c
-
-dlabel __osFlashMsg
+dlabel D_800B1128
 .space 4
-
-dlabel D_800B0C44
-.space 0x00000014
-
-dlabel __osFlashMessageQ
+dlabel D_800B112C
 .space 4
-
-dlabel D_800B0C5C
-.space 0x00000014
-
-dlabel __osFlashHandler
+dlabel D_800B1130
+.space 8
+dlabel D_800B1138
+.space 0x18
+dlabel D_800B1150
 .space 4
-
-dlabel D_800B0C74
-.space 0x00000070
-
-dlabel __osFlashMsgBuf
+dlabel D_800B1154
+.space 1
+dlabel D_800B1155
+.space 1
+dlabel D_800B1156
+.space 1
+dlabel D_800B1157
+.space 1
+dlabel D_800B1158
+.space 1
+dlabel D_800B1159
+.space 3
+dlabel D_800B115C
 .space 4
-
-dlabel __osFlashVersion
+dlabel D_800B1160
+.space 0x64
+dlabel D_800B11C4
 .space 4
-
-dlabel D_800B0CEC
-.space 4
+dlabel D_800B11C8
+.space 8
 
 dlabel wMapTexName
 .space 4

@@ -27,6 +27,9 @@ void load_engine_data(void);
 #define shim_load_engine_data_obfuscated load_engine_data
 #endif
 
+void func_8002D068(void);
+int func_8002D0C8(void);
+
 void boot_main(void* data) {
 #if VERSION_JP
     if (osTvType == OS_TV_NTSC) {
@@ -58,6 +61,8 @@ void boot_main(void* data) {
     nuGfxInit();
     gGameStatusPtr->contBitPattern = nuContInit();
 
+    func_8002D068();
+
 #if VERSION_IQUE
     create_audio_system();
     load_engine_data();
@@ -76,6 +81,10 @@ void boot_main(void* data) {
 }
 
 void gfxRetrace_Callback(s32 arg0) {
+    if (func_8002D0C8()) {
+        return;
+    }
+
     if (D_80073E00 != 0) {
         if (D_80073E00 == 1) {
             nuGfxTaskAllEndWait();

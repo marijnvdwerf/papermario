@@ -16,18 +16,18 @@ void appendGfx_intro_logos(void);
 #endif
 
 
-s32 D_800778C0[] = { 0, 0 };
+//s32 D_800778C0[] = { 0, 0 };
 
-Gfx D_800778C8[] = {
-    gsDPPipeSync(),
-    gsDPSetCycleType(G_CYC_COPY),
-    gsDPSetTexturePersp(G_TP_NONE),
-    gsDPSetTextureLUT(G_TT_NONE),
-    gsDPSetCombineMode(G_CC_DECALRGB, G_CC_DECALRGB),
-    gsDPSetRenderMode(G_RM_NOOP, G_RM_NOOP2),
-    gsDPSetTextureFilter(G_TF_POINT),
-    gsSPEndDisplayList(),
-};
+//Gfx D_800778C8[] = {
+//    gsDPPipeSync(),
+//    gsDPSetCycleType(G_CYC_COPY),
+//    gsDPSetTexturePersp(G_TP_NONE),
+//    gsDPSetTextureLUT(G_TT_NONE),
+//    gsDPSetCombineMode(G_CC_DECALRGB, G_CC_DECALRGB),
+//    gsDPSetRenderMode(G_RM_NOOP, G_RM_NOOP2),
+//    gsDPSetTextureFilter(G_TF_POINT),
+//    gsSPEndDisplayList(),
+//};
 
 Gfx D_80077908[] = {
     gsDPPipeSync(),
@@ -194,7 +194,7 @@ void state_step_logos(void) {
                 break;
             case INTRO_STATE_7:
                 if (gGameStatusPtr->introCounter == 0) {
-                    gGameStatusPtr->introState++;
+                    gGameStatusPtr->introState = 12;
                     intro_logos_set_fade_color(208);
                     gGameStatusPtr->introCounter = 30;
                 }
@@ -230,6 +230,31 @@ void state_step_logos(void) {
                 gGameStatusPtr->creditsViewportMode = 0;
                 set_game_mode(GAME_MODE_INTRO);
                 break;
+            case 12:
+                if (intro_logos_fade_out(0xA) != 0) {
+                    gGameStatusPtr->introState += 1;
+                }
+                break;
+            case 13:
+                if (intro_logos_fade_in(0xA) != 0) {
+                    gGameStatusPtr->introState += 1;
+                }
+                break;
+            case 14:
+                if (gGameStatusPtr->pressedButtons[0] & 0x9000) {
+                    intro_logos_set_fade_color(0xD0);
+                    set_curtain_scale_goal(1.0f);
+                    set_curtain_draw_callback(NULL);
+                    set_curtain_fade_goal(0.3f);
+                    gGameStatusPtr->introState += 1;
+                }
+                break;
+            case 15:
+                if (intro_logos_fade_out(0xA)) {
+                    gGameStatusPtr->introCounter = 15;
+                    gGameStatusPtr->introState = 10;
+                }
+                break;
         }
     }
     update_npcs();
@@ -240,6 +265,8 @@ void state_step_logos(void) {
 void state_drawUI_logos(void) {
     appendGfx_intro_logos();
 }
+
+void func_801269CC(int, int, int, int, int, int);
 
 void appendGfx_intro_logos(void) {
     s32 i;
@@ -293,6 +320,7 @@ void appendGfx_intro_logos(void) {
         case INTRO_STATE_7:
         case INTRO_STATE_8:
         case INTRO_STATE_9:
+        case INTRO_STATE_C:
             gSPDisplayList(gMainGfxPos++, D_80077908);
 #endif
             for (i = 0; i < 14; i++) {
@@ -305,6 +333,11 @@ void appendGfx_intro_logos(void) {
                                     G_TX_RENDERTILE, 0, 0, 1024, 1024);
                 gDPPipeSync(gMainGfxPos++);
             }
+            break;
+        case INTRO_STATE_D:
+        case INTRO_STATE_E:
+        case INTRO_STATE_F:
+            draw_msg(0x1d01ac, 33, 80, 255, MSG_PAL_STANDARD, 0);
             break;
     }
 }

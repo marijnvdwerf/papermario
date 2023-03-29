@@ -1,0 +1,4 @@
+.section .text
+
+
+.space 0x1943000 - 0x1942c40, 0x00

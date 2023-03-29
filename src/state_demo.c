@@ -143,7 +143,7 @@ DemoSceneData DemoScenes[] = {
 #if VERSION_JP
 char versionString[] = "Prg Ver.00/07/06 22:22";
 #elif VERSION_US
-char versionString[] = "Prg Ver.00/12/05 16:54";
+char versionString[] = "Prg Ver.00/12/18 18:11";
 #elif VERSION_IQUE
 char versionString[] = "Prg Ver.04/05/18 10:52";
 #else
@@ -284,4 +284,4 @@ void state_drawUI_demo(void) {
 
 }
 
-static const f32 pad[] = {0.0f, 0.0f};
+//static const f32 pad[] = {0.0f, 0.0f};

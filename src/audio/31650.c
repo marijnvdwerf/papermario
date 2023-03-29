@@ -109,6 +109,10 @@ void au_driver_release(void) {
     }
 }
 
+
+
+s32 func_8002D0B8(void) ;
+
 Acmd* alAudioFrame(Acmd* cmdList, s32* cmdLen, s16* outBuf, s32 outLen) {
     Acmd* cmdListPos;
     AuPVoice* pvoice;
@@ -123,9 +127,16 @@ Acmd* alAudioFrame(Acmd* cmdList, s32* cmdLen, s16* outBuf, s32 outLen) {
 
     cmdListPos = cmdList;
     bufPos = outBuf;
+
+    if(func_8002D0B8()) {
+        *cmdLen = 0;
+    return cmdListPos;
+    }
     if (gActiveSynDriverPtr == NULL) {
         *cmdLen = 0;
-    } else {
+    return cmdListPos;
+    }
+
         au_update_players_main();
         if (AuSynStereoDirty) {
             for (i = 0; i < gSynDriverPtr->num_pvoice; i++) {
@@ -236,7 +247,7 @@ Acmd* alAudioFrame(Acmd* cmdList, s32* cmdLen, s16* outBuf, s32 outLen) {
             gSynDriverPtr->curSamples += AUDIO_SAMPLES;
         }
         *cmdLen = (cmdListPos - cmdList);
-    }
+
     return cmdListPos;
 }
 
